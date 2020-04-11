@@ -63,43 +63,43 @@ class contact extends Component {
 					</div>
 
 					<div class="flex-col size2">
-						<span class="txt1 p-b-20">
+						<span class="txtt1 p-b-20">
 							Address
 						</span>
 
-						<span class="txt2">
+						<span class="txtt2">
 							Mada Center 8th floor, 379 Hudson St, New York, NY 100018 US
 						</span>
 					</div>
 				</div>
 
 				<div class="dis-flex size1 p-b-47">
-					<div class="txt1 p-r-25">
+					<div class="txtt1 p-r-25">
 						<span class="lnr lnr-phone-handset"></span>
 					</div>
 
 					<div class="flex-col size2">
-						<span class="txt1 p-b-20">
+						<span class="txtt1 p-b-20">
 							Lets Talk
 						</span>
 
-						<span class="txt3">
+						<span class="txtt3">
 							+1 800 1236879
 						</span>
 					</div>
 				</div>
 
 				<div class="dis-flex size1 p-b-47">
-					<div class="txt1 p-r-25">
+					<div class="txtt1 p-r-25">
 						<span class="lnr lnr-envelope"></span>
 					</div>
 
 					<div class="flex-col size2">
-						<span class="txt1 p-b-20">
+						<span class="txtt1 p-b-20">
 							General Support
 						</span>
 
-						<span class="txt3">
+						<span class="txtt3">
 							contact@example.com
 						</span>
 					</div>

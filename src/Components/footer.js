@@ -3,174 +3,84 @@ import './footer.css'
 class footer extends Component {
     render() {
         return (
-            <footer id="dk-footer" class="dk-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-4">
-                    <div class="dk-footer-box-info">
-                        <a href="index.html" class="footer-logo">
-                            <img src="images/footer_logo.png" alt="footer_logo" class="img-fluid"/>
-                        </a>
-                        <p class="footer-info-text">
-                           Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.
-                        </p>
-                        <div class="footer-social-link">
-                            <h3>Follow us</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="footer-awarad">
-                        <img src="images/icon/best.png" alt=""/>
-                        <p>Best Design Company 2019</p>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contact-us">
-                                <div class="contact-icon">
-                                    <i class="fa fa-map-o" aria-hidden="true"></i>
-                                </div>
-                                <div class="contact-info">
-                                    <h3>Jaipur India</h3>
-                                    <p>5353 Road Avenue</p>
+            <footer id="footer" class="footer-1">
+                <div class="main-footer widgets-dark typo-light">
+                    <div class="container">
+                        <div class="row">
+              
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="widget subscribe no-box">
+                                    <h5 class="widget-title">COMPANY NAME<span></span></h5>
+                                    <p>About the company, little discription will goes here.. </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="contact-us contact-us-last">
-                                <div class="contact-icon">
-                                    <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
-                                </div>
-                                <div class="contact-info">
-                                    <h3>95 711 9 5353</h3>
-                                    <p>Give us a call</p>
+            
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="widget no-box">
+                                <h5 class="widget-title">Quick Links<span></span></h5>
+                              <ul class="thumbnail-widget">
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Get Started</a></div>	
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Top Leaders</a></div>	
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Success Stories</a></div>	
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Event/Tickets</a></div>	
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">News</a></div>	
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">Lifestyle</a></div>	
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#.">About</a></div>	
+                                </li>
+                              </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-lg-6">
-                            <div class="footer-widget footer-left-widget">
-                                <div class="section-heading">
-                                    <h3>Useful Links</h3>
-                                    <span class="animate-border border-black"></span>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <a href="#">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Services</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Projects</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Our Team</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#">Contact us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Testimonials</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Faq</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <div class="footer-widget">
-                                <div class="section-heading">
-                                    <h3>Subscribe</h3>
-                                    <span class="animate-border border-black"></span>
-                                </div>
-                                <p>
-                                Reference site about Lorem Ipsum, giving information on its origins, as well.</p>
-                                <form action="#">
-                                    <div class="form-row">
-                                        <div class="col dk-footer-form">
-                                            <input type="email" class="form-control" placeholder="Email Address"/>
-                                            <button type="submit">
-                                                <i class="fa fa-send"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="widget no-box">
+            <h5 class="widget-title">Get Started<span></span></h5>
+            <p>Get access to your full Training and Marketing Suite.</p>
+            <a class="btn" href="#." target="_blank">Register Now</a>
             </div>
-        </div>
-        <div class="copyright">
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-md-3">
+            
+            <div class="widget no-box">
+            <h5 class="widget-title">Contact Us<span></span></h5>
+            
+            <p><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
+            <ul class="social-footer2">
+            <li class=""><a title="youtube" target="_blank" href="https://www.youtube.com/"><img alt="youtube" width="30" height="30" src=""/></a></li>
+            <li class=""><a href="https://www.facebook.com/" target="_blank" title="Facebook"><img alt="Facebook" width="30" height="30" src=""/></a></li>
+            <li class=""><a href="https://twitter.com" target="_blank" title="Twitter"><img alt="Twitter" width="30" height="30" src=""/></a></li>
+            <li class=""><a title="instagram" target="_blank" href="https://www.instagram.com/"><img alt="instagram" width="30" height="30" src=""/></a></li>
+            </ul>
+            </div>
+            </div>
+            
+            </div>
+            </div>
+            </div>
+              
+            <div class="footer-copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <span>Copyright © 2019, All Right Reserved Seobin</span>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="copyright-menu">
-                            <ul>
-                                <li>
-                                    <a href="#">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#">Terms</a>
-                                </li>
-                                <li>
-                                    <a href="#">Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+            <div class="col-md-12 text-center">
+            <p>Copyright Company Name © 2016. All rights reserved.</p>
             </div>
- 
-        </div>
-
-        <div id="back-to-top" class="back-to-top">
-            <button class="btn btn-dark" title="Back to Top" >
-                <i class="fa fa-angle-up"></i>
-            </button>
-        </div>      
-</footer>
+            </div>
+            </div>
+            </div>
+            </footer>
         );
     }
 }

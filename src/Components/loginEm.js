@@ -100,12 +100,12 @@ class SignInForm extends Component {
 							
 					</div>
 
-					<div class="text-center p-t-90">
+					<div class="text-center p-t-9">
 						<a class="txt1" href="/">
 							Forgot Password?
 						</a>
 					</div>
-					<div class="text-center p-t-90">
+					<div class="text-center p-t-9">
                         <div class="txt1">You don't have account ?</div>
                         <a class="txt1" href="/registerEm">
                          Sign Up here
