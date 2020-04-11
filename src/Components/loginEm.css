@@ -31,13 +31,9 @@
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
-* {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
-}
 
 body, html {
+  
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
 }
@@ -170,7 +166,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-
+  padding-bottom: 120px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
