@@ -37,9 +37,8 @@ export const oauthFacebook = data =>{
 export const signup = data =>{
     return async dispatch => {
         try {
-      const res= await axios.post('http://localhost:5000/users/signup',data);
-            console.log("res",res);
-            
+      const res = await axios.post("http://localhost:5000/users/signup",data)
+            console.log("res",res);   
            dispatch({
                 type : AUTH_SIGN_UP,
                 payload : res.data.token 

@@ -11,6 +11,7 @@ import {createStore,applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from '../reducers';
 import registerEm from './registerEm';
+import cv from './cv';
 const jwtToken = localStorage.getItem('JWT_TOKEN');
 
 
@@ -32,6 +33,7 @@ const Main= () => (
         <Route path="/singlejob" component={singlejob}></Route>
         <Route path="/contact" component={contact}></Route>
         <Route path='/listjob' component={Listjob}></Route>
+        <Route path ='/cv' component={cv}></Route>
       </Switch>
       </BrowserRouter>
       </Provider>

@@ -4,6 +4,8 @@ import {compose} from 'redux';
 import { Field, reduxForm} from 'redux-form';
 import CustumInput from './CustumInput'
 import * as actions from '../actions';
+import Googlelogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login'
 
 import './loginEm.css';
 import Background from './images/hero_2.jpg' ;
@@ -33,16 +35,16 @@ class SignUpForm extends Component {
 	
 	  async responseGoogle(res) {
 		await this.props.oauthGoogle(res.accessToken);
-		if (!this.props.errorMessage) {
+		/*if (!this.props.errorMessage) {
 		  this.props.history.push('/dashboard');
-		}
+		}*/
 	  }
 	
 	  async responseFacebook(res) {
 		await this.props.oauthFacebook(res.accessToken);
-		if (!this.props.errorMessage) {
+		/*if (!this.props.errorMessage) {
 		  this.props.history.push('/dashboard');
-		}
+		}*/
 	  }
 	
     
@@ -134,7 +136,23 @@ class SignUpForm extends Component {
                         <a class="txt1" href="/registerEm">
                          Sign Up here
 						</a>
+						
 					</div>
+					<FacebookLogin
+							appId="200823678007159"
+							autoLoad={false}
+							textButton="Facebook"
+							fields="name,email,picture"
+							callback={this.responseFacebook}
+							cssClass="btn btn-outline-primary"
+						/>
+						<Googlelogin
+							clientId="1020396711366-kmijavhtfkivou1n6sh8tihggi14n93h.apps.googleusercontent.com"
+							buttonText="Google"
+							onSuccess={this.responseGoogle}
+							onFailure={this.responseGoogle}
+							cssClass="btn btn-outline-danger"
+						/>
 				</form>
 			</div>
 		</div>
@@ -148,7 +166,12 @@ class SignUpForm extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+	return {
+	  errorMessage: state.auth.errorMessage
+	}
+  }
 
 export default compose(
-    connect(null,actions),
+    connect(mapStateToProps,actions),
             reduxForm({form : 'signup'}))(SignUpForm)

@@ -4,6 +4,8 @@ import {compose} from 'redux';
 import { Field, reduxForm} from 'redux-form';
 import CustumInput from './CustumInput'
 import * as actions from '../actions';
+import Googlelogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login'
 
 import './loginEm.css';
 import Background from './images/hero_2.jpg' ;
@@ -111,6 +113,20 @@ class SignInForm extends Component {
                          Sign Up here
 						</a>
 					</div>
+					<FacebookLogin
+							appId="200823678007159"
+							autoLoad={false}
+							textButton="Link with Facebook"
+							fields="name,email,picture"
+							callback={this.responseFacebook}
+							cssClass="btn btn-outline-primary"
+						/>
+						<Googlelogin
+							clientId="1020396711366-kmijavhtfkivou1n6sh8tihggi14n93h.apps.googleusercontent.com"
+							buttonText="Google"
+							onSuccess={this.responseGoogle}
+							onFailure={this.responseGoogle}
+							cssClass="btn btn-outline-danger"/>
 				</form>
 			</div>
 		</div>
