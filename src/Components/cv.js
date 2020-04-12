@@ -6,9 +6,11 @@ import './cv.css'
 class cv extends Component {
     render() {
         return (
+        <div>
+            <br/><br/><br/><br/>
+                <figure><h1>Ajouter un CV</h1></figure>
             <div class='container '>
-                <br/><br/><br/><br/>
-                <h1>Ajouter un CV</h1>
+                
                 <div class="form-group pt-5 ">
                     <label for="exampleFormControlFile1">Example file input</label>
     <               input type="file" class="form-control-file" id="exampleFormControlFile1"/>
@@ -59,8 +61,26 @@ class cv extends Component {
                 <div class='row'>
                         <button type='submit' class='btn btn-primary ml-10'>Publier</button>
                 </div>
-
+                <div class="form-group">
+                    <h3>Expériences Professionnelles - Stages</h3>
+                </div>
+                <div class='form-group'>
+                    <div class='row'>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1">Lieu</label>
+                            <input class="form-control" type="text" placeholder="Default input"></input>
+                        </div>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1">Entreprise</label>
+                            <input class="form-control" type="text" placeholder="Default input"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    
+                </div>
             </div>
+        </div>
         );
     }
 }

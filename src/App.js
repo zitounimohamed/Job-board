@@ -10,13 +10,14 @@ function App() {
         
         
         
-        <Content>
+        
           <div className="page-content" />
 
             <Main>
             </Main>
-            <Footer></Footer>
-          </Content>
+          
+          <Footer></Footer>
+
           </div>
   );
 }

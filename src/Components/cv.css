@@ -1,7 +1,13 @@
 h1{
     text-align: center;
+    color : #fed136;
 }
 button{
     margin-bottom: 50px;
     
+}
+
+figure{
+    background-color :#fff;
+    padding : 30px 30px 30px ;
 }

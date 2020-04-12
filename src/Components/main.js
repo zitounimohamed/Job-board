@@ -12,6 +12,7 @@ import ReduxThunk from 'redux-thunk';
 import reducers from '../reducers';
 import registerEm from './registerEm';
 import cv from './cv';
+import test from './test';
 const jwtToken = localStorage.getItem('JWT_TOKEN');
 
 
@@ -34,6 +35,7 @@ const Main= () => (
         <Route path="/contact" component={contact}></Route>
         <Route path='/listjob' component={Listjob}></Route>
         <Route path ='/cv' component={cv}></Route>
+        <Route paht ='/test' component={test}></Route>
       </Switch>
       </BrowserRouter>
       </Provider>
