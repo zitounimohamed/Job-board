@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN} from './types'
+import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,ADD_CV} from './types'
 
 
 export const oauthGoogle = data =>{
@@ -88,4 +88,24 @@ export const signOut = () => {
       })
     };
 
+}
+export const newcv = data =>{
+    return async dispatch => {
+        try {
+      const res = await axios.post("http://localhost:5000/cvs/newcv",data)
+            console.log("res",res);   
+           dispatch({
+                type : ADD_CV,
+                payload : res.data 
+            });
+
+            localStorage.setItem('JTW_Token',res.data);
+        } catch (error) {
+            dispatch({
+                type : AUTH_ERROR,
+                payload : 'Email is already used !!'
+            })
+            
+        }
+    };
 }
