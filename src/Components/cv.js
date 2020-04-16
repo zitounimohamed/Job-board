@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { Field } from 'redux-form';
-import CustumInput from './CustumInput';
 import axios from 'axios'
 import './cv.css'
 import { connect} from 'react-redux';
-import {  reduxForm} from 'redux-form';
-import * as actions from '../actions';
+
 import {compose} from 'redux';
 
 class Cv extends Component {
     constructor(props){
         super(props);
         this.state={
-            photo : null ,
+            file : null ,
             titre : null ,
             type : null , 
             categ : null , 
@@ -24,9 +21,10 @@ class Cv extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
+        this.onChange=this.onChange.bind(this)
 
     }
-    
+   
      
     handleInputChange = (event) =>{
         this.setState({
@@ -34,15 +32,12 @@ class Cv extends Component {
             [event.target.name] : event.target.value
         })
     }
-    handleSubmit = async (event)=>{
+     handleSubmit = async (event)=>{
         event.preventDefault();
 
        let uri ="http://localhost:5000/cvs/newcv" ;
-        const fd = new FormData();
-        fd.append('photo',this.state.photo)
-        console.log(fd);
-        
        const data ={
+           file : this.state.file,
            titre: this.state.titre,
            type: this.state.type,
            categ: this.state.categ,
@@ -50,11 +45,10 @@ class Cv extends Component {
            //cvfile: this.state.cvfile,
            tel: this.state.tel,
            exp: this.state.exp,
-
        }
 
-       console.log(data);
-       axios.post(uri,fd,data).then((response)=>{
+       console.log("data",data);
+       await axios.post(uri,data).then((response)=>{
            console.log(response);
 
        }).catch(error =>{
@@ -63,10 +57,24 @@ class Cv extends Component {
        }); 
 
     }
+    onChange = (e) => {
+        this.setState({file: e.target.files[0]})
+    }
+
+    /* uploadFile = async (file) => {
+        const fd = new FormData();
+        fd.append('file', file);
+        await axios.post('http://localhost:5000/cvs/uploads',fd)
+        .then(response => {
+            console.log(response.request.response)
+        })
+        .catch(error => console.log(error))
+
+     }*/
    
     
     
-    render() {
+    render() {  
         
         return (
         <div>
@@ -76,7 +84,7 @@ class Cv extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <div class="form-group pt-5 ">
                     <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="photo"onChange= {(e)=>this.handleInputChange}/>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" onChange={this.handleInputChange}/>
                 </div>
                 <div class='form-group' >
                     <label for="exampleFormControlFile1">Titre de poste désiré</label>

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Pichome from './pichome';
 import { Grid, Cell } from 'react-mdl';
-import Services from './services';
-import About from './about'
+
 import Listjob from './listjob';
 class home extends Component {
     render() {

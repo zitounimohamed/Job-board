@@ -1,5 +1,4 @@
 import React from 'react';
-import {Layout,Content} from 'react-mdl' ;
 import Main from './Components/main';
 import Navbar from './Components/navbar'
 import Footer from './Components/footer'

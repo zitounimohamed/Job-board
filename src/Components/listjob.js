@@ -23,7 +23,7 @@ class listjob extends Component {
                   </div>
                 </div>
                 <div class="job-post-item-body d-block d-md-flex">
-                  <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
+                  <div class="mr-3"><span class="icon-layers"></span> <a href="/">Facebook, Inc.</a></div>
                   <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
                 </div>
               </div>
@@ -48,7 +48,7 @@ class listjob extends Component {
                   </div>
                 </div>
                 <div class="job-post-item-body d-block d-md-flex">
-                  <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
+                  <div class="mr-3"><span class="icon-layers"></span> <a href="/">Facebook, Inc.</a></div>
                   <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
                 </div>
               </div>
