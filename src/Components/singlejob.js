@@ -144,7 +144,7 @@ class singlejob extends Component {
       <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Votre Nom:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
+            <input type="text" class="form-control" id="nom" nom="nom" />
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Votre Email:</label>

@@ -29,7 +29,8 @@ class Cv extends Component {
     handleInputChange = (event) =>{
         this.setState({
             
-            [event.target.name] : event.target.value
+            [event.target.name] : event.target.value,
+            
         })
     }
      handleSubmit = async (event)=>{
@@ -84,7 +85,7 @@ class Cv extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <div class="form-group pt-5 ">
                     <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" onChange={this.handleInputChange}/>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" onChange={this.onChange}/>
                 </div>
                 <div class='form-group' >
                     <label for="exampleFormControlFile1">Titre de poste désiré</label>
@@ -95,9 +96,9 @@ class Cv extends Component {
                         <label for="exampleFormControlFile1">Type d'emploi</label>
                         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="type" onChange={this.handleInputChange}>
                             <option selected>Choisir...</option>
-                            <option value="1">CDI</option>
-                            <option value="2">CD</option>
-                            <option value="3">Three</option>
+                            <option value="cdi">CDI</option>
+                            <option value="cd">CD</option>
+                            <option value="three">Three</option>
                         </select>
                     </div>
                     <div class='col'>
@@ -118,10 +119,10 @@ class Cv extends Component {
                     <label for="exampleFormControlFile1">Expérience</label>
                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="exp" onChange={this.handleInputChange}>
                         <option selected>Selectionner votre expérience...</option>
-                        <option value="1">Débutant</option>
-                        <option value="2">0 à 1 an</option>
-                        <option value="3">1 à 2 ans</option>
-                        <option value="4">3 ans ou plus</option>
+                        <option value="Débutant">Débutant</option>
+                        <option value="0 à 1 an">0 à 1 an</option>
+                        <option value="1 à 2 ans">1 à 2 ans</option>
+                        <option value="3 ans ou plus">3 ans ou plus</option>
 
                     </select>
                 </div>

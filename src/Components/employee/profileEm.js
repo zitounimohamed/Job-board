@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,Collapse,CardBody } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,CardBody } from 'reactstrap';
 import classnames from 'classnames';
 import Cv from './cv';
-
+import Listcv from '../../views/cvs'
 const Example = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+  //  const [isOpen, setIsOpen] = useState(false);
 
-  const togglee = () => setIsOpen(!isOpen);
+  //const togglee = () => setIsOpen(!isOpen);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
@@ -16,7 +16,7 @@ const Example = (props) => {
      
 
   return (
-    <div>
+    <div className='container'>
         <br/><br/><br/><br/>
                 <figure></figure>
 <br/><br/><br/>
@@ -26,7 +26,7 @@ const Example = (props) => {
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            Votre Cv
+            Ajouter un nouveau Cv
           </NavLink>
         </NavItem>
         <NavItem>
@@ -37,22 +37,39 @@ const Example = (props) => {
             Moar Tabs
           </NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '3' })}
+            onClick={() => { toggle('3'); }}
+          >
+            Votre Cv
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '4' })}
+            onClick={() => { toggle('4'); }}
+          >
+            Les demandes
+          </NavLink>
+        </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
           <Row>
-            <Col sm="12">
-            <Button color="primary" onClick={togglee} style={{ marginBottom: '1rem' }}>Toggle</Button>
-      <Collapse isOpen={isOpen}>
-        <Card>
-          <CardBody>
-         <Cv></Cv>
-          </CardBody>
-        </Card>
-      </Collapse>
+              
+             <Col sm="12">
+            
+                <Card>
+                  <CardBody>
+                 <Cv></Cv>
+                  </CardBody>
+                </Card>
              
             </Col>
+            
           </Row>
+          
         </TabPane>
         <TabPane tabId="2">
           <Row>
@@ -71,6 +88,38 @@ const Example = (props) => {
               </Card>
             </Col>
           </Row>
+        </TabPane>
+        <TabPane tabId="3">
+          <Row>
+              
+             <Col sm="12">
+            
+                <Card>
+                  <CardBody>
+                 <Listcv></Listcv>
+                  </CardBody>
+                </Card>
+            
+             
+            </Col>
+          </Row>
+          
+        </TabPane>
+        <TabPane tabId="4">
+          <Row>
+              
+             <Col sm="12">
+            
+                <Card>
+                  <CardBody>
+                      test
+                  </CardBody>
+                </Card>
+            
+             
+            </Col>
+          </Row>
+          
         </TabPane>
       </TabContent>
     </div>

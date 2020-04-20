@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import {compose} from 'redux';
 import { Field, reduxForm} from 'redux-form';
-import CustumInput from './CustumInput'
-import * as actions from '../actions';
+import CustumInput from '../CustumInput'
+import * as actions from '../../actions';
 import Googlelogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login'
 
 import './loginEm.css';
-import Background from './images/hero_2.jpg' ;
+import Background from '../images/hero_2.jpg' ;
 
 const mystyles ={
     backgroundImage: `url(${Background})`,

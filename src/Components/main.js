@@ -1,7 +1,7 @@
 import React from 'react' ; 
 import { Switch,Route,BrowserRouter } from 'react-router-dom';
 
-import loginEm from './loginEm'
+import loginEm from './employee/loginEm'
 import home from './home';
 import singlejob from './singlejob';
 import contact from './contact';
@@ -10,9 +10,12 @@ import { Provider } from 'react-redux';
 import {createStore,applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from '../reducers';
-import registerEm from './registerEm';
-import cv from './cv';
-import test from './test';
+import registerEm from './employee/registerEm';
+import cv from './employee/cv';
+import profileEm from './employee/profileEm';
+import listcv from './employee/listcv';
+import cvs from '../views/cvs';
+import authGard from './HOCs/authGuard'
 const jwtToken = localStorage.getItem('JWT_TOKEN');
 
 
@@ -34,8 +37,9 @@ const Main= () => (
         <Route path="/singlejob" component={singlejob}></Route>
         <Route path="/contact" component={contact}></Route>
         <Route path='/listjob' component={Listjob}></Route>
-        <Route path ='/cv' component={cv}></Route>
-        <Route paht ='/test' component={test}></Route>
+        <Route path ='/cv' component={authGard(cv)}></Route>
+        <Route path ='/profileEm' component={profileEm}></Route>
+        <Route path='/cvs' component={authGard(cvs)}></Route>
       </Switch>
       </BrowserRouter>
       </Provider>
