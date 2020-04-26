@@ -4,8 +4,6 @@ import Navbar from './Components/navbar'
 import Footer from './Components/footer'
 import {setCurrentUser} from './actions';
 import jwt_decode from "jwt-decode";
-
-import { connect } from 'react-redux';
 import setAuthToken from './utils/Authorization'
 import store from './Components/store'
 

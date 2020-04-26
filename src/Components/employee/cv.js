@@ -80,7 +80,7 @@ class Cv extends Component {
         return (
         <div>
             <br/><br/><br/><br/>
-                <figure><h1>Ajouter un CV</h1></figure>
+                <figure className='figcv'><h1>Ajouter un CV</h1></figure>
             <div class='container '>
                 <form onSubmit={this.handleSubmit}>
                 <div class="form-group pt-5 ">

@@ -1,0 +1,176 @@
+/* @extend display-flex; */
+display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
+    display: flex;
+    display: -webkit-flex; }
+  
+   
+ 
+  
+  .main {
+    background: #f8f8f8;
+    padding: 150px 0; }
+  
+  .clear {
+    clear: both; }
+  
+ 
+  
+  .registerr {
+    width: 900px;
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    -ms-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -o-border-radius: 20px;
+    -ms-border-radius: 20px; }
+  
+  .display-flex {
+    justify-content: space-between;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -o-justify-content: space-between;
+    -ms-justify-content: space-between;
+    align-items: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -o-align-items: center;
+    -ms-align-items: center; }
+  
+  .display-flex-center {
+    justify-content: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -o-justify-content: center;
+    -ms-justify-content: center;
+    align-items: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -o-align-items: center;
+    -ms-align-items: center; }
+  
+  .position-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); }
+  
+  .signup {
+    margin-bottom: 150px; }
+  
+  .signup-content {
+    padding: 75px 0; }
+  
+  .signup-form,.signup-image {
+    width: 50%;
+    overflow: hidden; }
+  
+.signup-image-link {
+    font-size: 14px;
+    color: #222;
+    display: block;
+    text-align: center; }
+
+  
+  .form-title {
+    margin-bottom: 33px; }
+  
+  .signup-image {
+    margin-top:180px; }
+ 
+  
+  .fig {
+    margin-bottom: 50px;
+    text-align: center; }
+  
+  .form-submit {
+    display: inline-block;
+    background: #6dabe4;
+    color: #fff;
+    border-bottom: none;
+    width: auto;
+    padding: 15px 39px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    margin-top: 25px;
+    cursor: pointer; }
+    .form-submit:hover {
+      background: #4292dc; }
+  
+ 
+  
+  
+  .term-service {
+    font-size: 13px;
+    color: #222; }
+  
+  .signup-form {
+    margin-left: 20px;
+    margin-right: 75px;
+    padding-left: 34px; }
+  
+  .register-form {
+    width: 100%; }
+  
+ 
+  
+
+  
+  .material-icons-name {
+    font-size: 18px; }
+  
+
+  
+  
+  
+
+  
+  @media screen and (max-width: 1200px) {
+    .container {
+      width: calc( 100% - 30px);
+      max-width: 100%; } }
+  @media screen and (min-width: 1024px) {
+    .container {
+      max-width: 1200px; } }
+  @media screen and (max-width: 768px) {
+    .signup-content {
+      flex-direction: column;
+      -moz-flex-direction: column;
+      -webkit-flex-direction: column;
+      -o-flex-direction: column;
+      -ms-flex-direction: column;
+      justify-content: center;
+      -moz-justify-content: center;
+      -webkit-justify-content: center;
+      -o-justify-content: center;
+      -ms-justify-content: center; }
+  
+    .signup-form {
+      margin-left: 0px;
+      margin-right: 0px;
+      padding-left: 0px;
+      /* box-sizing: border-box; */
+      padding: 0 30px; }
+  
+  
+    .signup-form ,.signup-image{
+      width: auto; }
+  
+
+    }
+.lab{
+    color : black;
+    padding-bottom: 5px;
+}

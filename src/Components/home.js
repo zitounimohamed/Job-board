@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Pichome from './pichome';
 import { Grid, Cell } from 'react-mdl';
 
-import Listjob from './listjob';
+import Listjob from './society/listjob';
 class home extends Component {
     render() {
         return (
