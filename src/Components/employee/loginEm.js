@@ -143,7 +143,8 @@ class SignInForm extends Component {
 }
 function mapStateToProps(state) {
 	return{
-		errorMessage: state.auth.errorMessage
+		errorMessage: state.auth.errorMessage,
+		isAuth : state.auth.isAuthenticated
 	}	
 }
 

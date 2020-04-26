@@ -8,15 +8,10 @@ import reducers from './reducers';
 import {createStore,applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 const jwtToken = localStorage.getItem('JWT_TOKEN');
+const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ;
 
 ReactDOM.render(
-  <Provider store={createStore(reducers,{
-    auth : {
-        token : jwtToken,
-        isAuthenticated: jwtToken ? true : false
-    }
-
-}, applyMiddleware(ReduxThunk))}>>
+  <Provider store={createStore(reducers,storeEnhancer(applyMiddleware(ReduxThunk)))}>
 <App />
 </Provider>
 ,

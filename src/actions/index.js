@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,ADD_CV} from './types'
+import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,ADD_CV} from './types'
 
 
 export const oauthGoogle = data =>{
@@ -38,6 +38,7 @@ export const signup = data =>{
     return async dispatch => {
         try {
       const res = await axios.post("http://localhost:5000/users/signup",data)
+
             console.log("res",res);   
            dispatch({
                 type : AUTH_SIGN_UP,
@@ -63,7 +64,8 @@ export const signin = data =>{
 
           dispatch({
               type : AUTH_SIGN_IN,
-              payload : res.data.token 
+              payload : res.data.token ,
+              
           });
 
           localStorage.setItem('JTW_Token',res.data.token);
@@ -78,13 +80,13 @@ export const signin = data =>{
 }
 
 export const signOut = () => {
+    localStorage.removeItem('JWT_TOKEN')
     return async dispatch => {
-      //await axios.get('http://localhost:5000/users/signout');
-      localStorage.removeItem('JTW_Token');
+        const res= await axios.get('http://localhost:5000/users/signout', {withCredentials: true});
 
       dispatch({
-        type: AUTH_SIGN_OUT, 
-        payload:  ''
+        type: AUTH_SIGN_OUT ,
+        payload : res.data.access_token
       })
     };
 
@@ -109,3 +111,27 @@ export const newcv = data =>{
         }
     };
 }
+export const checkAuth = () => {
+    return async dispatch => {
+      try {
+        await axios.get('http://localhost:5000/users/status');
+  
+        dispatch({
+          type: AUTH_SIGN_IN,
+          payload : "logged"
+        });
+  
+        console.log('user is auth-ed')
+      } catch(err) {
+        console.log('error', err)
+      }
+    };
+  }
+
+  // Set logged in user
+export const setCurrentUser = decoded => {
+    return {
+      type: SET_CURRENT_USER,
+      payload: decoded
+    };
+  };

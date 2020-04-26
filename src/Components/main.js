@@ -7,7 +7,7 @@ import singlejob from './singlejob';
 import contact from './contact';
 import Listjob from './listjob'
 import { Provider } from 'react-redux';
-import {createStore,applyMiddleware} from 'redux';
+import {createStore,applyMiddleware, compose} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from '../reducers';
 import registerEm from './employee/registerEm';
@@ -16,21 +16,17 @@ import profileEm from './employee/profileEm';
 import listcv from './employee/listcv';
 import cvs from '../views/cvs';
 import authGard from './HOCs/authGuard'
-const jwtToken = localStorage.getItem('JWT_TOKEN');
+import Axios from 'axios';
+import store from './store';
+
 
 
 const Main= () => (
-  <Provider store={createStore(reducers,{
-    auth : {
-        token : jwtToken,
-        isAuthenticated: jwtToken ? true : false
-    }
-
-}, applyMiddleware(ReduxThunk))}>>
+  <Provider store={store}>
     <BrowserRouter>
     <Switch>
         
-        <Route exact path ='/' component={home}></Route>
+        <Route exact path ='/' component={loginEm}></Route>
         <Route exact path ='/home' component={home}></Route>
         <Route path='/registerEm' component={registerEm}></Route>
         <Route path='/loginEm' component={loginEm}></Route>

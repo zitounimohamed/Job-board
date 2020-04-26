@@ -35,16 +35,16 @@ class SignUpForm extends Component {
 	
 	  async responseGoogle(res) {
 		await this.props.oauthGoogle(res.accessToken);
-		/*if (!this.props.errorMessage) {
-		  this.props.history.push('/dashboard');
-		}*/
+		if (!this.props.errorMessage) {
+		  this.props.history.push('/home');
+		}
 	  }
 	
 	  async responseFacebook(res) {
 		await this.props.oauthFacebook(res.accessToken);
-		/*if (!this.props.errorMessage) {
-		  this.props.history.push('/dashboard');
-		}*/
+		if (!this.props.errorMessage) {
+		  this.props.history.push('/home');
+		}
 	  }
 	
     
@@ -168,7 +168,9 @@ class SignUpForm extends Component {
 }
 function mapStateToProps(state) {
 	return {
-	  errorMessage: state.auth.errorMessage
+	  errorMessage: state.auth.errorMessage,
+	  isAuth : state.auth.isAuthenticated
+
 	}
   }
 
