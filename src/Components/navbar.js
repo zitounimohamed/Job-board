@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../assets/css/agency.min.css'
 import { connect } from 'react-redux';
 import * as actions from '../actions'
-import { NavLink, NavItem, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { NavLink, NavItem } from 'reactstrap';
 
 class navbar extends Component {
   constructor(props) {

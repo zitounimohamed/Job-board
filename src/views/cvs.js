@@ -25,22 +25,19 @@ async componentDidMount(){
         console.log(error);
     });
 }
-  async found (){
-      let url = 'http://localhost:5000/users/'
-  }
+  
         
                 
 
     
 
     render() {
-        let logged = this.props.isAuthenticated
         return (
             <div>
             {this.state.cv !== null && this.state.cv.map(cv => {
 
                 return (
-                    <ViewCv isAuthenticated={this.props.isAuthenticated}  titre={cv.titre} file={cv.file} />)
+                    <ViewCv   titre={cv.titre} file={cv.file} />)
             })}
             </div>
         );

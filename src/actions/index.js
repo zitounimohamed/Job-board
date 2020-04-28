@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,ADD_CV} from './types'
+import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,ADD_CV,SIGN_UP_SOC} from './types'
 
 
 export const oauthGoogle = data =>{
@@ -42,6 +42,27 @@ export const signup = data =>{
             console.log("res",res);   
            dispatch({
                 type : AUTH_SIGN_UP,
+                payload : res.data.token 
+            });
+
+            localStorage.setItem('JTW_Token',res.data.token);
+        } catch (error) {
+            dispatch({
+                type : AUTH_ERROR,
+                payload : 'Email is already used !!'
+            })
+            
+        }
+    };
+}
+export const signupS = data =>{
+    return async dispatch => {
+        try {
+      const res = await axios.post("http://localhost:5000/users/signupS",data)
+
+            console.log("res",res);   
+           dispatch({
+                type : SIGN_UP_SOC,
                 payload : res.data.token 
             });
 
