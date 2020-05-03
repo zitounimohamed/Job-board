@@ -55,6 +55,17 @@ export const signup = data =>{
         }
     };
 }
+export const onejob = data =>{
+    return async dispatch =>{
+        try {
+            const res = await axios.get("http://localhost:5000/jobs/onejob",data)
+            console.log("res",res);
+            
+        } catch (error) {
+            
+        }
+    }
+}
 export const signupS = data =>{
     return async dispatch => {
         try {

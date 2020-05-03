@@ -11,12 +11,11 @@ class singlejob extends Component {
               <div class="border p-2 d-inline-block mr-3 rounded">
               </div>
               <div>
-                <h2>Product Designer</h2>
+                <h2>{this.props.title}</h2>
                 <div>
                   <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>Puma</span>
-                  <span class="m-2"><span class="icon-room mr-2"></span>New York City</span>
-                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">Full
-                      Time</span></span>
+                  <span class="m-2"><span class="icon-room mr-2"></span>  </span>
+                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">   </span></span>
                 </div>
               </div>
             </div>
@@ -39,12 +38,10 @@ class singlejob extends Component {
              
               <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span class="fa fa-briefcase pr-2"></span>Job
                 Description</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis illum fuga eveniet. Deleniti asperiores,
-                commodi quae ipsum quas est itaque, ipsa, dolore beatae voluptates nemo blanditiis iste eius officia minus.
+              <p>
+                {this.props.description}
               </p>
-              <p>Velit unde aliquam et voluptas reiciendis non sapiente labore, deleniti asperiores blanditiis nihil quia
-                officiis dolor vero iste dolore vel molestiae saepe. Id nisi, consequuntur sunt impedit quidem, vitae
-                mollitia!</p>
+              
             </div>
             <div class="mb-5">
               <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span

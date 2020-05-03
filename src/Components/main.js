@@ -13,6 +13,11 @@ import cvs from '../views/cvs';
 import authGard from './HOCs/authGuard'
 import store from './store';
 import register from './society/register';
+import postJob from './society/postJob';
+import Recherche from './society/Recherche';
+import profile from './society/profile'
+import jobs from '../views/society/jobs'
+import Onejob from '../views/society/Onejob';
 
 
 
@@ -32,6 +37,12 @@ const Main= () => (
         <Route path ='/profileEm' component={profileEm}></Route>
         <Route path='/cvs' component={authGard(cvs)}></Route>
         <Route path='/register' component={register}></Route>
+        <Route path='/postjob' component={postJob}></Route>
+        <Route path='/recherche' component={Recherche}></Route>
+        <Route path='/profile' component={profile}></Route>
+        <Route path='/jobs' component={jobs}></Route>
+        <Route path='/onejob' component={Onejob}></Route>
+       
       </Switch>
       </BrowserRouter>
       </Provider>

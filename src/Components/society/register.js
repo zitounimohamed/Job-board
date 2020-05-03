@@ -58,15 +58,16 @@ class register extends Component {
           
            if (!this.props.errorMessage) {
             this.props.history.push('/home');}
-      
 
+            
     }
     onChange = (e) => {
         this.setState({file: e.target.files[0]})
     }
     render() {
         return (
-            
+    <div class="main">
+
     <section class="signup">
         <div class="container">
             <div className='registerr'>
@@ -153,6 +154,7 @@ class register extends Component {
                 </div>
 
         </section>
+        </div>
         );
     }
 }

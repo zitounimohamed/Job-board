@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Pichome from './pichome';
 import { Grid, Cell } from 'react-mdl';
 
-import Listjob from './society/listjob';
+import Jobs from '../views/society/jobs';
 class home extends Component {
     render() {
         return (
@@ -16,7 +16,7 @@ class home extends Component {
                 </Pichome>
                 
                 <div className="banner-text">
-                <Listjob></Listjob>
+                <Jobs></Jobs>
                 </div>
 
 
