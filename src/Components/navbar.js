@@ -24,15 +24,15 @@ class navbar extends Component {
       if(isAuth)  {
         return(
           <NavItem className="nav-item">
-      <NavLink className="nav-link js-scroll-trigger" href="/" key="signout">Déconnexion</NavLink>
-      </NavItem>
+            <NavLink className="nav-link js-scroll-trigger" href="/" key="signout">Déconnexion</NavLink>
+          </NavItem>
          );
       }
     
     return(
       
       <NavItem className="nav-item">
-      <NavLink className="nav-link js-scroll-trigger" href="/loginEm" key="signin">Connexion</NavLink>
+        <NavLink className="nav-link js-scroll-trigger" href="/loginEm" key="signin">Connexion</NavLink>
       </NavItem>       
     );
   }
@@ -52,7 +52,7 @@ class navbar extends Component {
       <div className="collapse navbar-collapse" id="navbarResponsive">
       <ul className="navbar-nav text-uppercase ml-auto">
         <li className="nav-item">
-          <a className="nav-link js-scroll-trigger" href="/listjob">offres des emplois </a>
+          <a className="nav-link js-scroll-trigger" href="/jobs">offres des emplois </a>
         </li>
         <li className="nav-item">
           <a className="nav-link js-scroll-trigger" href="#portfolio">Emploi par ville</a>

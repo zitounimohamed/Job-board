@@ -4,6 +4,8 @@ import {compose} from 'redux';
 import * as actions from '../../actions'
 import {  reduxForm} from 'redux-form';
 
+
+
 import './register.css'
 class register extends Component {
     constructor(props){
@@ -66,18 +68,16 @@ class register extends Component {
     }
     render() {
         return (
-    <div class="main">
+    <div>
+        
+        <div class="container ">
+            <div className='row'>
 
-    <section class="signup">
-        <div class="container">
-            <div className='registerr'>
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <div className='form-row'>
-                            <div className='col'>
-                        <h2 class="form-title">Créer votre espace employeur :</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <div class='row'>
+            <div className='col'>
+                    <form onSubmit={this.handleSubmit} className="p-5 p-md-5 border rounded test">
+                    <h2 class="form-title">Créer votre espace employeur :</h2><hr/>
+
+                        <div class='row pt-5'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Email :*</label>
                             <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange}/>
@@ -129,32 +129,30 @@ class register extends Component {
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" checked/>
                             <label class="form-check-label" for="exampleCheck1">J'accepte les conditions d'utilisation *</label>
                         </div>
-                        <button  type='submit' class="btn btn-primary btn-lg btn-block">Inscription</button>
+                        <button  type='submit' class="btn btn-primary btn-lg " id='but'>Inscription</button>
 
+                        
                     </form>
-                    </div>
-                </div></div>
-                    <div className='col'>
-                    <div class="signup-image">
-                        <figure className='fig'>
-                        <p>Créer un profil dans notre site web vous aidera à
+                   
+                   </div>
+                   <div className='col p-5 p-md-5 border rounded test '>
+                   <figure className='fig pt-5'>
+                        <p className='pt-5'>Créer un profil dans notre site web vous aidera à
                         Gagner du temps en contactant les bons candidats</p>
-                        <p className='pt-5'>
+                        <p className='pt-5 parag'>
                         Chercheur d'emploi ?
 
                         Si vous êtes à la recherche d'un emploi, rendez-vous à la rubrique <a href='/registerEm'>Inscription</a> d'un demandeur d'emploi
                         </p>
+                        
                         </figure>
 
-                    </div>
-                    </div>
-                    
-                </div>
-                </div>
-                </div>
-
-        </section>
-        </div>
+                   </div>
+                   </div>
+                   
+                   </div>
+               </div>     
+       
         );
     }
 }

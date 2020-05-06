@@ -1,165 +1,189 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import {compose} from 'redux';
-import { Field, reduxForm} from 'redux-form';
-import CustumInput from '../CustumInput'
+import {  reduxForm} from 'redux-form';
 import * as actions from '../../actions';
 import Googlelogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login'
 
 import './loginEm.css';
-import Background from '../images/hero_2.jpg' ;
 
-const mystyles ={
-    backgroundImage: `url(${Background})`,
-    height : '120vh',
-	backgroundSize : 'cover'}
 	
 
 class SignUpForm extends Component {
-	constructor(props) {
+	constructor(props) {	
 		super(props);
-		this.onSubmit = this.onSubmit.bind(this);
-		this.responseGoogle = this.responseGoogle.bind(this);
-		this.responseFacebook = this.responseFacebook.bind(this);
-	  }
-	
-	  async onSubmit(formData) {
-		console.log('onSubmit get called! ');
-        console.log('formData',formData);
-		await this.props.signup(formData);
-		//if (!this.props.errorMessage) {
-		  //this.props.history.push('/dashboard');
-		//}
-	  }
-	
-	  async responseGoogle(res) {
-		await this.props.oauthGoogle(res.accessToken);
-		if (!this.props.errorMessage) {
-		  this.props.history.push('/home');
+		this.state={
+			username : null,
+			email : null ,
+			password : null,
+			repeat_password : null ,
+			nom : null,
+			tel : null ,
+			location : null
 		}
-	  }
-	
-	  async responseFacebook(res) {
-		await this.props.oauthFacebook(res.accessToken);
-		if (!this.props.errorMessage) {
-		  this.props.history.push('/home');
-		}
-	  }
+
+	this.handleSubmit = this.handleSubmit.bind(this);
+	this.handleInputChange = this.handleInputChange.bind(this)
+	this.responseGoogle = this.responseGoogle.bind(this);
+	this.responseFacebook = this.responseFacebook.bind(this);
+  }
+
+  handleInputChange = (event) =>{
+	this.setState({
+		
+		[event.target.name] : event.target.value,
+		
+	})
+}
+handleSubmit = async (event)=>{
+	event.preventDefault();
+
+  
+   const data ={
+	email : this.state.email ,
+	username : this.state.username,
+	password : this.state.password , 
+	repeat_password : this.state.repeat_password ,
+	nom : this.state.nom,
+	tel : this.state.tel ,
+	location : this.state.location
+   }
+
+   console.log("data",data);
+   await this.props.signup(data);
+	  
+	   if (!this.props.errorMessage) {
+		this.props.history.push('/home');}
+
+		
+}
+
+  async responseGoogle(res) {
+	await this.props.oauthGoogle(res.accessToken);
+	if (!this.props.errorMessage) {
+	  this.props.history.push('/home');
+	}
+  }
+
+  async responseFacebook(res) {
+	await this.props.oauthFacebook(res.accessToken);
+	if (!this.props.errorMessage) {
+	  this.props.history.push('/home');
+	}
+  }
 	
     
     render() {
-		const {handleSubmit}=this.props;
-
         return (
 			<div>
-			<div class="limiter">
-		<div class="container-login100" style={mystyles} >
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" onSubmit={handleSubmit(this.onSubmit)}>
-					<span class="login100-form-logo">
-					<i class="zmdi zmdi-landscape"></i>					
-					</span>
+        
+			<div class="container ">
+				<div className='row'>
+	
+				<div className='col'>
+						<form onSubmit={this.handleSubmit} className="p-5 p-md-5 border rounded test">
+						<h2 class="form-title">Créer votre espace employeur :</h2><hr/>
 
-					<span class="login100-form-title p-b-34 p-t-27">
-						compte condidat
-					</span>
-                     <fieldset>
-                              <Field
-                                name='username'
-                                type = 'text'
-                                id = 'username'
-                                placeholder= "entrer votre nom d\'utilisateur "
-                                component= { CustumInput}
-                              />
-                    </fieldset> 
-                    <fieldset>
-                            <Field
-                                name='email'
-                                type = 'text'
-                                id = 'email'
-                                placeholder= 'example@example.com'
-                                component= { CustumInput}
-                            />
-                	</fieldset>
-                    <fieldset>
-                            <Field
-                                name='password'
-                                type = 'password'
-                                id = 'password'
-                                placeholder= 'Entrer votre mot de passe'
-                                component= { CustumInput}
-                            />
-                	</fieldset>
-                    <fieldset>
-                            <Field
-                                name='repeat_password'
-                                type = 'password'
-                                id = 'repeat_password'
-                                placeholder= 'Confirmer votre mot de passe'
-                                component= { CustumInput}
-                            />
-                	</fieldset>
-                    <fieldset>
-                            <Field
-                                name='tel'
-                                type = 'tel'
-                                id = 'tel'
-                                placeholder= 'Votre telephone'
-                                component= { CustumInput}
-                            />
-                	</fieldset> 
-
-					
-
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"/>
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
-
-					<div class="container-login100-form-btn">
-					<button class="login100-form-btn" type="submit">
-						Login
-					</button>			
-							
-					</div>
-
-					<div class="text-center p-t-90">
-						<a class="txt1" href="/">
-							Forgot Password?
-						</a>
-					</div>
-					<div class="text-center p-t-90">
-                        <div class="txt1">You don't have account ?</div>
-                        <a class="txt1" href="/registerEm">
-                         Sign Up here
-						</a>
+                        <div class='row pt-5'>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1" className='lab'>Username :*</label>
+                            <input class="form-control" type="text" placeholder="Default input" name="username" id="email" onChange={this.handleInputChange}/>
+                        </div>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1" className='lab'>Email :*</label>
+                            <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange}/>
+                        </div>    
+                        </div>
+                        <div class='row pt-3'>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1" className='lab'>Nom & prénom :*</label>
+                            <input class="form-control" type="text" placeholder="Default input" name="nom" id="nom" onChange={this.handleInputChange}/>
+                        </div>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1" className='lab'>Mot de passe :*</label>
+                            <input class="form-control" type="password" placeholder="Default input" name="password" id="password" onChange={this.handleInputChange}/>
+                        </div>    
+                        </div>
+                        <div class='row pt-3'>
+                        <div class='col'>
+                            <label for="exampleFormControlFile1" className='lab'>Confirmation mot de passe:*</label>
+                            <input class="form-control" type="password" placeholder="Default input" name="repeat_password" id="repeat_password" onChange={this.handleInputChange}/>
+                        </div>
+                        <div class='col '>
+                            <label for="exampleFormControlFile1" className='lab'>Telephone :*</label>
+                            <input class="form-control" type="tel" placeholder="Default input" name="tel" id="tel" onChange={this.handleInputChange}/>
+                        </div>
+                        </div>
+						<div className='pb-5 pt-3'>
+						<label for="exampleFormControlFile1">Gouvernorat</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="location" onChange={this.handleInputChange}>
+                            <option selected>Choisir...</option>
+                            <option value="Ariana">Ariana</option>
+                            <option value="Béja">Béja</option>
+                            <option value="Ben Arous">Ben Arous</option>
+							<option value="Bizerte">Bizerte</option>
+                            <option value="Gabès">Gabès</option>
+                            <option value="Gafsa">Gafsa</option>
+							<option value="Jendouba">Jendouba</option>
+                            <option value="Kairouan">Kairouan</option>
+                            <option value="Kasserine">Kasserine</option>
+							<option value="Kébili">Kébili</option>
+                            <option value="Le Kef">Le Kef</option>
+                            <option value="Mahdia">Mahdia</option>
+							<option value="La Manouba">La Manouba</option>
+                            <option value="Médenine">Médenine</option>
+                            <option value="Monastir">Monastir</option>
+							<option value="Nabeul">Nabeul</option>
+                            <option value="Sfax">Sfax</option>
+                            <option value="Sidi Bouzid">Sidi Bouzid</option>
+							<option value="Siliana">Siliana</option>
+                            <option value="Sousse">Sousse</option>
+                            <option value="Tataouine">Tataouine</option>
+							<option value="Tozeur">Tozeur</option>
+                            <option value="Tunis">Tunis</option>
+                            <option value="Zaghouan">Zaghouan</option>
+                        </select>
+						</div>
+                        
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" checked/>
+                            <label class="form-check-label" for="exampleCheck1">J'accepte les conditions d'utilisation *</label>
+                        </div>
 						
-					</div>
-					<FacebookLogin
+						<div class='row pt-5'>
+                        <button type='submit' class='btn btn-primary btn-lg ' id='but' >S'inscrire</button>
+                        </div>						
+						</form>
+					   
+					   </div>
+					   <div className='col p-5 p-md-5 border rounded test '>
+					   <figure className='fig pt-5'>
+						   <h4 className='pt-5'> Se connecter via les réseaux sociaux</h4><br/><br/>
+						   <div className='pt-3 '>
+					   <FacebookLogin
 							appId="200823678007159"
 							autoLoad={false}
-							textButton="Facebook"
+							textButton="Sign in with Facebook"
 							fields="name,email,picture"
 							callback={this.responseFacebook}
-							cssClass="btn btn-outline-primary"
-						/>
+							cssClass="btn btn-lg btn-outline-primary"
+						/></div>
 						<Googlelogin
 							clientId="1020396711366-kmijavhtfkivou1n6sh8tihggi14n93h.apps.googleusercontent.com"
-							buttonText="Google"
+							buttonText="Sign in with Google"
 							onSuccess={this.responseGoogle}
 							onFailure={this.responseGoogle}
-							cssClass="btn btn-outline-danger"
+							cssClass="btn btn-lg btn-outline-danger"
 						/>
-				</form>
-			</div>
-		</div>
+							
+							</figure>
 
-	</div>
-	
-</div>
+					   </div>
+					   </div>
+					   
+					   </div>
+				   </div>   
 	
 
 	
