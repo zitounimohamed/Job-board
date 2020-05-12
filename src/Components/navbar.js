@@ -3,46 +3,34 @@ import '../assets/css/agency.min.css'
 import { connect } from 'react-redux';
 import * as actions from '../actions'
 import { NavLink, NavItem } from 'reactstrap';
+import {Redirect} from 'react-router-dom'
 
-class navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.toggle= this.toggle.bind(this);
-    this.state={
-      isOpen :  false,
-      dropdownOpen : false
-    }
-  }
-  toggle(){
-    this.setState({
-      dropdownOpen : !this.state.dropdownOpen
-    })
+    this.signOut = this.signOut.bind(this);
   }
 
-  renderloginorlogout(){
-    const {isAuth} = this.props;
-      if(isAuth)  {
-        return(
-          <NavItem className="nav-item">
-            <NavLink className="nav-link js-scroll-trigger" href="/" key="signout">Déconnexion</NavLink>
-          </NavItem>
-         );
-      }
-    
-    return(
-      
-      <NavItem className="nav-item">
-        <NavLink className="nav-link js-scroll-trigger" href="/loginEm" key="signin">Connexion</NavLink>
-      </NavItem>       
-    );
+  signOut() {
+    this.props.signOut();
   }
-
-  
-  
     render() {
-     
-        return (
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      console.log("isAuth: " + this.props.isAuth);
+    const isAuth = this.props.isAuth;
+
+    // Checking if signed in or not and reacting as expected
+    const signInOrSignOut = !isAuth ? (
+    <li className="nav-item">
+    <a className="nav-link js-scroll-trigger" href="/loginEm" key="login">connexion</a>
+  </li>) 
+  : (
+    <li className="nav-item">
+            <a className="nav-link js-scroll-trigger" onClick={this.props.signOut}  href="/logout" key="logout">Déconnexion</a>
+          </li>
+  ) ;
+
+        return(
+          <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div className="container">
       <a className="navbar-brand js-scroll-trigger" href="/home">Start</a>
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,9 +43,6 @@ class navbar extends Component {
           <a className="nav-link js-scroll-trigger" href="/jobs">offres des emplois </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link js-scroll-trigger" href="#portfolio">Emploi par ville</a>
-        </li>
-        <li className="nav-item">
           <a className="nav-link js-scroll-trigger" href="#about">Formations</a>
         </li>
         <li className="nav-item">
@@ -65,18 +50,19 @@ class navbar extends Component {
         </li>
         <li className="nav-item">
           <a className="nav-link js-scroll-trigger" href="/contact">Contact</a>
-        </li>
-   
-        {this.renderloginorlogout()}
-
-       
-
+        </li> 
+        {signInOrSignOut}
       </ul>
       </div>
     </div>
   </nav>
-        );
-    }
+          
+         );
+      }
+    
+      
+  
+    
 }
 
 
@@ -87,4 +73,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps,actions) (navbar);
+export default connect(mapStateToProps,actions) (Navbar);

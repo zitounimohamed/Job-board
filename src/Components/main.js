@@ -20,9 +20,7 @@ import jobs from '../views/society/jobs'
 import Onejob from '../views/society/Onejob';
 
 
-
 const Main= () => (
-  <Provider store={store}>
     <BrowserRouter>
     <Switch>
         
@@ -45,7 +43,6 @@ const Main= () => (
        
       </Switch>
       </BrowserRouter>
-      </Provider>
 )
 
 export default Main; 

@@ -136,13 +136,23 @@ class SignInForm extends Component {
 	}
 	
 }
+
+//Mapping dispatch to props
+const mapDispatchToProps = dispatch => {
+	return {
+	  signin: data => dispatch(actions.signin(data))
+	};
+  };
+
 function mapStateToProps(state) {
 	return{
 		errorMessage: state.auth.errorMessage,
-		isAuth : state.auth.isAuthenticated
+		isAuth : state.auth.isAuthenticated,
+		token: state.auth.token
+
 	}	
 }
 
 export default compose(
-    connect(mapStateToProps,actions),
-            reduxForm({form : 'signin'}))(SignInForm)
+    connect(mapStateToProps,mapDispatchToProps),
+            )(SignInForm)

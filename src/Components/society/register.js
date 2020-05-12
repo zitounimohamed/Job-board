@@ -121,11 +121,11 @@ class register extends Component {
                             <label for="exampleFormControlFile1" className='lab'>Logo</label>
                             <input type="file" class="form-control-file" id="logo" name="logo" onChange={this.onChange}/>
                          </div>*/}
-                        <div class='form-group' >
+                        <div class='form-group pt-3' >
                             <label for="exampleFormControlFile1" className='lab'>Description de societé :*</label>
                             <textarea class="form-control" type="text" placeholder="Default input" name="desc" onChange={this.handleInputChange}></textarea>
                         </div>
-                        <div class="form-group form-check">
+                        <div class="form-group form-check pt-5">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" checked/>
                             <label class="form-check-label" for="exampleCheck1">J'accepte les conditions d'utilisation *</label>
                         </div>

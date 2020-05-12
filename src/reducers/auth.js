@@ -1,14 +1,26 @@
 
 import {AUTH_SIGN_UP, AUTH_ERROR,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,SIGN_UP_SOC} from '../actions/types'
 
-const DEFAULT_STATE = {
-    isAuthenticated : false ,
-    user: null,
-    token : '', 
-    errorMessage : ''
 
-}
 
+function checkAuthentication() {
+    const token = localStorage.getItem("JTW_Token");
+  
+    if (token) {
+      return {
+        isAuthenticated: true,
+        token,
+        errorMessage: ""
+      };
+    }
+    return {
+      isAuthenticated: false,
+      token: "",
+      errorMessage: ""
+    };
+  }
+
+  const DEFAULT_STATE = checkAuthentication();
 
 export default (state=DEFAULT_STATE ,action)=>{
     switch (action.type) {

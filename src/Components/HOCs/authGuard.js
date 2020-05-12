@@ -14,7 +14,8 @@ export default (OriginalComponent) => {
   
         
     componentDidMount() {
-        this.checkAuth();
+      if (!this.props.isAuth && !this.props.jwtToken) {
+        const { history } = this.props;}
       }
   
       componentDidUpdate() {

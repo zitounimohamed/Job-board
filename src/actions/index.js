@@ -112,13 +112,12 @@ export const signin = data =>{
 }
 
 export const signOut = () => {
-    localStorage.removeItem('JWT_TOKEN')
     return async dispatch => {
-        const res= await axios.get('http://localhost:5000/users/signout', {withCredentials: true});
+        localStorage.clear()
 
       dispatch({
         type: AUTH_SIGN_OUT ,
-        payload : res.data.access_token
+        payload : ''
       })
     };
 

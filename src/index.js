@@ -6,10 +6,10 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import {createStore,applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
-const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ;
+import store from './Components/store';
 
 ReactDOM.render(
-  <Provider store={createStore(reducers,storeEnhancer(applyMiddleware(ReduxThunk)))}>
+  <Provider store={store}>
 <App />
 </Provider>
 ,

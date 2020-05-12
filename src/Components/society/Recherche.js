@@ -66,11 +66,7 @@ class Recherche extends Component {
                         <button type='submit'  className='btn btn-primary btn-lg ' id='but'  >Rechercher</button>
                         </div>
                 </form>
-                {this.state.cv !== null && this.state.cv.map(cv => {
-
-                return (
-                    <ViewCv   titre={cv.titre}  />)
-                })}
+                
             </div>
            
         );

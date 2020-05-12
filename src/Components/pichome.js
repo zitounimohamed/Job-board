@@ -21,15 +21,31 @@ class pichome extends Component {
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select class="form-control">
-                    <option>Anywhere</option>
-                    <option>San Francisco</option>
-                    <option>Palo Alto</option>
-                    <option>New York</option>
-                    <option>Manhattan</option>
-                    <option>Ontario</option>
-                    <option>Toronto</option>
-                    <option>Kansas</option>
-                    <option>Mountain View</option>
+                           <option>Anywhere</option>
+                            <option value="Ariana">Ariana</option>
+                            <option value="Béja">Béja</option>
+                            <option value="Ben Arous">Ben Arous</option>
+							              <option value="Bizerte">Bizerte</option>
+                            <option value="Gabès">Gabès</option>
+                            <option value="Gafsa">Gafsa</option>
+							              <option value="Jendouba">Jendouba</option>
+                            <option value="Kairouan">Kairouan</option>
+                            <option value="Kasserine">Kasserine</option>
+						              	<option value="Kébili">Kébili</option>
+                            <option value="Le Kef">Le Kef</option>
+                            <option value="Mahdia">Mahdia</option>
+						              	<option value="La Manouba">La Manouba</option>
+                            <option value="Médenine">Médenine</option>
+                            <option value="Monastir">Monastir</option>
+						              	<option value="Nabeul">Nabeul</option>
+                            <option value="Sfax">Sfax</option>
+                            <option value="Sidi Bouzid">Sidi Bouzid</option>
+						              	<option value="Siliana">Siliana</option>
+                            <option value="Sousse">Sousse</option>
+                            <option value="Tataouine">Tataouine</option>
+						              	<option value="Tozeur">Tozeur</option>
+                            <option value="Tunis">Tunis</option>
+                            <option value="Zaghouan">Zaghouan</option>
                   </select>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
