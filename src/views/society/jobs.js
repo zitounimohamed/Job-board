@@ -38,7 +38,7 @@ async componentDidMount(){
             {this.state.jobs !== null && this.state.jobs.map(jobs => {
 
                 return (
-                    <ViewJobs   title={jobs.title} location={jobs.location}type={jobs.type} />)
+                    <ViewJobs   title={jobs.title} location={jobs.location}type={jobs.type} file={jobs.file} />)
             })}
             </div>
         );

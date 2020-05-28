@@ -13,6 +13,8 @@ class Navbar extends Component {
 
   signOut() {
     this.props.signOut();
+    this.props.history.push('/loginEm');
+
   }
     render() {
       console.log("isAuth: " + this.props.isAuth);
@@ -25,7 +27,7 @@ class Navbar extends Component {
   </li>) 
   : (
     <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" onClick={this.props.signOut}  href="/logout" key="logout">Déconnexion</a>
+            <a className="nav-link js-scroll-trigger" onClick={this.props.signOut}  href="/loginEm" key="logout">Déconnexion</a>
           </li>
   ) ;
 

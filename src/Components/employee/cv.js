@@ -33,23 +33,36 @@ class Cv extends Component {
             
         })
     }
+    uploadFile = async (file) => {
+        const fd = new FormData();
+        fd.append('file', file);
+        await axios.post('http://localhost:5000/cvs/uploadimage',fd)
+        .then(response => {
+            console.log(response.request.response)
+        })
+        .catch(error => console.log(error))
+
+     }
+
      handleSubmit = async (event)=>{
         event.preventDefault();
 
        let uri ="http://localhost:5000/cvs/newcv" ;
-       const data ={
-           file : this.state.file,
-           titre: this.state.titre,
-           type: this.state.type,
-           categ: this.state.categ,
-           comp: this.state.comp,
-           //cvfile: this.state.cvfile,
-           tel: this.state.tel,
-           exp: this.state.exp,
-       }
+       const variables = {
+        titre: this.state.titre,
+        type: this.state.type,
+        categ: this.state.categ,
+        comp: this.state.comp,
+        //cvfile: this.state.cvfile,
+        tel: this.state.tel,
+        exp: this.state.exp,
+        file : this.state.file.response
+    }
+       
 
-       console.log("data",data);
-       await axios.post(uri,data).then((response)=>{
+       console.log("data",variables);
+       await axios.post(uri,variables
+       ).then((response)=>{
            console.log(response);
 
        }).catch(error =>{
@@ -62,16 +75,7 @@ class Cv extends Component {
         this.setState({file: e.target.files[0]})
     }
 
-    /* uploadFile = async (file) => {
-        const fd = new FormData();
-        fd.append('file', file);
-        await axios.post('http://localhost:5000/cvs/uploads',fd)
-        .then(response => {
-            console.log(response.request.response)
-        })
-        .catch(error => console.log(error))
-
-     }*/
+     
    
     
     

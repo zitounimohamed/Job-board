@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-
+import { connect} from 'react-redux';
+import {compose} from 'redux';
+import * as actions from '../../actions/index'
 class singlejob extends Component {
+  componentDidMount(){
+    const {id} = this.props.match.params;
+    this.props.getjob(id,this.props.history)
+  }
     render() {
         return (
             <section class="site-section">
@@ -169,4 +175,21 @@ class singlejob extends Component {
     }
 }
 
-export default singlejob;
+const mapDispatchToProps = dispatch => {
+	return {
+	  getjob: data => dispatch(actions.getjob(data))
+	};
+  };
+
+function mapStateToProps(state) {
+	return{
+		errorMessage: state.auth.errorMessage,
+		isAuth : state.auth.isAuthenticated,
+		token: state.auth.token
+
+	}	
+}
+
+export default compose(
+  connect(mapStateToProps,mapDispatchToProps),
+          )(singlejob)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 class listjob extends Component {
     render() {
         return (
@@ -17,7 +18,9 @@ class listjob extends Component {
 
               <div class="mb-4 mb-md-0 mr-5">
                 <div class="job-post-item-header d-flex align-items-center">
-                  <h2 class="mr-3 text-black h3">{this.props.title}</h2>
+                  <h2 class="mr-3 text-black h3">
+                  <Link to ={`/singlejob/${1}`}>{this.props.title}</Link>  
+                  </h2>
                   <div class="badge-wrap">
                    <span class="bg-primary text-white badge py-2 px-3">{this.props.type}</span>
                   </div>

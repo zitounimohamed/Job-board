@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,ADD_CV,SIGN_UP_SOC} from './types'
+import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,ADD_CV,SIGN_UP_SOC,GETJOB} from './types'
 
 
 export const oauthGoogle = data =>{
@@ -42,7 +42,8 @@ export const signup = data =>{
             console.log("res",res);   
            dispatch({
                 type : AUTH_SIGN_UP,
-                payload : res.data.token 
+                payload : res.data.role ,
+                user : res.data.role
             });
 
             localStorage.setItem('JTW_Token',res.data.token);
@@ -96,7 +97,7 @@ export const signin = data =>{
 
           dispatch({
               type : AUTH_SIGN_IN,
-              payload : res.data.token ,
+              payload : res.data.role ,
               
           });
 
@@ -166,3 +167,18 @@ export const setCurrentUser = decoded => {
       payload: decoded
     };
   };
+
+export const getjob =(idjob,history)=> async (dispatch)=>{
+    try {
+        const res = await axios.get(
+            `http://localhost:5000/jobs/${idjob}`
+        );
+        dispatch({
+            type : GETJOB ,
+            payload : res.data
+        });
+    } catch (error) {
+        history.push('/home')
+        
+    }
+};

@@ -11,20 +11,6 @@ class Jobs extends Component {
 };
     }
 
-async componentDidMount(){
-    let url = 'http://localhost:5000/jobs/:jobID'
-    axios.get(url).then((response) => {
-        console.log(response);
-      
-
-        this.setState({
-            jobs: response.data 
-        });
-        
-    }).catch(error => {
-        console.log(error);
-    });
-}
   
         
                 
