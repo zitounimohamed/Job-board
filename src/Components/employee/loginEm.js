@@ -79,12 +79,21 @@ class SignInForm extends Component {
 	
 							<div class=' pt-5'>
 								<label for="exampleFormControlFile1" className='lab'>Email :*</label>
-								<input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange}/>
+								<input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange} />
+								
 							</div>
+							{ this.props.errorMessage ? 
+						<div className="alert alert-danger">
+							{this.props.errorMessage}
+						</div>: null }
+
 							  
 							<div class='pt-3'>
 								<label for="exampleFormControlFile1" className='lab'>Mot de passe :*</label>
 								<input class="form-control" type="password" placeholder="Default input" name="password" id="password" onChange={this.handleInputChange}/>
+								<small id="passwordHelpInline" class="text-muted">
+									Must be 8-20 characters long.
+								</small>
 							</div>
 							<div class='row pt-5'>
                         <button type='submit' class='btn btn-primary btn-lg ' id='but' >Se Connecter</button>

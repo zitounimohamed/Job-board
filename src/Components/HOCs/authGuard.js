@@ -6,7 +6,7 @@ export default (OriginalComponent) => {
 
       
     checkAuth() {
-        if (!this.props.isAuthenticated && !this.props.token) {
+        if (!this.props.isAuth && !this.props.jwtToken) {
             const { history } = this.props;
 			history.push("/home");
         }
@@ -14,8 +14,7 @@ export default (OriginalComponent) => {
   
         
     componentDidMount() {
-      if (!this.props.isAuthenticated && !this.props.token) {
-        const { history } = this.props;}
+        this.checkAuth();
       }
   
       componentDidUpdate() {

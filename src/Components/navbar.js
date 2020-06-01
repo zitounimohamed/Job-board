@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import '../assets/css/agency.min.css'
 import { connect } from 'react-redux';
 import * as actions from '../actions'
-import { NavLink, NavItem } from 'reactstrap';
+import { NavLink, NavItem, UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem, } from 'reactstrap';
 import {Redirect} from 'react-router-dom'
-
+import logo from '../assets/img/logo.png'
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -26,15 +29,31 @@ class Navbar extends Component {
     <a className="nav-link js-scroll-trigger" href="/loginEm" key="login">connexion</a>
   </li>) 
   : (
-    <li className="nav-item">
-            <a className="nav-link js-scroll-trigger" onClick={this.props.signOut}  href="/loginEm" key="logout">Déconnexion</a>
-          </li>
+    
+    
+           <UncontrolledDropdown nav inNavbar>
+           <DropdownToggle nav caret>
+             Mon Compte
+           </DropdownToggle>
+           <DropdownMenu>
+             <DropdownItem>
+               Mon profil
+             </DropdownItem>
+             <DropdownItem>
+               Offres d'emploi
+             </DropdownItem>
+             <DropdownItem divider />
+             <DropdownItem className="nav-item">
+                <a className="nav-link js-scroll-trigger" href="/loginEm" onClick={this.signOut} key="logout">Deconnexion</a>
+             </DropdownItem>
+           </DropdownMenu>
+         </UncontrolledDropdown>
   ) ;
 
         return(
           <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div className="container">
-      <a className="navbar-brand js-scroll-trigger" href="/home">Start</a>
+        <a className="navbar-brand js-scroll-trigger" href="/home"><img  className= 'logo'src={logo} alt=''></img></a>
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i className="fa fa-bars"></i>

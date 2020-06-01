@@ -2,10 +2,29 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import {compose} from 'redux';
 import * as actions from '../../actions/index'
+import loginEm from '../employee/loginEm';
+import axios from 'axios'
+
+
 class singlejob extends Component {
-  componentDidMount(){
-    const {id} = this.props.match.params;
-    this.props.getjob(id,this.props.history)
+  constructor(props){
+    super(props);
+    this.state = {
+      job: null
+    }
+  }
+  async componentDidMount(){
+    const {id} = this.props.match.params
+    console.log('id',id);
+    
+     await axios.get(`http://localhost:5000/jobs/${id}`)
+
+      .then(({ data: job }) => {
+        console.log('job', job);
+  
+        this.setState({ job });
+      })
+    
   }
     render() {
         return (
@@ -175,11 +194,6 @@ class singlejob extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-	return {
-	  getjob: data => dispatch(actions.getjob(data))
-	};
-  };
 
 function mapStateToProps(state) {
 	return{
@@ -191,5 +205,5 @@ function mapStateToProps(state) {
 }
 
 export default compose(
-  connect(mapStateToProps,mapDispatchToProps),
+  connect(null,actions),
           )(singlejob)

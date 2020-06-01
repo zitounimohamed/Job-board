@@ -2,13 +2,11 @@ h1{
     text-align: center;
     color : #fed136;
 }
-button{
-    margin-bottom: 50px;
-    
-}
+ 
+
 #but{
    margin-left: auto;
-   margin-right: auto;
+   margin-right: auto; margin-bottom: 50px;
 
     
 }

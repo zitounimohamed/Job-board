@@ -10,13 +10,16 @@ function checkAuthentication() {
       return {
         isAuthenticated: true,
         token,
-        errorMessage: ""
+        errorMessage: "",
+        userData : ''
       };
     }
     return {
       isAuthenticated: false,
       token: "",
-      errorMessage: ""
+      errorMessage: "",
+      userData : ''
+
     };
   }
 
@@ -27,11 +30,11 @@ export default (state=DEFAULT_STATE ,action)=>{
         case SET_CURRENT_USER:
             return {...state, isAuthenticated: true ,user: action.payload};
         case AUTH_SIGN_UP:
-            return {...state, token: action.payload,isAuthenticated: true, errorMessage : ''};
+            return {...state, token: action.payload,isAuthenticated: true, userData : action.pay, errorMessage : ''};
         case SIGN_UP_SOC:
-            return {...state, token: action.payload,isAuthenticated: true, errorMessage : ''};
+            return {...state, token: action.payload,isAuthenticated: true, userData : action.pay,errorMessage : ''};
         case AUTH_SIGN_IN:
-            return { ...state, token :action.payload,isAuthenticated: true, errorMessage: '' }
+            return { ...state, token :action.payload,isAuthenticated: true,userData : action.pay, errorMessage: '' }
         case AUTH_SIGN_OUT:
             return { ...state, token :action.payload, isAuthenticated: false, errorMessage: '' }
         case AUTH_ERROR : 

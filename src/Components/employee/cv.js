@@ -33,22 +33,13 @@ class Cv extends Component {
             
         })
     }
-    uploadFile = async (file) => {
-        const fd = new FormData();
-        fd.append('file', file);
-        await axios.post('http://localhost:5000/cvs/uploadimage',fd)
-        .then(response => {
-            console.log(response.request.response)
-        })
-        .catch(error => console.log(error))
-
-     }
-
+    
      handleSubmit = async (event)=>{
         event.preventDefault();
-
+        this.uploadFile(this.state.file)
        let uri ="http://localhost:5000/cvs/newcv" ;
        const variables = {
+        writer : this.props.data._id,
         titre: this.state.titre,
         type: this.state.type,
         categ: this.state.categ,
@@ -56,7 +47,6 @@ class Cv extends Component {
         //cvfile: this.state.cvfile,
         tel: this.state.tel,
         exp: this.state.exp,
-        file : this.state.file.response
     }
        
 
@@ -76,7 +66,17 @@ class Cv extends Component {
     }
 
      
-   
+    uploadFile = async (file) => {
+        const fd = new FormData();
+        fd.append('file', file);
+        await axios.post('http://localhost:5000/cvs/uploadimage',fd)
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => console.log(error))
+
+     }
+
     
     
     render() {  
@@ -142,7 +142,10 @@ class Cv extends Component {
 }
 function mapStateToProps(state) {
 	return {
-	  errorMessage: state.auth.isAuthenticated
+      errorMessage: state.auth.errorMessage,
+      isAuth : state.auth.isAuthenticated,
+      jwtToken : state.auth.token,
+      data : state.auth.userData
 	}
   }
 

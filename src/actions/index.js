@@ -43,7 +43,7 @@ export const signup = data =>{
            dispatch({
                 type : AUTH_SIGN_UP,
                 payload : res.data.role ,
-                user : res.data.role
+                
             });
 
             localStorage.setItem('JTW_Token',res.data.token);
@@ -75,14 +75,18 @@ export const signupS = data =>{
             console.log("res",res);   
            dispatch({
                 type : SIGN_UP_SOC,
-                payload : res.data.token 
+                payload : res.data.token ,
+                pay : data
+
             });
 
             localStorage.setItem('JTW_Token',res.data.token);
         } catch (error) {
             dispatch({
                 type : AUTH_ERROR,
-                payload : 'Email is already used !!'
+                payload : 'Email is already used !!',
+                
+
             })
             
         }
@@ -97,7 +101,8 @@ export const signin = data =>{
 
           dispatch({
               type : AUTH_SIGN_IN,
-              payload : res.data.role ,
+              payload : res.data ,
+              pay : res
               
           });
 
@@ -168,14 +173,17 @@ export const setCurrentUser = decoded => {
     };
   };
 
-export const getjob =(idjob,history)=> async (dispatch)=>{
+export const getjob =(_id,history)=> async (dispatch)=>{
     try {
         const res = await axios.get(
-            `http://localhost:5000/jobs/${idjob}`
+            `http://localhost:5000/jobs/${_id}`
         );
+        console.log(res);
+        
         dispatch({
             type : GETJOB ,
             payload : res.data
+
         });
     } catch (error) {
         history.push('/home')
