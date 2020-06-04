@@ -28,7 +28,7 @@ const Main= () => (
         <Route exact path ='/home' component={home}></Route>
         <Route path='/registerEm' component={registerEm}></Route>
         <Route path='/loginEm' component={loginEm}></Route>
-        <Route path="/singlepage/:IDjob" component={singlejob}></Route>
+        <Route path="/singlepage/:id" component={singlejob}></Route>
         <Route path="/contact" component={contact}></Route>
         <Route path='/listjob' component={Listjob}></Route>
         <Route path ='/cv' component={authGard(Cv)}></Route>

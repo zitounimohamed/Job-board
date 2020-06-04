@@ -11,7 +11,17 @@ class Jobs extends Component {
 };
     }
 
-
+    async componentDidMount(){
+        const {id} = this.props.match.params
+        let url = `http://localhost:5000/jobs/${id}`
+        axios.get(url).then((response) => {          
+            this.setState({
+                jobs: response.data 
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    }
     
         
                 

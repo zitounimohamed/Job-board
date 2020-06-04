@@ -173,10 +173,10 @@ export const setCurrentUser = decoded => {
     };
   };
 
-export const getjob =(_id,history)=> async (dispatch)=>{
+export const getjob =(id,history)=> async (dispatch)=>{
     try {
         const res = await axios.get(
-            `http://localhost:5000/jobs/${_id}`
+            `http://localhost:5000/jobs/${id}`
         );
         console.log(res);
         

@@ -3,6 +3,7 @@ import ViewCv from '../Components/employee/listcv'
 import axios from "axios";
 import {compose} from "redux";
 import {connect} from "react-redux";
+import ImageSlider from './imageslider';
 class cvs extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +38,7 @@ async componentDidMount(){
             {this.state.cv !== null && this.state.cv.map(cv => {
 
                 return (
-                    <ViewCv   titre={cv.titre} file={cv.file} />)
+                    <ViewCv file={cv.file}  titre={cv.titre}  ></ViewCv>)
             })}
             </div>
         );

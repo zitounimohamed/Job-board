@@ -16,7 +16,7 @@ class Cv extends Component {
             comp : null , 
             //cvfile : null , 
             tel : null , 
-            exp : null
+            exp : null,
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,11 +34,14 @@ class Cv extends Component {
         })
     }
     
-     handleSubmit = async (event)=>{
+     handleSubmit = async event=>{
         event.preventDefault();
-        this.uploadFile(this.state.file)
+        const uploadedImageInfo= await this.uploadFile(this.state.file);
+        console.log(uploadedImageInfo);
+        
        let uri ="http://localhost:5000/cvs/newcv" ;
        const variables = {
+        file : uploadedImageInfo.image,
         writer : this.props.data._id,
         titre: this.state.titre,
         type: this.state.type,
@@ -66,17 +69,17 @@ class Cv extends Component {
     }
 
      
-    uploadFile = async (file) => {
+    uploadFile = async file => {
         const fd = new FormData();
-        fd.append('file', file);
-        await axios.post('http://localhost:5000/cvs/uploadimage',fd)
-        .then(response => {
-            console.log(response.data)
-        })
-        .catch(error => console.log(error))
-
-     }
-
+        fd.append("file", file);
+        try {
+              const res = await axios.post("http://localhost:5000/cvs/uploadimage", fd);
+              console.log(res.data);
+              return res.data;
+        } catch (error) {
+          console.log(error);
+        }
+      };
     
     
     render() {  

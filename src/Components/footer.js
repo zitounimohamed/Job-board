@@ -45,25 +45,25 @@ class footer extends Component {
                             </div>
             
             <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="widget no-box">
-            <h5 class="widget-title">Get Started<span></span></h5>
-            <p>Get access to your full Training and Marketing Suite.</p>
-            <a class="btn" href="/" target="_blank">Register Now</a>
-            </div>
+                <div class="widget no-box">
+                    <h5 class="widget-title">Get Started<span></span></h5>
+                    <p>Get access to your full Training and Marketing Suite.</p>
+                    <a class="btn" href="/registerEm" >Register Now</a>
+                </div>
             </div>
             
             <div class="col-xs-12 col-sm-6 col-md-3">
             
             <div class="widget no-box">
-            <h5 class="widget-title">Contact Us<span></span></h5>
+                <h5 class="widget-title">Contact Us<span></span></h5>
             
-            <p><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
-            <ul class="social-footer2">
-            <li class=""><a title="youtube" target="_blank" href="/"><img alt="youtube" width="30" height="30" src=""/></a></li>
-            <li class=""><a href="/" target="_blank" title="Facebook"><img alt="Facebook" width="30" height="30" src=""/></a></li>
-            <li class=""><a href="/" target="_blank" title="Twitter"><img alt="Twitter" width="30" height="30" src=""/></a></li>
-            <li class=""><a title="instagram" target="_blank" href="/"><img alt="instagram" width="30" height="30" src=""/></a></li>
-            </ul>
+                <p><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
+                <ul class="social-footer2">
+                    <li class=""><a title="youtube" target="_blank" href="/"><img alt="youtube" width="30" height="30" src=""/></a></li>
+                    <li class=""><a href="/" target="_blank" title="Facebook"><img alt="Facebook" width="30" height="30" src=""/></a></li>
+                    <li class=""><a href="/" target="_blank" title="Twitter"><img alt="Twitter" width="30" height="30" src=""/></a></li>
+                    <li class=""><a title="instagram" target="_blank" href="/"><img alt="instagram" width="30" height="30" src=""/></a></li>
+                </ul>
             </div>
             </div>
             
@@ -73,14 +73,14 @@ class footer extends Component {
               
             <div class="footer-copyright">
             <div class="container">
-            <div class="row">
-            <div class="col-md-12 text-center">
-            <p>Copyright Company Name © 2016. All rights reserved.</p>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>Copyright Company Name © 2016. All rights reserved.</p>
+                    </div>
+                </div>
             </div>
             </div>
-            </div>
-            </div>
-            </footer>
+        </footer>
         );
     }
 }

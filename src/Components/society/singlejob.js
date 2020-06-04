@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import {compose} from 'redux';
 import * as actions from '../../actions/index'
-import loginEm from '../employee/loginEm';
 import axios from 'axios'
 
 
@@ -10,7 +9,7 @@ class singlejob extends Component {
   constructor(props){
     super(props);
     this.state = {
-      job: null
+      job: ''
     }
   }
   async componentDidMount(){
@@ -19,14 +18,17 @@ class singlejob extends Component {
     
      await axios.get(`http://localhost:5000/jobs/${id}`)
 
-      .then(({ data: job }) => {
-        console.log('job', job);
-  
-        this.setState({ job });
+      .then(( response ) => {
+        if(response.status===200 && response!= null )
+        {
+          this.setState({job : response.data})
+        }
+       
       })
     
   }
     render() {
+      console.log(this.state.job);
         return (
             <section class="site-section">
       <div class="container">
@@ -36,7 +38,7 @@ class singlejob extends Component {
               <div class="border p-2 d-inline-block mr-3 rounded">
               </div>
               <div>
-                <h2>{this.props.title}</h2>
+                <h2 >{this.state.job.title}</h2>
                 <div>
                   <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>Puma</span>
                   <span class="m-2"><span class="icon-room mr-2"></span>  </span>
@@ -64,7 +66,7 @@ class singlejob extends Component {
               <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span class="fa fa-briefcase pr-2"></span>Job
                 Description</h3>
               <p>
-                {this.props.description}
+                {this.state.job.description}
               </p>
               
             </div>
@@ -191,10 +193,11 @@ class singlejob extends Component {
 </div>
     </section>
         );
-    }
 }
+    }
 
 
+    
 function mapStateToProps(state) {
 	return{
 		errorMessage: state.auth.errorMessage,

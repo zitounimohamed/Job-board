@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ImageSlider from '../../views/imageslider';
 
 class listcv extends Component {
     
@@ -15,7 +16,7 @@ class listcv extends Component {
               <div class="mb-4 mb-md-0 mr-5">
                 <div class="job-post-item-header d-flex align-items-center">
                   <h2 class="mr-3 text-black h3">{this.props.titre}  </h2>
-                  <img src={this.props.file} alt="" class="img-fluid"></img>
+                  <ImageSlider file={this.props.file}></ImageSlider>
                   <div class="badge-wrap">
                    <span class="bg-primary text-white badge py-2 px-3">Partime</span>
                   </div>

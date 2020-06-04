@@ -93,8 +93,14 @@ handleSubmit = async (event)=>{
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Email :*</label>
                             <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange}/>
-                        </div>    
+							{ this.props.errorMessage ? 
+						<div className="alert alert-danger">
+							{this.props.errorMessage}
+						</div>: null }
+						</div>    
+						
                         </div>
+						
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Nom & prénom :*</label>
