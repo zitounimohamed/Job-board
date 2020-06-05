@@ -5,14 +5,17 @@ class postJob extends Component {
     constructor(props){
         super(props);
         this.state={
-            file : null ,
-            titre : null ,
-            type : null , 
-            categ : null , 
-            comp : null , 
-            //cvfile : null , 
-            tel : null , 
-            exp : null
+            email : null,
+            title : null,
+            location: null,
+            region : null,
+            type :  null,
+            description : null,
+            company_name : null,
+            tagline :  null,
+            cDisc : null,
+            site : null,
+            file : null
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +34,8 @@ class postJob extends Component {
     }
      handleSubmit = async (event)=>{
         event.preventDefault();
+        const uploadedImageInfo= await this.uploadFile(this.state.file);
+        console.log(uploadedImageInfo);
 
        let uri ="http://localhost:5000/jobs/newjob" ;
        const data ={
@@ -44,7 +49,7 @@ class postJob extends Component {
         tagline : this.state.tagline ,
         cDisc : this.state.cDisc,
         site : this.state.site,
-        logo : this.state.logo
+        file : uploadedImageInfo.image
 
 
        }
@@ -62,6 +67,20 @@ class postJob extends Component {
     onChange = (e) => {
         this.setState({file: e.target.files[0]})
     }
+
+    uploadFile = async file => {
+        const fd = new FormData();
+        fd.append("file", file);
+        try {
+              const res = await axios.post("http://localhost:5000/jobs/uploadimage", fd);
+              console.log(res.data);
+              return res.data;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+
     render() {
         return (
             <div>

@@ -32,10 +32,12 @@ class singlejob extends Component {
         return (
             <section class="site-section">
       <div class="container">
-        <div class="row align-items-center mb-5">
-          <div class="col-lg-8 mb-4 mb-lg-0">
+        <div class="row align-items-center mb-5" style={{paddingTop : 150}}>
+          <div class="col-lg-8 mb-4 mb-lg-0" >
             <div class="d-flex align-items-center">
               <div class="border p-2 d-inline-block mr-3 rounded">
+              <img style={{ width: '10%', maxHeight: '10px' }}
+                            src={`http://localhost:5000/${this.state.job.file}`} alt="pieceImage" />
               </div>
               <div>
                 <h2 >{this.state.job.title}</h2>
@@ -133,9 +135,9 @@ class singlejob extends Component {
               <ul class="list-unstyled pl-3 mb-0">
                 <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
                 <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
-                <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
-                <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
-                <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
+                <li class="mb-2"><strong class="text-black">Employment Status:</strong> {this.state.job.type}</li>
+                <li class="mb-2"><strong class="text-black">Experience:</strong> {this.state.job.exp} </li>
+                <li class="mb-2"><strong class="text-black">Job Location:</strong> {this.state.job.location} </li>
                 <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
                 <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
                 <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
