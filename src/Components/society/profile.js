@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,CardBody } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card,  Row, Col,CardBody } from 'reactstrap';
 import classnames from 'classnames';
 import PostJob from './postJob';
 import Recherche from './Recherche';

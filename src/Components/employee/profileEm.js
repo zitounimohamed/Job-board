@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,CardBody } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card,  Row, Col,CardBody } from 'reactstrap';
 import classnames from 'classnames';
 import Cv from './cv';
 import Listcv from '../../views/cvs'
+import ProfilepageEm from './profilepageEm';
 const Example = (props) => {
   //  const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +35,7 @@ const Example = (props) => {
             className={classnames({ active: activeTab === '2' })}
             onClick={() => { toggle('2'); }}
           >
-            Moar Tabs
+            Page profil
           </NavLink>
         </NavItem>
         <NavItem>
@@ -72,22 +73,7 @@ const Example = (props) => {
           
         </TabPane>
         <TabPane tabId="2">
-          <Row>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-          </Row>
+          <ProfilepageEm></ProfilepageEm>
         </TabPane>
         <TabPane tabId="3">
           <Row>

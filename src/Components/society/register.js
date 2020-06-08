@@ -80,41 +80,41 @@ class register extends Component {
                         <div class='row pt-5'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Email :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Nom & prénom :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="name" id="name" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="name" id="name" onChange={this.handleInputChange} required/>
                         </div>    
                         </div>
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Mot de passe :*</label>
-                            <input class="form-control" type="password" placeholder="Default input" name="pass" id="pass" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="password" placeholder="Default input" name="pass" id="pass" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Confirmer mot de passe :*</label>
-                            <input class="form-control" type="password" placeholder="Default input" name="re_pass" id="re_pass" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="password" placeholder="Default input" name="re_pass" id="re_pass" onChange={this.handleInputChange} required/>
                         </div>    
                         </div>
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Nom de l'entreprise :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="nomEn" id="nomEn" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="nomEn" id="nomEn" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Site Web :</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="site" id="site" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="site" id="site" onChange={this.handleInputChange} required/>
                         </div>    
                         </div>
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Telephone :*</label>
-                            <input class="form-control" type="tel" placeholder="Default input" name="tel" id="tel" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="tel" placeholder="Default input" name="tel" id="tel" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Emplacement :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="emp" id="emp" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="emp" id="emp" onChange={this.handleInputChange} required/>
                         </div>    
                         </div>
                         {/*<div class="form-group pt-3 ">
@@ -123,7 +123,7 @@ class register extends Component {
                          </div>*/}
                         <div class='form-group pt-3' >
                             <label for="exampleFormControlFile1" className='lab'>Description de societé :*</label>
-                            <textarea class="form-control" type="text" placeholder="Default input" name="desc" onChange={this.handleInputChange}></textarea>
+                            <textarea class="form-control" type="text" placeholder="Default input" name="desc" onChange={this.handleInputChange} required></textarea>
                         </div>
                         <div class="form-group form-check pt-5">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" checked/>

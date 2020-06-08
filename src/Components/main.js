@@ -5,19 +5,22 @@ import home from './home';
 import singlejob from './society/singlejob';
 import contact from './contact';
 import Listjob from './society/listjob'
-import { Provider } from 'react-redux';
 import registerEm from './employee/registerEm';
 import Cv from './employee/cv';
 import profileEm from './employee/profileEm';
 import cvs from '../views/cvs';
 import authGard from './HOCs/authGuard'
-import store from './store';
 import register from './society/register';
 import postJob from './society/postJob';
 import Recherche from './society/Recherche';
 import profile from './society/profile'
 import jobs from '../views/society/jobs'
 import Onejob from '../views/society/Onejob';
+import ProfilepageEm from './employee/profilepageEm';
+import test from './test'
+import Modifier from './society/modifyjob'
+import profilepage from './society/profilepage';
+
 
 
 const Main= () => (
@@ -40,7 +43,11 @@ const Main= () => (
         <Route path='/profile' roles={["societé"]} component={profile}></Route>
         <Route path='/jobs' component={jobs}></Route>
         <Route path='/onejob'  component={Onejob}></Route>
-       
+        <Route path='/profilepage' component={ProfilepageEm}></Route>
+        <Route path='/test'  component={test}></Route>
+        <Route path='/modifypage' component={Modifier}></Route>
+        <Route path='/profilesociety' component={profilepage}></Route>
+
       </Switch>
       </BrowserRouter>
 )

@@ -9,77 +9,83 @@ class Jobs extends Component {
         super(props);
             this.state ={
         jobs : null,
-        emploi : null
-};
+        data : [],
+        emp : ''
+    };
     }
+    
 
-async componentDidMount(searchTerm){
+/*async componentDidMount(searchTerm){
     let url = 'http://localhost:5000/jobs/alljobs'
-    axios.get(url).then((response) => {
-       // console.log(response);
-        
-        const emploisRow = []
-        const emplois = response.data
-        emplois.forEach((emploi) =>{
-           // console.log(emploi.title);
-            emploisRow.push(emploi)
-            //console.log(emploisRow);
-            if(emploi.title== searchTerm){
-                console.log(emploi.title);
-                this.setState({
-                    jobs: emploi.data
-                });
-            }else 
-            {
-                this.setState({
-                    jobs: response.data                    
-                });
-                
-            }
-            
-        })
-        
-    }).catch(error => {
+    try {
+        axios.get(url).then((response) => {         
+             
+         })
+    }catch(error) {
         console.log(error);
-    });
-}
+    };
+}*/
 
   
 searchChangeHandler(e){
-    const boundObject = this
-    const searchTerm = e.target.value
-    boundObject.componentDidMount(searchTerm)
+  /* const emp = e.target.value
+   this.setState(prevState => {
+    /*const filteredData = prevState.data.filter(element => {
+      return element.name.toLowerCase().includes(emp.toLowerCase());
+    });
+
+    return {
+      emp,
+      filteredData
+    };
+  });*/
 }      
-                
+getData = () => {
+    axios.get(`http://localhost:5000/jobs/alljobs`)
+      .then((response) =>
+      this.setState({
+        jobs : response.data
+      })
+      )
+      /*.then(data => {
+        const { query } = this.state;
+        const filteredData = data.filter(element => {
+          return element.name.toLowerCase().includes(query.toLowerCase());
+        });
+*/
+        
+      
+  };    
+  componentWillMount() {
+    this.getData();
+  }      
 
     
 
     render() {
+    
+        
         return (
         <div>
-            <section class="ftco-section bg-light pt-5" >
-			    <div class="container">
-                    <div class="row justify-content-center mb-5 pb-3">
-                    <div class="col-md-7 heading-section text-center ftco-animate">
-          	            <span class="subheading">Recently Added Jobs</span>
-                        <h2 class="mb-4"><span>Recent</span> Jobs</h2>
+            <section className="ftco-section bg-light pt-5" >
+			    <div className="container">
+                    <div className="row justify-content-center mb-5 pb-3">
+                    <div className="col-md-7 heading-section text-center ftco-animate">
+          	            <span className="subheading">Recently Added Jobs</span>
+                        <h2 className="mb-4"><span>Recent</span> Jobs</h2>
                     </div>
                     
                 </div>
-                <input style={{
-                    fontSize : 24,
-                    display : 'block',
-                    width : '98%',
-                    paddingTop : 8 ,
-                    paddingBottom : 8,
-                    paddingLeft : 16 ,
-                }} onChange={this.searchChangeHandler.bind(this)} placeholder='Entrer le nom emploi' />
+
+                <input type="text" name='emp' id="myInput" onkeyup="myFunction()" placeholder="Search for names.."/>
+
 
                 <div className='jobs'>
                     {this.state.jobs !== null && this.state.jobs.map(jobs => {
 
                         return (
-                            <ViewJobs  _id={jobs._id} title={jobs.title} location={jobs.location}type={jobs.type} file={jobs.file} />)
+                            <ViewJobs  _id={jobs._id} title={jobs.title} location={jobs.location}type={jobs.type} file={jobs.file} 
+                             />)
                     })}
                 </div>
                 </div>

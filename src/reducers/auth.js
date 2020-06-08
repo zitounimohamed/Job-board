@@ -1,5 +1,5 @@
 
-import {AUTH_SIGN_UP, AUTH_ERROR,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,SIGN_UP_SOC} from '../actions/types'
+import {AUTH_SIGN_UP, AUTH_ERROR,AUTH_SIGN_OUT,AUTH_SIGN_IN,SIGN_UP_SOC,PROFILE} from '../actions/types'
 
 
 
@@ -11,14 +11,16 @@ function checkAuthentication() {
         isAuthenticated: true,
         token,
         errorMessage: "",
-        userData : ''
+        userData : '',
+        role : ''
       };
     }
     return {
       isAuthenticated: false,
       token: "",
       errorMessage: "",
-      userData : ''
+      userData : '',
+      role : ''
 
     };
   }
@@ -27,8 +29,8 @@ function checkAuthentication() {
 
 export default (state=DEFAULT_STATE ,action)=>{
     switch (action.type) {
-        case SET_CURRENT_USER:
-            return {...state, isAuthenticated: true ,user: action.payload};
+        case PROFILE:
+            return {...state, isAuthenticated: true ,role: action.pay.role};
         case AUTH_SIGN_UP:
             return {...state, token: action.payload,isAuthenticated: true, userData : action.pay, errorMessage : ''};
         case SIGN_UP_SOC:

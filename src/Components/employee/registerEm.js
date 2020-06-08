@@ -88,11 +88,11 @@ handleSubmit = async (event)=>{
                         <div class='row pt-5'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Username :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="username" id="email" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="username" id="email" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Email :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="email" id="email" onChange={this.handleInputChange} />
 							{ this.props.errorMessage ? 
 						<div className="alert alert-danger">
 							{this.props.errorMessage}
@@ -104,26 +104,26 @@ handleSubmit = async (event)=>{
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Nom & prénom :*</label>
-                            <input class="form-control" type="text" placeholder="Default input" name="nom" id="nom" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="text" placeholder="Default input" name="nom" id="nom" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Mot de passe :*</label>
-                            <input class="form-control" type="password" placeholder="Default input" name="password" id="password" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="password" placeholder="Default input" name="password" id="password" onChange={this.handleInputChange} required/>
                         </div>    
                         </div>
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Confirmation mot de passe:*</label>
-                            <input class="form-control" type="password" placeholder="Default input" name="repeat_password" id="repeat_password" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="password" placeholder="Default input" name="repeat_password" id="repeat_password" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col '>
                             <label for="exampleFormControlFile1" className='lab'>Telephone :*</label>
-                            <input class="form-control" type="tel" placeholder="Default input" name="tel" id="tel" onChange={this.handleInputChange}/>
+                            <input class="form-control" type="tel" placeholder="Default input" name="tel" id="tel" onChange={this.handleInputChange} required/>
                         </div>
                         </div>
 						<div className='pb-5 pt-3'>
 						<label for="exampleFormControlFile1">Gouvernorat</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="location" onChange={this.handleInputChange}>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="location" onChange={this.handleInputChange} required>
                             <option selected>Choisir...</option>
                             <option value="Ariana">Ariana</option>
                             <option value="Béja">Béja</option>

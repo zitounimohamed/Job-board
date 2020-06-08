@@ -14,13 +14,13 @@ class pichome extends Component {
             
            <header className="masthead" style={mystyles}>
     <div className="container">
-               <form class="search-jobs-form ">
-              <div class="row mb-5">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <input type="text" class="form-control form-control-lg-0" placeholder="Job title, keywords..."/>
+               <form className="search-jobs-form ">
+              <div className="row mb-5">
+                <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <input type="text" className="form-control form-control-lg-0" placeholder="Job title, keywords..."/>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <select class="form-control">
+                <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <select className="form-control">
                            <option>Anywhere</option>
                             <option value="Ariana">Ariana</option>
                             <option value="Béja">Béja</option>
@@ -48,15 +48,15 @@ class pichome extends Component {
                             <option value="Zaghouan">Zaghouan</option>
                   </select>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <select class="form-control">
+                <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <select className="form-control">
                     <option>Part Time</option>
                     <option>Full Time</option>
                     <option>Freelancer</option>
                   </select>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <button type="submit" class="btn btn-primary btn-lg-0  mb-9 btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <button type="submit" className="btn btn-primary btn-lg-0  mb-9 btn-block text-white btn-search"><span className="icon-search icon mr-2"></span>Search Job</button>
                 </div>
               </div>
             </form>

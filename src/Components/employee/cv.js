@@ -17,6 +17,8 @@ class Cv extends Component {
             //cvfile : null , 
             tel : null , 
             exp : null,
+            formvalid : false,
+            errors : {}
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -92,16 +94,18 @@ class Cv extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <div class="form-group pt-5 ">
                     <label for="exampleFormControlFile1">Example file input</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" onChange={this.onChange}/>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" onChange={this.onChange} required/>
+                    
                 </div>
                 <div class='form-group' >
                     <label for="exampleFormControlFile1">Titre de poste désiré</label>
-                    <input class="form-control" type="text" placeholder="Default input" name="titre" id="titre" onChange={this.handleInputChange}/>
+                    <input class="form-control" type="text" placeholder="Default input" name="titre" id="titre" onChange={this.handleInputChange} required/>
+                    <ValidationMessage valid={this.state.titreValid} message={this.state.errors.titre} />  
                 </div>
                 <div class='row'>
                     <div class='col'>
                         <label for="exampleFormControlFile1">Type d'emploi</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="type" onChange={this.handleInputChange}>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="type" onChange={this.handleInputChange} required>
                             <option selected>Choisir...</option>
                             <option value="cdi">CDI</option>
                             <option value="cd">CD</option>
@@ -110,21 +114,21 @@ class Cv extends Component {
                     </div>
                     <div class='col'>
                         <label for="exampleFormControlFile1">Catégorie</label>
-                        <input class="form-control" type="text" placeholder="Default input" name="categ" onChange={this.handleInputChange}></input>
+                        <input class="form-control" type="text" placeholder="Default input" name="categ" onChange={this.handleInputChange} required/>
                     </div>
                 </div>
                 <div class='form-group' >
                     <label for="exampleFormControlFile1">Compétences</label>
-                    <textarea class="form-control" type="text" placeholder="Default input" name="comp" onChange={this.handleInputChange}></textarea>
+                    <textarea class="form-control" type="text" placeholder="Default input" name="comp" onChange={this.handleInputChange}required></textarea>
                 </div>
                 
                 <div class='form-group'>
                         <label for="exampleFormControlFile1">Telephone</label>
-                        <input class="form-control" type="tel" placeholder="Default input" name='tel' onChange={this.handleInputChange}></input>
+                        <input class="form-control" type="tel" placeholder="Default input" name='tel' onChange={this.handleInputChange} required></input>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Expérience</label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="exp" onChange={this.handleInputChange}>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="exp" onChange={this.handleInputChange} required>
                         <option selected>Selectionner votre expérience...</option>
                         <option value="Débutant">Débutant</option>
                         <option value="0 à 1 an">0 à 1 an</option>
@@ -143,6 +147,12 @@ class Cv extends Component {
         );
     }
 }
+function ValidationMessage(props) {
+    if (!props.valid) {
+      return <div className='error-msg'>{props.message}</div>
+    }
+    return null;
+  }
 function mapStateToProps(state) {
 	return {
       errorMessage: state.auth.errorMessage,

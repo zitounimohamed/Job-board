@@ -2,21 +2,8 @@ import React, { Component } from 'react';
 import Main from './Components/main';
 import Navbar from './Components/navbar'
 import Footer from './Components/footer'
-import {setCurrentUser} from './actions';
-import jwt_decode from "jwt-decode";
-import setAuthToken from './utils/Authorization'
-import store from './Components/store'
 
-// Check for token to keep user logged in
-if (localStorage.JWT_Token) {
-  // Set auth token header auth
-  const token = localStorage.JWT_Token;
-  setAuthToken(token);
-  // Decode token and get user info and exp
-  const decoded = jwt_decode(token);
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-}
+
 
 class App extends Component{
  /* async componentDidMount() {

@@ -6,3 +6,6 @@ export const ADD_CV ='ADD_CV';
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SIGN_UP_SOC = "SIGN_UP_SOC";
 export const GETJOB = "GETJOB";
+export const PROFILE = "PROFILE";
+export const REMOVEJOB = "REMOVEJOB" ;
+export const MODIFYJOB = "MODIFYJOB0" ;

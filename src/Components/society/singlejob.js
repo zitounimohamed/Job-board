@@ -3,6 +3,8 @@ import { connect} from 'react-redux';
 import {compose} from 'redux';
 import * as actions from '../../actions/index'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+
 
 
 class singlejob extends Component {
@@ -26,6 +28,17 @@ class singlejob extends Component {
        
       })
     
+  }
+  async deletejob(){
+    const{id} = this.props.match.params
+    await axios.delete(`http://localhost:5000/jobs/deletejob/${id}`)
+      .then((response)=>{
+        if(response.status===200 && response!= null)
+        {
+          console.log("done");
+          
+        }
+      })
   }
     render() {
       console.log(this.state.job);
@@ -52,8 +65,7 @@ class singlejob extends Component {
           <div class="col-lg-4">
             <div class="row">
               <div class="col-6">
-                <a href="/" class="btn btn-block btn-light btn-md"><span class="icon-heart-o mr-2 text-danger"></span>Save
-                  Job</a>
+                <Link onClick={this.deletejob()} href="/" class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</Link>
               </div>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="/exampleModalCenter">
                  Postuler
@@ -210,5 +222,5 @@ function mapStateToProps(state) {
 }
 
 export default compose(
-  connect(null,actions),
+  connect(mapStateToProps,actions),
           )(singlejob)

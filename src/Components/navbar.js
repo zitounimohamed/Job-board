@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import '../assets/css/agency.min.css'
 import { connect } from 'react-redux';
 import * as actions from '../actions'
-import { NavLink, NavItem, UncontrolledDropdown,
+import {  UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem, } from 'reactstrap';
-import {Redirect} from 'react-router-dom'
+  DropdownItem,
+   } from 'reactstrap';
 import logo from '../assets/img/logo.png'
 class Navbar extends Component {
   constructor(props) {
@@ -37,7 +37,6 @@ class Navbar extends Component {
            </DropdownToggle>
            <DropdownMenu>
              <DropdownItem>
-               Mon profil
              </DropdownItem>
              <DropdownItem>
                Offres d'emploi

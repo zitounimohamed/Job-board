@@ -1,6 +1,8 @@
 import axios from 'axios';
-import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,AUTH_SIGN_IN,SET_CURRENT_USER,ADD_CV,SIGN_UP_SOC,GETJOB} from './types'
-
+import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,
+        AUTH_SIGN_IN,ADD_CV,SIGN_UP_SOC,GETJOB,PROFILE,
+        REMOVEJOB,MODIFYJOB} from './types'
+import setAuthToken from '../utils/Authorization'
 
 export const oauthGoogle = data =>{
     return async dispatch =>{
@@ -102,7 +104,7 @@ export const signin = data =>{
           dispatch({
               type : AUTH_SIGN_IN,
               payload : res.data ,
-              pay : res
+              pay : ''
               
           });
 
@@ -128,6 +130,28 @@ export const signOut = () => {
     };
 
 }
+export const prof = (JWT_Token)=>{
+    return async dispatch =>{
+        try {
+            
+            const res = await axios.get('http://localhost:5000/users/secret',setAuthToken(JWT_Token))
+            console.log("res",res);
+            
+            dispatch=({
+                type : PROFILE ,
+                payload : res.data,
+                pay : res.data.local.role
+            })
+        } catch (error) {
+            dispatch({
+                type : AUTH_ERROR,
+                payload : ''
+            })
+        }
+        
+       
+    }
+}
 export const newcv = data =>{
     return async dispatch => {
         try {
@@ -138,11 +162,10 @@ export const newcv = data =>{
                 payload : res.data 
             });
 
-            localStorage.setItem('JTW_Token',res.data);
         } catch (error) {
             dispatch({
                 type : AUTH_ERROR,
-                payload : 'Email is already used !!'
+                payload : ''
             })
             
         }
@@ -165,13 +188,33 @@ export const checkAuth = () => {
     };
   }
 
-  // Set logged in user
-export const setCurrentUser = decoded => {
-    return {
-      type: SET_CURRENT_USER,
-      payload: decoded
-    };
-  };
+export const deljob = (id,history)=> async (dispatch)=>{
+    try {
+        const res = await axios.delete(`http://localhost:5000/jobs/deletejob/${id}`);
+        window.location.reload(false);
+        dispatch({
+            type : REMOVEJOB,
+            payload :history.push('/home')
+        });
+
+        
+    } catch (error) {
+        history.push('/home')
+    }
+}
+
+export const modifyjob = (id)=> async(dispatch)=>{
+    try {
+        await axios.put(`http://localhost:5000/jobs/deletejob/${id}`);
+        dispatch({
+            type : MODIFYJOB ,
+            payload : "done"
+        });
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 
 export const getjob =(id,history)=> async (dispatch)=>{
     try {

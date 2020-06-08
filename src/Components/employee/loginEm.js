@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import {compose} from 'redux';
-import {  reduxForm} from 'redux-form';
 import * as actions from '../../actions';
 import Googlelogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login'
