@@ -11,9 +11,55 @@ class singlejob extends Component {
   constructor(props){
     super(props);
     this.state = {
-      job: ''
+      job: '',
+      nom : null ,
+      email : null , 
+      file : null , 
+      lettre : null
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.onChange=this.onChange.bind(this)
   }
+  onChange = (e) => {
+    this.setState({file: e.target.files[0]})
+}
+
+  handleInputChange = (event) =>{
+    this.setState({
+        
+        [event.target.name] : event.target.value,
+        
+    })
+}
+uploadFile = async file => {
+  const fd = new FormData();
+  fd.append("file", file);
+  try {
+        const res = await axios.post("http://localhost:5000/demandes/uploadpdf", fd);
+        console.log(res.data);
+        return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+handleSubmit = async (event)=>{
+  event.preventDefault();
+  const uploadedPdfInfo= await this.uploadFile(this.state.file);
+  let url = "http://localhost:5000/demandes/newapply" 
+  const data ={
+    file : uploadedPdfInfo.pdf,
+    nom : this.state.nom,
+    email : this.state.email , 
+    lettre : this.state.lettre
+  }
+  await axios.post(url,data).then((response)=>{
+    console.log(response);
+    
+}).catch(error =>{
+    console.log(error);
+    
+}); 
+}
   async componentDidMount(){
     const {id} = this.props.match.params
     console.log('id',id);
@@ -29,9 +75,8 @@ class singlejob extends Component {
       })
     
   }
-  async deletejob(){
-    const{id} = this.props.match.params
-    await axios.delete(`http://localhost:5000/jobs/deletejob/${id}`)
+   /*deletejob(id){
+     axios.delete(`http://localhost:5000/jobs/deletejob/${id}`)
       .then((response)=>{
         if(response.status===200 && response!= null)
         {
@@ -39,7 +84,7 @@ class singlejob extends Component {
           
         }
       })
-  }
+  }*/
     render() {
       console.log(this.state.job);
         return (
@@ -65,9 +110,10 @@ class singlejob extends Component {
           <div class="col-lg-4">
             <div class="row">
               <div class="col-6">
-                <Link onClick={this.deletejob()} href="/" class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</Link>
+{ /*               <button onClick={this.deletejob(this.state.job._id)}  class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</button>
+*/}                <Link to={`/modifypage/${this.state.job._id}`} class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Modifier</Link>
               </div>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="/exampleModalCenter">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                  Postuler
               </button>
             </div>
@@ -180,27 +226,27 @@ class singlejob extends Component {
       </div>
       <div class="modal-body">
       <form>
-          <div class="form-group">
+          <div class="form-group" onSubmit={this.handleSubmit}>
             <label for="recipient-name" class="col-form-label">Votre Nom:</label>
-            <input type="text" class="form-control" id="nom" nom="nom" />
+            <input type="text" class="form-control" id="nom" name="nom" onChange={this.handleInputChange} required />
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Votre Email:</label>
-            <input type="text" class="form-control" id="recipient-name"/>
+            <input type="text" class="form-control" name='email' id="recipient-name" onChange={this.handleInputChange} required/>
           </div>
           <div class="form-group">
           <label for="recipient-name" class="col-form-label">Votre Cv : </label>
-            <input type="file" class="form-control" id="exampleFormControlFile1"/>
+            <input type="file" class="form-control" name="file" id="exampleFormControlFile1" onChange={this.onChange} required/>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Lettre de motivation:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="message-text" name='lettre' onChange={this.handleInputChange} required></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Postuler</button>
+        <button type='submit' onClick={this.handleSubmit} class="btn btn-primary">Postuler</button>
       </div>
     </div>
   </div>

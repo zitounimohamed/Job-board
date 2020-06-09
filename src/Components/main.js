@@ -45,7 +45,7 @@ const Main= () => (
         <Route path='/onejob'  component={Onejob}></Route>
         <Route path='/profilepage' component={ProfilepageEm}></Route>
         <Route path='/test'  component={test}></Route>
-        <Route path='/modifypage' component={Modifier}></Route>
+        <Route path='/modifypage/:id' component={Modifier}></Route>
         <Route path='/profilesociety' component={profilepage}></Route>
 
       </Switch>

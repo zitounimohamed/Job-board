@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import ViewJobs from '../../Components/society/listjob'
 import axios from "axios";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import '../../App.css'
+
 class Jobs extends Component {
     constructor(props) {
         super(props);
@@ -77,13 +80,31 @@ getData = () => {
                     
                 </div>
 
-                <input type="text" name='emp' id="myInput" onkeyup="myFunction()" placeholder="Search for names.."/>
-
+                <Autocomplete
+        freeSolo
+        id="titre"
+        disableClearable
+        options={this.state.jobs!= null && this.state.jobs.map((jobs) =>
+           jobs.title)}
+        getOptionSelected={(jobs,value)=> value.value===this.state.jobs }
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Search input"
+            margin="normal"
+            variant="outlined"
+            InputProps={{ ...params.InputProps, type: 'search' }}
+          />
+          
+        )}
+      />
 
                 <div className='jobs'>
                     {this.state.jobs !== null && this.state.jobs.map(jobs => {
+                      
 
                         return (
+                          
                             <ViewJobs  _id={jobs._id} title={jobs.title} location={jobs.location}type={jobs.type} file={jobs.file} 
                              />)
                     })}

@@ -4,6 +4,38 @@ const router = express.Router();
 const multer = require('multer')
 
 
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, "./uploadspdf/");
+    },
+    filename: function(req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+    fileFilter: (req, file, cb) => {
+      const ext = path.extname(file.originalname);
+      if (ext !== ".pdf") {
+        return cb(res.status(400).end("only pdf files are allowed"), false);
+      }
+      cb(null, true);
+    }
+  });
+  var upload = multer({ storage: storage }).single("file");
+
+
+router.post("/uploadpdf", (req, res) => {
+    upload(req, res, err => {
+      if (err) {
+        console.log(err);
+        return res.json({ success: false, err });
+      }    
+  
+      return res.json({
+        success: true,
+        pdf: res.req.file.path,
+        fileName: res.req.file.filename
+      });
+    });
+  });
 
 
 
@@ -27,34 +59,23 @@ router.get('/allapply', async (req, res) => {
      }
  });
 
-//add new cv
+//add new apply
 router.post('/newapply',async(req, res) => {     
     const apply =  new Apply ({
-        cvfile : req.file.path,
+        file : req.body.file,
         nom : req.body.nom,
         email: req.body.email,
         lettre : req.body.lettre
     });
     try {
-         const applycv= await Apply.save();
-         res.send(applycv);
-         
-    } catch(error) {
-            res.json({ message: error });
-    }
+        const savedapply= await apply.save();
+        res.send(savedapply);
+   } catch(error) {
+           res.json({ message: error });
+   }
     
 });
 
-router.post('/upload', async (req,res,next)=>{
-    const file = req.files.cvfile;
-    file.mv("./uploads" + file.name, function(err,result) {
-        if(err)
-        throw err ; 
-        res.send({
-            success : true ,
-            message : "file uploaded !"
-        })
-    })
-})
+
 
 module.exports = router; 
