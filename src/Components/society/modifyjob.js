@@ -18,7 +18,6 @@ class Modify extends Component {
             site : null,
             file : null
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
         this.onChange=this.onChange.bind(this)
 
