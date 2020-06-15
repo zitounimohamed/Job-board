@@ -69,8 +69,8 @@ getData = () => {
     
         
         return (
-        <div>
-            <section className="ftco-section bg-light pt-5" >
+        <div style={{paddingTop: 60}}>
+            <section className="ftco-section bg-light pt-5 pb-5" >
 			    <div className="container">
                     <div className="row justify-content-center mb-5 pb-3">
                     <div className="col-md-7 heading-section text-center ftco-animate">
@@ -101,10 +101,7 @@ getData = () => {
 
                 <div className='jobs'>
                     {this.state.jobs !== null && this.state.jobs.map(jobs => {
-                      
-
-                        return (
-                          
+                        return (                 
                             <ViewJobs  _id={jobs._id} title={jobs.title} location={jobs.location}type={jobs.type} file={jobs.file} 
                              />)
                     })}

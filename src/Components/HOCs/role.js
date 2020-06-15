@@ -1,34 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class role extends Component {
-    async componentDidMount(){
-        const t = this.props.token
-        console.log("token",t);
-        
-         await Axios.get('http://localhost:5000/users/secret',setAuthToken(t))
-        .then((response)=>{
-            if(response.status===200 && response!= null )
-        {
-          this.setState({profile : response.data.local})
-        }
-        })
-        
-    }
-    render() {
-        if((this.state.profile.role)==='societé')
-        return (
-            <div>
-                
-            </div>
-        );
-    }
-}
-function mapStateToProps(state) {
-    return {
-      isAuth: state.auth.isAuthenticated,
-      jwtToken: state.auth.token
-    }
-  }
+export default (OriginalComponent) => {
+    class MixedComponent extends Component {
 
-export default connect(mapStateToProps)(role);
+    
+      
+    checkAuth() {
+        if (!this.props.isAuth && !this.props.jwtToken) {
+            const { history } = this.props;
+			history.push("/home");
+        }
+      }
+  
+        
+    componentDidMount() {
+        this.checkAuth();
+      }
+  
+      componentDidUpdate() {
+        this.checkAuth();
+      }
+
+
+
+        render() {
+            return <OriginalComponent  {...this.props}/>;
+          }
+        }
+        function mapStateToProps(state) {
+            return {
+              isAuth: state.auth.isAuthenticated,
+              jwtToken: state.auth.token,
+              iduser : state.auth.id
+            }
+          }
+         
+   
+    return connect(mapStateToProps)(MixedComponent);
+};

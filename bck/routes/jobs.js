@@ -67,11 +67,15 @@ router.post('/newjob',async(req, res) => {
         region : req.body.region,
         type : req.body.type ,
         description : req.body.description,
-        company_name : req.body.company_name,
-        tagline : req.body.tagline ,
-        cDisc : req.body.cDisc,
-        site : req.body.site,
-        file : req.body.file
+        file : req.body.file, 
+        salaire : req.body.salaire ,
+        genre : req.body.genre ,
+        dateexp : req.body.dateexp,
+        exigences : req.body.exigences,
+        education : req.body.education,
+        experience : req.body.experience,
+        autres : req.body.autres
+
 
 
     });

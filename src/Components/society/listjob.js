@@ -29,7 +29,7 @@ class listjob extends Component {
               </div>
 
               <div className="ml-auto d-flex">
-                <Link to ={`/singlepage/${this.props._id}`}className="btn btn-primary py-2 mr-1">Apply Job</Link>
+                <Link to ={`/singlepage/${this.props._id}`}className="btn btn-primary py-2 mr-1">Plus Détails</Link>
               </div>
             </div>
           </div>

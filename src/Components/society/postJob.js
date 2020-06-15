@@ -11,17 +11,23 @@ class postJob extends Component {
             region : null,
             type :  null,
             description : null,
-            company_name : null,
-            tagline :  null,
-            cDisc : null,
-            site : null,
-            file : null
+            file : null,
+            salaire :null , 
+            genre : null ,
+            dateexp : null,
+            exigences : null , 
+            experience : null ,
+            education : null , 
+            autres : null
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
         this.onChange=this.onChange.bind(this)
 
+    }
+    resetForm(){
+        document.getElementById('form-job').reset();
     }
    
      
@@ -45,21 +51,30 @@ class postJob extends Component {
         region : this.state.region,
         type : this.state.type ,
         description : this.state.description,
-        company_name : this.state.company_name,
-        tagline : this.state.tagline ,
-        cDisc : this.state.cDisc,
-        site : this.state.site,
-        file : uploadedImageInfo.image
+        file : uploadedImageInfo.image,
+        salaire : this.state.salaire,
+        genre : this.state.genre , 
+        dateexp : this.state.dateexp,
+        exigences : this.state.exigences,
+        education : this.state.education,
+        experience : this.state.experience,
+        autres : this.state.autres
+
 
 
        }
 
        console.log("data",data);
        await axios.post(uri,data).then((response)=>{
-           console.log(response);
-           const {history} = history.push('/home')
+        if(response.status===200 && response!= null ){
+            alert("Message Sent."); 
+        this.resetForm()
+        }
+        
+
        }).catch(error =>{
            console.log(error);
+           alert("Message failed to send.")
            
        }); 
 
@@ -86,7 +101,7 @@ class postJob extends Component {
             <div>
             <div className='container' id ='cont'>
                 <h2 className='tit'>Postuler un emploi</h2>
-                    <form className= "p-5 p-md-5 border rounded"onSubmit={this.handleSubmit}>
+                    <form className= "p-5 p-md-5 border rounded" onSubmit={this.handleSubmit} id='form-job'>
                       <h2 className='bigtitle'>Détails de l'emploi</h2><hr/>
                         <div class="form-group pt-5 ">
                             <label for="exampleFormControlFile1" className='lab pb-3 '>Télécharger l'image sélectionnée</label>
@@ -116,23 +131,40 @@ class postJob extends Component {
                             <label for="exampleFormControlFile1" className='lab pb-3'>Déscription :</label>
                             <textarea rows ="10" class="form-control" type="text" placeholder="Décrire l'emploi" name="description" id="description" onChange={this.handleInputChange} required/>
                         </div>
-                        <h2>Détails de l'emploi</h2><hr/>
-                        <div class='form-group pt-5'>
-                            <label for="exampleFormControlFile1" className='lab pb-3'>Nom de votre société :</label>
-                            <input class="form-control" type="text" placeholder="nom d'entreprise" name="company_name" id="company_name" onChange={this.handleInputChange} required/>
+                        <div class='form-group pt-3'>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Salaire :</label>
+                            <input class="form-control" type="number" placeholder="Salaire au moins" name="salaire" id="salaire" min='0' onChange={this.handleInputChange} required/>
                         </div>
                         <div class='form-group pt-3'>
-                            <label for="exampleFormControlFile1" className='lab pb-3'>Slogan :</label>
-                            <input class="form-control" type="text" placeholder="Slogan" name="tagline" id="tagline" onChange={this.handleInputChange} required/>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Genre :</label>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="genre" onChange={this.handleInputChange} required>
+                            <option selected>Choisir...</option>
+                            <option value="Femme" required>Femme</option>
+                            <option value="Homme">Homme</option>
+                            <option value="Les deux">Les deux</option>
+                        </select>
                         </div>
                         <div class='form-group pt-3'>
-                            <label for="exampleFormControlFile1" className='lab pb-3'>Déscription de société :</label>
-                            <textarea rows ="10" class="form-control" type="text" placeholder="Décrire le société" name="cDisc" id="cDisc" onChange={this.handleInputChange} required/>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Date d'expiration :</label>
+                            <input class="form-control" type="date" placeholder="Date d'expiration" name="dateexp" id="dateexp" onChange={this.handleInputChange} required/>
                         </div>
-                        <div class='form-group pt-3'>
-                            <label for="exampleFormControlFile1" className='lab pb-3'>Site Web :</label>
-                            <input class="form-control" type="text" placeholder="https://" name="site" id="site" onChange={this.handleInputChange} required/>
+                        <div class='form-group pt-3 pb-5'>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Exigences de l'emploi :</label>
+                            <textarea rows ="10" class="form-control" type="text" placeholder="Décrire l'emploi" name="exigences" id="exigences" onChange={this.handleInputChange} required/>
                         </div>
+                        <div class='form-group pt-3 pb-5'>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Education :</label>
+                            <textarea rows ="10" class="form-control" type="text" placeholder="Décrire l'emploi" name="education" id="education" onChange={this.handleInputChange} required/>
+                        </div>
+                        <div class='form-group pt-3 pb-5'>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Expérience :</label>
+                            <textarea rows ="10" class="form-control" type="text" placeholder="Décrire l'emploi" name="experience" id="experience" onChange={this.handleInputChange} required/>
+                        </div>
+                        <div class='form-group pt-3 pb-5'>
+                            <label for="exampleFormControlFile1" className='lab pb-3'>Autres bénifices :</label>
+                            <textarea rows ="10" class="form-control" type="text" placeholder="Décrire l'emploi" name="autres" id="autres" onChange={this.handleInputChange} required/>
+                        </div>
+                       
                         <div class='row pt-5'>
                         <button type='submit' class='btn btn-primary btn-lg ' id='but' >Publier</button>
                         </div>

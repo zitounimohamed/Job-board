@@ -5,6 +5,23 @@ const multer = require('multer')
 const User = require('../models/user')
 const Cvs = require('../controlles/cv')
 
+//file pdf 
+router.post("/uploadpdf", (req, res) => {
+  upload(req, res, err => {
+    if (err) {
+      console.log(err);
+      return res.json({ success: false, err });
+    }    
+
+    return res.json({
+      success: true,
+      pdf: res.req.file.path,
+      fileName: res.req.file.filename
+    });
+  });
+});
+
+//image upload
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
       cb(null, "./uploads/");
@@ -14,7 +31,7 @@ var storage = multer.diskStorage({
     },
     fileFilter: (req, file, cb) => {
       const ext = path.extname(file.originalname);
-      if (ext !== ".jpg" || ext !== ".png") {
+      if (ext !== ".jpg" || ext !== ".png" || ext !== ".pdf") {
         return cb(res.status(400).end("only jpg, png are allowed"), false);
       }
       cb(null, true);
@@ -37,15 +54,15 @@ router.post("/uploadimage", (req, res) => {
     });
   });
 
-//Get all cv with title 
-/*router.get('/:titre', async (req, res) => {
+//Get cv pop user  
+router.get('/mycv', async (req, res) => {
     try {
-        const cv = await Cv.findById(req.params.titre)
+        const cv = await Cv.find().populate('user')
         res.json(cv);
      } catch (error) {
          res.json({ message : error });
      }
- });*/
+ });
 
 
 
@@ -72,11 +89,10 @@ router.get('/allcv', async (req, res) => {
 
  //add new cv
  router.post('/newcv',  async(req, res) => {     
-     console.log(req.params);
+     /*console.log(req.params);
      user = req.params;
-     id = user.id
+     id = user.id*/
 
-     try {
       const cv =  new Cv ({
         titre : req.body.titre,
         categ : req.body.categ,
@@ -84,17 +100,27 @@ router.get('/allcv', async (req, res) => {
         tel : req.body.tel,
         comp : req.body.comp,
         type : req.body.type,
-        file : req.body.file
+        file : req.body.file,
+        filep : req.body.filep,
+        writer : req.body.writer
      });
-     await cv.save();
-     } catch (error) {
-       
-     }
-     const userById = await User.findById(user);
+     try {
+      const Cvs= await cv.save();      
+      res.send(cv);
+      user = await User.findById(req.params.writer)
+      if(user){
+        user.push(cv)
+      }
+ } catch(error) {
+         res.json({ message: error });
+ }
+     
+     
+    /* const userById = await User.findById(user);
      userById.cvs.push(cv);
      await userById.save();
      return res.send(userById);
-     
+     */
     
  });
 

@@ -71,7 +71,7 @@ class Profilepage extends Component {
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>User Id</label>
+                                                <label>nom d'utilisateur</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Kshiti123</p>
@@ -79,7 +79,7 @@ class Profilepage extends Component {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name</label>
+                                                <label>Nom & prénom</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p> {this.state.profile.name} </p>
@@ -95,7 +95,7 @@ class Profilepage extends Component {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Phone</label>
+                                                <label>Telephone</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{this.state.profile.tel}</p>

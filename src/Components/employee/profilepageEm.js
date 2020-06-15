@@ -71,7 +71,7 @@ class ProfilepageEm extends Component {
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>User Id</label>
+                                                <label>Nom d'utilisateur</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Kshiti123</p>
@@ -79,7 +79,7 @@ class ProfilepageEm extends Component {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name</label>
+                                                <label>Nom et prénom</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p> {this.state.profile.username} </p>
@@ -95,7 +95,7 @@ class ProfilepageEm extends Component {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Phone</label>
+                                                <label>Telephone</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{this.state.profile.tel}</p>
@@ -103,7 +103,7 @@ class ProfilepageEm extends Component {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Profession</label>
+                                                <label>Titre</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Web Developer and Designer</p>
@@ -113,7 +113,7 @@ class ProfilepageEm extends Component {
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Experience</label>
+                                                <label>Expérience</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>Expert</p>
@@ -129,7 +129,7 @@ class ProfilepageEm extends Component {
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Total Projects</label>
+                                                <label>Nombre des projets</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>230</p>
@@ -171,7 +171,6 @@ function mapStateToProps(state) {
 	  errorMessage: state.auth.errorMessage,
       isAuth : state.auth.isAuthenticated,
       token: state.auth.token,
-      role : state.auth.role
 
 	}
   }

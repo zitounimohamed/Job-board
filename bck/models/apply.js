@@ -10,7 +10,7 @@ const DemandeSchema = mongoose.Schema({
         type : String , 
         required : true 
     },
-    cvfile : {
+    file : {
         type: {data: Buffer ,contentType :String},
         required : true
     },

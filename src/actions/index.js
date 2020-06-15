@@ -104,10 +104,10 @@ export const signin = data =>{
           dispatch({
               type : AUTH_SIGN_IN,
               payload : res.data ,
-              pay : ''
+              pay : res.data._id
               
           });
-
+          
           localStorage.setItem('JTW_Token',res.data.token);
       } catch (error) {
           dispatch({
@@ -118,6 +118,7 @@ export const signin = data =>{
       }
   };
 }
+
 
 export const signOut = () => {
     return async dispatch => {

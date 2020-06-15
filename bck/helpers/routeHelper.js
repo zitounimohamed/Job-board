@@ -34,6 +34,7 @@ module.exports={
             email : Joi.string().email().required(),
             password : Joi.string().required()
         }),
+        
         schemasociety : Joi.object().keys({
             email : Joi.string().email().required(),
             name : Joi.string().required(),

@@ -6,7 +6,7 @@ const GooglePlusTokenStrategy = require('passport-google-plus-token');
 const FacebookTokenStrategy = require('passport-facebook-token');
 const config = require('./config');
 const User = require('./models/user');
-const UsersS = require("./models/societeUser")
+const UserS = require('./models/societeUser');
 
 passport.use(new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
@@ -29,27 +29,7 @@ passport.use(new JwtStrategy({
     }
     
 }));
-passport.use(new JwtStrategy({
-    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: config.JWT_SECRET,
-},async  (payload,done)=>{
-    try{
-        //find the user specified in token 
-            const user = await UsersS.findById(payload.sub);
-            //if user doesn't exist 
 
-            if (!user) {
-                return done(null,false);    
-            }
-
-        //otherwise , return user
-        done(null,user); 
-    }catch(error){
-            done(error,false);
-            
-    }
-    
-}));
 //Google 0Auth Strategy
 passport.use('googleToken',new GooglePlusTokenStrategy({
     clientID : config.oauth.google.clientID ,
@@ -123,22 +103,36 @@ passport.use(new LocalStrategy({
 },async (email,password,done)=>{
    try {
         //Find user given email 
-    const user = await User.findOne({'local.email' :email});
-
+    const user = await UserS.findOne({'email' :email} );
     //if not 
     if(!user) {
-        return done(null,false);        
-    }
-
+        const userEm = await User.findOne({'local.email' :email})  
+        
+        if(userEm)
+        {
+            const isMatch =await userEm.isValidPass(password);
+            
+            // if not 
+            if (!isMatch){
+                return done(null,false);
+            }
+            //otherwise return user 
+            done(null,userEm);
+        }
+        
+    }else {
     //otherwise check if pw correct 
-     const isMatch =await user.isValidPass(password);
-
+    const isMatch =await user.isValidPass(password);
+   
     // if not 
     if (!isMatch){
-        return done(null,false);
+         return done(null,false);
     }
     //otherwise return user 
     done(null,user);
+    }
+
+    
    } catch (error) {
        done(error,false);
        

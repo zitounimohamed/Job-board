@@ -17,11 +17,11 @@ class pichome extends Component {
                <form className="search-jobs-form ">
               <div className="row mb-5">
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <input type="text" className="form-control form-control-lg-0" placeholder="Job title, keywords..."/>
+                  <input type="text" className="form-control form-control-lg-0" placeholder="Titre emploi, clé..."/>
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select className="form-control">
-                           <option>Anywhere</option>
+                           <option>N'impote où</option>
                             <option value="Ariana">Ariana</option>
                             <option value="Béja">Béja</option>
                             <option value="Ben Arous">Ben Arous</option>
@@ -52,7 +52,6 @@ class pichome extends Component {
                   <select className="form-control">
                     <option>Part Time</option>
                     <option>Full Time</option>
-                    <option>Freelancer</option>
                   </select>
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -61,9 +60,9 @@ class pichome extends Component {
               </div>
             </form>
       <div className="intro-text">
-        <div className="intro-lead-in">Welcome To Our Job Board!</div>
-        <div className="intro-heading text-uppercase">join us now for the best job</div>
-        <a className="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Get started</a>
+        <div className="intro-lead-in"></div>
+        <div className="intro-heading text-uppercase">REJOIGNEZ-NOUS MAINTENANT POUR LE MEILLEUR EMPLOI</div>
+        <a className="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Connecter-Vous</a>
       </div>
     </div>
   </header>

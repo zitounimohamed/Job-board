@@ -21,21 +21,37 @@ const jobSchema = mongoose.Schema({
     description : {
         type: String,
         required : true},
-    company_name : {
-        type: String,
-        required : true},
-    tagline : {
-        type: String,
-        required : true},
-    cDisc :{
-        type: String,
-        required : true},
-    site : {
-        type: String,
-        required : true},
     file : {
         type : String,
         required : true },
+    salaire : {
+        type:Number,
+        required : true 
+    },
+    genre : {
+        type : String ,
+        required : true
+    },
+    dateexp: {
+        type : Date ,
+        required : true
+    }, 
+    exigences : {
+        type : String ,
+        required : true 
+    },
+    education : {
+        type : String ,
+        required : true 
+    },
+    experience : {
+        type : String , 
+        required : true 
+    },
+    autres : {
+        type : String,
+        required : true 
+    }
     
  
 

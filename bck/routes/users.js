@@ -13,16 +13,18 @@ const gOAuth = passport.authenticate('googleToken', { session: false });
 router.route('/signup')
     .post(validateBody(schemas.authSchema),UsersController.signUp);
     
-
+router.route('/signupS')
+    .post(validateBody(schemas.schemasociety),UsersController.signupS);
 
 router.route('/signin')
     .post(validateBody(schemas.lSchema),passportlogin,UsersController.signIn);
+
 
 router.route('/oauth/google')
     .post(gOAuth,UsersController.googleOAuth);
 
 router.route('/oauth/facebook')
-    .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
+.post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
 router.route('/secret')
     .get(passportjwt,UsersController.secret);
@@ -30,14 +32,10 @@ router.route('/secret')
 router.route('/signout')
     .get(passportjwt, UsersController.signOut);
 
-router.route('/cvbyuser')    
-    .get(UsersController.CvByUser)
-
-
-
-router.route("/profile/:_id") 
-    .get(UsersController.userprofile)
-    
+router.route('/status')
+    .get(passportjwt, UsersController.checkAuth);
+router.route('/allcv')
+    .get(UsersController.allcv)
   
 
 module.exports= router;

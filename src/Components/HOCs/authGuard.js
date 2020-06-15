@@ -7,15 +7,23 @@ export default (OriginalComponent) => {
     
       
     checkAuth() {
-        if (!this.props.isAuth && !this.props.jwtToken) {
+        if (!this.props.isAuth && !this.props.jwtToken ) {
             const { history } = this.props;
 			history.push("/home");
+        }
+      }
+      checkRole(){
+        if(!this.props.isClient){
+          const { history } = this.props;
+          history.push("/home");
         }
       }
   
         
     componentDidMount() {
+       
         this.checkAuth();
+        this.checkRole();
       }
   
       componentDidUpdate() {
@@ -31,7 +39,9 @@ export default (OriginalComponent) => {
         function mapStateToProps(state) {
             return {
               isAuth: state.auth.isAuthenticated,
-              jwtToken: state.auth.token
+              jwtToken: state.auth.token,
+              isClient : state.auth.isClient
+
             }
           }
          

@@ -64,10 +64,10 @@ class contact extends Component {
 		<div class="wrap-contact1000">
 			<form id="contact-form" class="contact1000-form validate-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
 				<span class="contact1000-form-title">
-					Send Us A Message
+				Envoie-nous un message
 				</span>
 
-				<label class="label-input1000" for="first-name">Tell us your name *</label>
+				<label class="label-input1000" for="first-name">Nom & Prénom *</label>
 				<div class="wrap-input1000 rs1-wrap-input1000 validate-input" data-validate="Type first name">
 					<input id="first-name" class="input1000" type="text" name="firstname" placeholder="First name" onChange={this.handleInputChange}/>
 					<span class="focus-input1000"></span>
@@ -77,13 +77,13 @@ class contact extends Component {
 					<span class="focus-input1000"></span>
 				</div>
 
-				<label class="label-input1000" for="email">Enter your email *</label>
+				<label class="label-input1000" for="email">Email *</label>
 				<div class="wrap-input1000 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<input id="email" class="input1000" type="text" name="email" placeholder="Eg. example@email.com" onChange={this.handleInputChange}/>
 					<span class="focus-input1000"></span>
 				</div>
 
-				<label class="label-input1000" for="phone">Enter phone number</label>
+				<label class="label-input1000" for="phone">Numéro de telephone</label>
 				<div class="wrap-input1000">
 					<input id="phone" class="input1000" type="text" name="phone" placeholder="Eg. +1 800 000000" onChange={this.handleInputChange}/>
 					<span class="focus-input1000"></span>
@@ -97,7 +97,7 @@ class contact extends Component {
 
 				<div class="container-contact1000-form-btn">
 					<button type="submit" class="contact1000-form-btn">
-						Send Message
+						Envoyer 
 					</button>
 				</div>
 			</form>
@@ -110,11 +110,11 @@ class contact extends Component {
 
 					<div class="flex-col size2">
 						<span class="txtt1 p-b-20">
-							Address
+							Addresse
 						</span>
 
 						<span class="txtt2">
-							Mada Center 8th floor, 379 Hudson St, New York, NY 100018 US
+							Cité basatine C5 Monastir - Tunisie
 						</span>
 					</div>
 				</div>
@@ -126,11 +126,11 @@ class contact extends Component {
 
 					<div class="flex-col size2">
 						<span class="txtt1 p-b-20">
-							Lets Talk
+							Contacter nous
 						</span>
 
 						<span class="txtt3">
-							+1 800 1236879
+							+21651820908
 						</span>
 					</div>
 				</div>
@@ -142,11 +142,11 @@ class contact extends Component {
 
 					<div class="flex-col size2">
 						<span class="txtt1 p-b-20">
-							General Support
+							Aide :
 						</span>
 
 						<span class="txtt3">
-							contact@example.com
+							Jobboard12@gmail.com
 						</span>
 					</div>
 				</div>

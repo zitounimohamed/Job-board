@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
 
 const cvSchema = mongoose.Schema({
-    user : {
-        type : Schema.Types.ObjectId,
-        ref : 'user'
+    writer : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'user',
+        required : true
     },
     file : {
         type : String , 
@@ -23,9 +23,9 @@ const cvSchema = mongoose.Schema({
     comp : {
         type: String,
         required : true},
-    /*cvfile : {
-        type: {data : Buffer, contentType: String},
-        required : true},*/
+    filep : {
+        type: String,
+    },
     tel : {
         type: Number,
         required : true},

@@ -91,16 +91,16 @@ handleSubmit = async (event)=>{
             <section class="site-section">
       <div class="container">
         <div class="row align-items-center mb-5" style={{paddingTop : 150}}>
-          <div class="col-lg-8 mb-4 mb-lg-0" >
+          <div class="col-lg-3 mb-4 mb-lg-0" >
             <div class="d-flex align-items-center">
               <div class="border p-2 d-inline-block mr-3 rounded">
-              <img style={{ width: '10%', maxHeight: '10px' }}
+              <img style={{ width: '100%', maxHeight: '80px' }}
                             src={`http://localhost:5000/${this.state.job.file}`} alt="pieceImage" />
               </div>
               <div>
                 <h2 >{this.state.job.title}</h2>
                 <div>
-                  <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>Puma</span>
+                  <span class=" mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{this.state.job.company_name}</span>
                   <span class="m-2"><span class="icon-room mr-2"></span>  </span>
                   <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">   </span></span>
                 </div>
@@ -108,23 +108,14 @@ handleSubmit = async (event)=>{
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="row">
-              <div class="col-6">
-{ /*               <button onClick={this.deletejob(this.state.job._id)}  class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</button>
-*/}                <Link to={`/modifypage/${this.state.job._id}`} class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Modifier</Link>
-              </div>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                 Postuler
-              </button>
-            </div>
+            
           </div>
         </div>
         <div class="row">
           <div class="col-lg-8">
             <div class="mb-5">
              
-              <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span class="fa fa-briefcase pr-2"></span>Job
-                Description</h3>
+              <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span class="fa fa-briefcase pr-2"></span>Déscription de l'emploi</h3>
               <p>
                 {this.state.job.description}
               </p>
@@ -132,20 +123,14 @@ handleSubmit = async (event)=>{
             </div>
             <div class="mb-5">
               <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span
-                  class="fa fa-rocket pr-2"></span>Responsibilities</h3>
+                  class="fa fa-rocket pr-2"></span>Exigences de l'emploi
+                  </h3>
               <ul class="list-unstyled m-0 p-0">
-                <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>
-                <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit
-                    unde aliquam et voluptas reiciendis n Velit unde aliquam et voluptas reiciendis non sapiente
-                    labore</span></li>
-                <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>
-                <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem
-                    ipsum dolor sit amet, consectetur adipisicing elit</span></li>
-                <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia
-                    officiis dolor</span></li>
+                <li class="d-flex align-items-start mb-2">
+                  <span class="icon-check_circle mr-2 text-muted"></span>
+                  <span>{this.state.job.exigences}</span>
+                </li>
+                
               </ul>
             </div>
     
@@ -154,34 +139,22 @@ handleSubmit = async (event)=>{
                 Experience</h3>
               <ul class="list-unstyled m-0 p-0">
                 <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>
-                <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit
-                    unde aliquam et voluptas reiciendis non sapiente labore</span></li>
+                    class="icon-check_circle mr-2 text-muted"></span><span>{this.state.job.eduction}</span>
+                </li>
                 <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>
-                <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem
-                    ipsum dolor sit amet, consectetur adipisicing elit</span></li>
-                <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia
-                    officiis dolor</span></li>
+                    class="icon-check_circle mr-2 text-muted"></span><span>{this.state.job.experience}</span>
+                </li>
+                
               </ul>
             </div>
     
             <div class="mb-5">
-              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="fa fa-forward pr-2"></span>Other
-                Benifits</h3>
+              <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="fa fa-forward pr-2"></span>
+              Autres bénéfices</h3>
               <ul class="list-unstyled m-0 p-0">
                 <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>
-                <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit
-                    unde aliquam et voluptas reiciendis non sapiente labore</span></li>
-                <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>
-                <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem
-                    ipsum dolor sit amet, consectetur adipisicing elit</span></li>
-                <li class="d-flex align-items-start mb-2"><span
-                    class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia
-                    officiis dolor</span></li>
+                    class="icon-check_circle mr-2 text-muted"></span><span>{this.state.job.autres}</span></li>
+               
               </ul>
             </div>
     
@@ -189,27 +162,28 @@ handleSubmit = async (event)=>{
           </div>
           <div class="col-lg-4">
             <div class="bg-light p-3 border rounded mb-4">
-              <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
+              <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Résumé de l'emploi</h3>
               <ul class="list-unstyled pl-3 mb-0">
-                <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
-                <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
-                <li class="mb-2"><strong class="text-black">Employment Status:</strong> {this.state.job.type}</li>
-                <li class="mb-2"><strong class="text-black">Experience:</strong> {this.state.job.exp} </li>
-                <li class="mb-2"><strong class="text-black">Job Location:</strong> {this.state.job.location} </li>
-                <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
-                <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
-                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
+                <li class="mb-2"><strong class="text-black">Type de travail:</strong> {this.state.job.type}</li>
+                <li class="mb-2"><strong class="text-black">Expérience:</strong> {this.state.job.exp} </li>
+                <li class="mb-2"><strong class="text-black">Location:</strong> {this.state.job.location} </li>
+                <li class="mb-2"><strong class="text-black">Salaire:</strong> Au moins {this.state.job.salaire} </li>
+                <li class="mb-2"><strong class="text-black">Genre:</strong> {this.state.job.genre}</li>
+                <li class="mb-2"><strong class="text-black">Date d'expiration:</strong> {this.state.job.dateexp} </li>
               </ul>
             </div>
     
             <div class="bg-light p-3 border rounded">
-              <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
-              <div class="px-3">
-                <a href="/" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                <a href="/" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                <a href="/" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
-                <a href="/" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
+            <div class="row">
+              <div class="col-6 ml-5 pl-4">
+{ /*               <button onClick={this.deletejob(this.state.job._id)}  class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</button>
+*/}                <Link to={`/modifypage/${this.state.job._id}`} class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Modifier</Link>
               </div>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                 Postuler
+              </button>
+            </div>
+              
             </div>
     
           </div>

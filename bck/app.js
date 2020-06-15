@@ -10,7 +10,6 @@ mongoose.connect('mongodb://localhost/job-board').then(() => {
     }).catch((err) => {
         console.log("Not Connected to Database ERROR! ", err);
     });
-const Cv = require('./controlles/cv')
 
 const app = express() ;
 app.use(cors());
@@ -22,14 +21,13 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(__dirname+'/uploads'));
 app.use('/uploadsjob', express.static(__dirname+'/uploadsjob'));
 
-app.use(cookieParser());
 
 
 
 
 //Routes 
 app.use("/users", require("./routes/users"));
-app.use("/usersS", require("./routes/societyusers"))
+//app.use("/usersS", require("./routes/societyusers"))
 app.use("/demandes", require("./routes/apply"));
 app.use("/jobs", require("./routes/jobs"));
 app.use("/cvs",require("./routes/cv"));

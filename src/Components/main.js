@@ -20,6 +20,7 @@ import ProfilepageEm from './employee/profilepageEm';
 import test from './test'
 import Modifier from './society/modifyjob'
 import profilepage from './society/profilepage';
+import services from './services'
 
 
 
@@ -47,6 +48,7 @@ const Main= () => (
         <Route path='/test'  component={test}></Route>
         <Route path='/modifypage/:id' component={Modifier}></Route>
         <Route path='/profilesociety' component={profilepage}></Route>
+        <Route path='/service' component={services}></Route>
 
       </Switch>
       </BrowserRouter>

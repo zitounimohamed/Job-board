@@ -29,6 +29,7 @@
     "flash": "^1.1.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
+    "material-table": "^1.60.0",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",

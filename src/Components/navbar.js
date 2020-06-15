@@ -63,13 +63,13 @@ class Navbar extends Component {
           <a className="nav-link js-scroll-trigger" href="/jobs">offres des emplois </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link js-scroll-trigger" href="#about">Formations</a>
+          <a className="nav-link js-scroll-trigger" href="/formations">Formations</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link js-scroll-trigger" href="#team">About</a>
+          <a className="nav-link js-scroll-trigger" href="/blog">Blog</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link js-scroll-trigger" href="/contact">Contact</a>
+          <a className="nav-link js-scroll-trigger" href="/contact">Contacter Nous</a>
         </li> 
         {signInOrSignOut}
       </ul>

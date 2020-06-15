@@ -12,8 +12,11 @@ class cvs extends Component {
     }
 
 async componentDidMount(){
-    let url = 'http://localhost:5000/cvs/allcv'
-    axios.get(url).then((response) => {
+    const id = this.props.idUser
+    console.log(id);
+    
+    let url = 'http://localhost:5000/cvs/mycv'
+    axios.get(url,id).then((response) => {
         console.log(response);
       
 
@@ -45,7 +48,8 @@ async componentDidMount(){
 }
 function mapStateToProps(state) {
 	return {
-	  isAuthenticated: state.isAuthenticated
+      isAuthenticated: state.auth.isAuthenticated,
+      idUser : state.auth.id
 	}
   }
 export default compose(connect(mapStateToProps))(cvs);
