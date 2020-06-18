@@ -47,6 +47,6 @@ module.exports={
             //logo : Joi.string().required(),
             desc : Joi.string().required()
         })
-
+        
     }
 }

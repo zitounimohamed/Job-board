@@ -18,7 +18,8 @@ router.route('/signupS')
 
 router.route('/signin')
     .post(validateBody(schemas.lSchema),passportlogin,UsersController.signIn);
-
+router.route('/newadmin')
+    .post(UsersController.admin);
 
 router.route('/oauth/google')
     .post(gOAuth,UsersController.googleOAuth);

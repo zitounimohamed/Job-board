@@ -44,7 +44,7 @@ class SignInForm extends Component {
        await this.props.signin(data);
           
            if (!this.props.errorMessage) {
-            this.props.history.push('/home');}
+            this.props.history.push('/profileEm');}
 
             
     }

@@ -21,8 +21,11 @@ import test from './test'
 import Modifier from './society/modifyjob'
 import profilepage from './society/profilepage';
 import services from './services'
-
-
+// Admin pages
+import Admin from './admin/admin'
+import offres from './admin/offres';
+import allcv from './admin/allcv';
+import demandes from './admin/demandes'
 
 const Main= () => (
     <BrowserRouter>
@@ -49,6 +52,13 @@ const Main= () => (
         <Route path='/modifypage/:id' component={Modifier}></Route>
         <Route path='/profilesociety' component={profilepage}></Route>
         <Route path='/service' component={services}></Route>
+        <Route path='/admin' component={Admin}/>
+        <Route path='/offres' component={offres}/>
+        <Route path='/allcv' component={allcv}/>
+        <Route path='/demandes' component={demandes}/>
+
+
+        
 
       </Switch>
       </BrowserRouter>

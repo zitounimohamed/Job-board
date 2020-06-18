@@ -49,6 +49,7 @@ export const signup = data =>{
             });
 
             localStorage.setItem('JTW_Token',res.data.token);
+            
         } catch (error) {
             dispatch({
                 type : AUTH_ERROR,
@@ -106,8 +107,8 @@ export const signin = data =>{
               payload : res.data ,
               pay : res.data._id
               
+              
           });
-          
           localStorage.setItem('JTW_Token',res.data.token);
       } catch (error) {
           dispatch({
@@ -141,7 +142,7 @@ export const prof = (JWT_Token)=>{
             dispatch=({
                 type : PROFILE ,
                 payload : res.data,
-                pay : res.data.local.role
+                pay : res.data.local.isClient
             })
         } catch (error) {
             dispatch({

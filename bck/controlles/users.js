@@ -2,10 +2,11 @@ const JWT = require('jsonwebtoken');
 const User = require('../models/user')
 const Cv = require('../models/cv')
 const {JWT_SECRET} = require ('../config')
-const UserS = require('../models/societeUser')
+const UserS = require('../models/societeUser');
 
 signToken = user => {
     return JWT.sign({
+        isClient : user.isClient,
         iss : 'jobboard',
         sub : user.id,
         iat: new Date().getTime(),
@@ -15,7 +16,7 @@ signToken = user => {
 
 module.exports = {
     signupS: async (req, res, next) => {
-        const {email, name,pass,re_pass,nomEn,site,tel,emp,logo,desc} = req.value.body;
+        const {email, name,pass,re_pass,nomEn,site,tel,emp,desc} = req.value.body;
 
         //check if there is user with same email
         const FoundUser = await UserS.findOne({"email":email});
@@ -32,7 +33,8 @@ module.exports = {
                 site : site,
                 tel : tel,
                 emp : emp,
-                desc : desc,            
+                desc : desc,   
+                isClient : false         
             });
             
         await newUserS.save();
@@ -44,8 +46,8 @@ module.exports = {
         //respond with token
         res.status(200).json({token})
     },
-        signUp: async (req, res, next) => {
-            const {username,email, password,repeat_password,tel} = req.value.body;
+    signUp: async (req, res, next) => {
+            const {username,email, password,repeat_password,tel,isClient} = req.value.body;
     
             //check if there is user with same email
             const FoundUser = await User.findOne({"local.email":email, "local.username" : username});
@@ -58,11 +60,12 @@ module.exports = {
                 method : 'local',
                 local : {
                     username : username,
-                    email :email ,
+                    email :email,
                     password: password,
                     repeat_password : repeat_password,
                     tel : tel,
-                    cv : usercv
+                    cv : usercv,
+                    isClient : true
                 }
                 
                 });
@@ -78,13 +81,18 @@ module.exports = {
             },
     signIn: async (req, res, next) =>{
         //Generate token 
-        const token = signToken(req.user);
-        res.status(200).json({token});
+        const user = signToken(req.user);
+        if(user){
+            res.send(user)
+        }
+        
+        
         
     },
     signin:async (req, res, next) =>{
-        const token = signToken(req.user);
-        res.status(200).json({token});
+        
+        console.log("user",user);
+        
     },
     googleOAuth : async(req, res, next) => {
         
@@ -97,7 +105,7 @@ module.exports = {
     },
     secret: async (req, res, next) =>{
      console.log('test') ;
-     res.json({secret : "resource"});
+     res.json(req.user);
            
     },
     signOut: async (req, res, next) => {
@@ -105,16 +113,32 @@ module.exports = {
         
         res.json({ success: true });
       },
-      checkAuth: async (req, res, next) => {
+    checkAuth: async (req, res, next) => {
         console.log('I managed to get here!');
         res.json({ success: true });
       }, 
-      allcv : async(req, res, next)=>{
+    allcv : async(req, res, next)=>{
           const usercv = await User.find().populate('cv');
           res.send(usercv);
           console.log(res);
           
-      }
+    },
+    admin : async(req, res, next)=>{
+        //create new admin 
+        try {
+            const Newadmin = new User({
+                email :"hammazitouni77@gmail.com",
+                password: "26874846m",
+                nom : "Mohamed Zitouni",
+    
+            })
+            const Admin = await Newadmin.save();
+            res.send(Admin)
+        } catch (error) {
+            res.send({msg : error.message})
+        }
+    }
+
       
     
 }

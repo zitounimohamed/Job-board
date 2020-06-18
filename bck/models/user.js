@@ -12,7 +12,9 @@ const userSchema = new Schema({
         
     },
     local : {
-       
+        isClient : {
+            type : Boolean,
+        },
         username : {
             type: String,
             lowercase : true 

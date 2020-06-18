@@ -38,7 +38,14 @@ router.post("/uploadpdf", (req, res) => {
   });
 
 
-
+  router.delete('/deleteapp/:id', async (req, res) => {
+    try {
+        const removedapp = await Apply.remove({ _id: req.params.id });
+        res.json(removedapp);
+     } catch (error) {
+         res.json({ message : error });
+     }
+ });
 router.get('/allapply', async (req, res) => {
     try {
         const apply = await Apply.find()

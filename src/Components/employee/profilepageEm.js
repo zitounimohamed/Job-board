@@ -24,6 +24,7 @@ class ProfilepageEm extends Component {
         {
           this.setState({profile : response.data.local})
         }
+                
         })
         
     }
