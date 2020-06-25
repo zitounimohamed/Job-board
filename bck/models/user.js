@@ -12,6 +12,9 @@ const userSchema = new Schema({
         
     },
     local : {
+        isAdmin : {
+            type : Boolean
+        },
         isClient : {
             type : Boolean,
         },
@@ -87,7 +90,7 @@ userSchema.pre('save', async function(next){
     }
 });
 
-userSchema.methods.isValidPass = async function(newpassword) {
+userSchema.methods.isValid = async function(newpassword) {
     try {
         return await bcrypt.compare(newpassword,this.local.password) ;
     } catch (error) {

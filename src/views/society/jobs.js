@@ -6,68 +6,65 @@ import axios from "axios";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import '../../App.css'
-
+import JobService from './SearchServ'
 class Jobs extends Component {
     constructor(props) {
         super(props);
             this.state ={
-        jobs : null,
-        data : [],
-        emp : ''
+        jobs : [],
+        currentjob : null,
+        currentindex : -1,
+        searchTitle : ""
     };
+    this.searchTitle = this.searchTitle.bind(this)
+    this.onChangeSearchTitle= this.onChangeSearchTitle.bind(this)
+
     }
+    onChangeSearchTitle(e){
+      const searchTitle = e.target.value
+      this.setState({
+        searchTitle : searchTitle
+      })
+    }
+    componentWillMount() {
+      this.getData();
+    }  
+
     
-
-/*async componentDidMount(searchTerm){
-    let url = 'http://localhost:5000/jobs/alljobs'
-    try {
-        axios.get(url).then((response) => {         
-             
-         })
-    }catch(error) {
-        console.log(error);
-    };
-}*/
-
+    getData = () => {
+      axios.get("http://localhost:5000/jobs/alljobs")
+        .then((response) =>
+        this.setState({
+          jobs : response.data
+        })
+        )       
+    };  
+    refreshList(){
+      this.getData();
+      this.setState({
+        currentjob : null ,
+        currentindex : -1
+      });
+    }  
   
-searchChangeHandler(e){
-  /* const emp = e.target.value
-   this.setState(prevState => {
-    /*const filteredData = prevState.data.filter(element => {
-      return element.name.toLowerCase().includes(emp.toLowerCase());
-    });
-
-    return {
-      emp,
-      filteredData
-    };
-  });*/
-}      
-getData = () => {
-    axios.get(`http://localhost:5000/jobs/alljobs`)
-      .then((response) =>
+ async searchTitle(){
+    JobService.findByTitle(this.state.searchTitle).
+    then(response=>{
       this.setState({
         jobs : response.data
       })
-      )
-      /*.then(data => {
-        const { query } = this.state;
-        const filteredData = data.filter(element => {
-          return element.name.toLowerCase().includes(query.toLowerCase());
-        });
-*/
-        
+      console.log(response);
       
-  };    
-  componentWillMount() {
-    this.getData();
-  }      
+      
+    })
+  }
+
+  
 
     
 
     render() {
-    
-        
+    const {searchTitle}= this.state        
         return (
         <div style={{paddingTop: 60}}>
             <section className="ftco-section bg-light pt-5 pb-5" >
@@ -79,26 +76,26 @@ getData = () => {
                     </div>
                     
                 </div>
-
-                <Autocomplete
-        freeSolo
-        id="titre"
-        disableClearable
-        options={this.state.jobs!= null && this.state.jobs.map((jobs) =>
-           jobs.title)}
-        getOptionSelected={(jobs,value)=> value.value===this.state.jobs }
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Search input"
-            margin="normal"
-            variant="outlined"
-            InputProps={{ ...params.InputProps, type: 'search' }}
-          />
-          
-        )}
-      />
-
+          <div className="list row">
+            <div className='col md-8' >
+              <div className='input-group'>
+                <input
+                type = 'text' 
+                className='form-control'
+                placeholder='searchTitle'
+                value = {searchTitle}
+                onChange={this.onChangeSearchTitle}   
+                />
+                <button
+                className='btn btn-primary'
+                type='button'
+                onClick={this.searchTitle}
+                >
+                  Search
+                </button>
+                </div>
+                </div>
+                </div>
                 <div className='jobs'>
                     {this.state.jobs !== null && this.state.jobs.map(jobs => {
                         return (                 

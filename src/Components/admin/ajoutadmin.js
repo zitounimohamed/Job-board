@@ -1,44 +1,15 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import axios from 'axios'
-class offres extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          jobs: []
-          }
-    
- }
-  delete(id){
-    axios.delete(`http://localhost:5000/jobs/deletejob/${id}`)
-    .then((response)=>{
-      if(response.status===200 && response!= null)
-      {
-          window.location.reload()        
-      }
-    })
-    
- }
- async componentDidMount(){
-    
-    
-    await axios.get("http://localhost:5000/jobs/alljobs")
-
-     .then((response) => {
-       if(response.status===200 && response!= null )
-       {
-         this.setState({jobs : response.data})
-       }
-    })
-}
-
+import './admin.css';
+import PostJob from '../society/postJob'
+class ajoutadmin extends Component {
+  
     render() {
         return (
             <div id="wrapper">
 
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             
-            <div class="sidebar-brand d-flex align-items-center justify-content-center" >
+              <div class="sidebar-brand d-flex align-items-center justify-content-center" >
                 <div class="sidebar-brand-icon rotate-n-15">
                   <i class="ti-themify-favicon"></i>
                 </div>
@@ -50,7 +21,7 @@ class offres extends Component {
               <li class="nav-item active">
                 <a class="nav-link" href="/home">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
-                 <span >  Home</span></a>
+                 <span > Profil</span></a>
               </li>
             
               <hr class="sidebar-divider"/>
@@ -66,8 +37,8 @@ class offres extends Component {
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/offres">Visualiser les offres</a>
-                    <a class="collapse-item" href="/formationAdmin">Visualiser les formations </a>
+                    <a class="collapse-item" href="/offres">Visualiser les offres </a>
+                    <a class="collapse-item" href="/formationAdmin">Visualiser les fomrations </a>
                   </div>
                 </div>
               </li>
@@ -86,12 +57,12 @@ class offres extends Component {
               </li>
               <li class="nav-item">
                 <a class="nav-link collapsed" href="/" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fa fa-fw fa-folder"></i>
+                  <i class="fa fa-fw fa-archive"></i>
                   <span>Les demandes</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/demandes">Visualiser les demandes</a>
+                    <a class="collapse-item" href='/demandes'>Visualiser les demandes</a>
                   </div>
                 </div>
               </li>
@@ -123,7 +94,7 @@ class offres extends Component {
             
                     <li class="nav-item dropdown no-arrow d-sm-none">
                       <a class="nav-link dropdown-toggle" href="/" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
+                        <i class="fa fa-search fa-fw"></i>
                       </a>
                     
                       <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
@@ -132,7 +103,7 @@ class offres extends Component {
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2"/>
                             <div class="input-group-append">
                               <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                                <i class="fa fa-search fa-sm"></i>
                               </button>
                             </div>
                           </div>
@@ -146,19 +117,20 @@ class offres extends Component {
                       <a class="nav-link dropdown-toggle" href="/" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Slouma Bhouri </span>
                         <img class="img-profile rounded-circle" src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" />
+                        <i class="fa fa-caret-down"></i>
                       </a>
               
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                           Profile
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                           Settings
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                           Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
@@ -170,52 +142,12 @@ class offres extends Component {
                     </li>
                   </ul>
                 </nav> 
-                <div className="content content-margined container ">
-
-    <div className="piece-header">
-      <h3>Listes des offres d'emplois</h3> 
-      <div className='pt-3 pb-3'>
-        
-      <a className="btn btn-secondary" href='/ajoutadmin'>Ajouter une offre d'emploi </a>
-      </div>
-      
-    </div>
-   
-
-    <div className="piece-list">
-
-      <table className="table">
-        <thead>
-          <tr>
-            <th className='pl-5'>Visualiser</th>
-            <th>Titre de poste</th>
-            <th>Email</th>
-            <th>localisation</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody> 
-          {this.state.jobs.map(jobs => (<tr key={jobs._id}>
-            <td> <Link to ={`/singlepage/${jobs._id}`}className= "py-2 mr-1"><i class="fa fa-arrow-circle-right pl-5" aria-hidden="true" style={{fontSize: 25}}></i></Link></td>
-            <td>{jobs.title}</td>
-            <td>{jobs.email}</td>
-            <td>{jobs.location}</td>
-            <td>
-
-              {' '}
-              <button className="button" onClick={()=> this.delete(jobs._id)}  ><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>))}
-        </tbody>
-      </table>
-           
-          </div>
-  </div>
-                  </div>
-                  </div>
-                  </div>
+                <PostJob></PostJob>
+                </div>
+                </div>
+                </div>
         );
     }
 }
 
-export default offres;
+export default ajoutadmin;

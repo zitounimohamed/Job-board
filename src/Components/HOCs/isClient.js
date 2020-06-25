@@ -7,15 +7,24 @@ export default (OriginalComponent) => {
     
       
     checkAuth() {
-        if (!this.props.isAuth && !this.props.jwtToken) {
+       
+          if(this.props.role !="true"){
             const { history } = this.props;
-			history.push("/home");
+			      history.push("/home");
+          }
+            
         }
-      }
+      
+      
+        
+      
+
   
         
     componentDidMount() {
+       
         this.checkAuth();
+      
       }
   
       componentDidUpdate() {
@@ -32,7 +41,9 @@ export default (OriginalComponent) => {
             return {
               isAuth: state.auth.isAuthenticated,
               jwtToken: state.auth.token,
-              iduser : state.auth.id
+              role : state.auth.role,
+              isAdmin : state.auth.isAdmin
+
             }
           }
          

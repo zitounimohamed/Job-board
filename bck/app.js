@@ -17,7 +17,7 @@ app.use(cors());
 //midllewares 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 app.use('/uploads', express.static(__dirname+'/uploads'));
 app.use('/uploadsjob', express.static(__dirname+'/uploadsjob'));
 
@@ -33,7 +33,7 @@ app.use("/jobs", require("./routes/jobs"));
 app.use("/cvs",require("./routes/cv"));
 app.use("/contact",require("./routes/contact"));
 app.use("/recover",require("./routes/reset"));
-//app.use("/cv/create", require(Cv.create))
+app.use("/formations", require("./routes/formation"))
 
 
 //start server 

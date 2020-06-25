@@ -21,8 +21,17 @@ class Navbar extends Component {
   }
     render() {
       console.log("isAuth: " + this.props.isAuth);
+      console.log('isClient' + this.props.isClient);
+      
     const isAuth = this.props.isAuth;
-
+      const isClient = this.props.isClient
+      const client = isClient ? (
+        <a className="nav-link js-scroll-trigger" href="/profileEm" key="login"> Mon Compte</a>
+      ) : (
+        <a className="nav-link js-scroll-trigger" href="/profile" key="login"> Mon Compte</a>
+      );
+      
+     
     // Checking if signed in or not and reacting as expected
     const signInOrSignOut = !isAuth ? (
     <li className="nav-item">
@@ -37,6 +46,7 @@ class Navbar extends Component {
            </DropdownToggle>
            <DropdownMenu>
              <DropdownItem>
+               {client}
              </DropdownItem>
              <DropdownItem>
                Offres d'emploi
@@ -89,7 +99,8 @@ class Navbar extends Component {
 
 function mapStateToProps(state){
   return{
-    isAuth : state.auth.isAuthenticated
+    isAuth : state.auth.isAuthenticated,
+    isClient : state.auth.role
   }
 }
 

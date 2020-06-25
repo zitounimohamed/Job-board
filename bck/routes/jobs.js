@@ -40,12 +40,17 @@ router.post("/uploadimage", (req, res) => {
   
 //get all
 router.get('/alljobs', async (req, res) => {
-    try {
-        const job = await Job.find();
-        res.json(job);
-     } catch (error) {
-         res.json({ message : error });
-     }
+  const title = req.body.title;
+  var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
+  Job.find(condition).
+  then(data =>{
+    res.send(data)
+  })
+  .catch(err =>{
+    res.status(500).send({ message :
+      err.message || "some error"
+    });
+  });
  });
 
 //get a Job
@@ -115,6 +120,18 @@ router.delete('/deletejob/:JobId', async (req, res) => {
     }
 })
 
-
+router.get('/', async (req, res)=>{
+  const title = req.body.title;
+  var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
+  Job.find(condition).
+  then(data =>{
+    res.send(data)
+  })
+  .catch(err =>{
+    res.status(500).send({ message :
+      err.message || "some error"
+    });
+  });
+})
 
 module.exports = router; 

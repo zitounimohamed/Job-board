@@ -5,25 +5,23 @@ import {AUTH_SIGN_UP, AUTH_ERROR,AUTH_SIGN_OUT,AUTH_SIGN_IN,SIGN_UP_SOC,PROFILE}
 
 function checkAuthentication() {
     const token = localStorage.getItem("JTW_Token");
-    const id = localStorage.getItem("id")
-    
+    const role = localStorage.getItem("role")
+    const isAdmin = localStorage.getItem("isAdmin")
   
     if (token) {
       return {
+        isAdmin,
         isAuthenticated: true,
         token,
-        id,
-        isClient : true,
+        role,
         errorMessage: "",
-        role : ''
       };
     }
     return {
+      isAdmin : '',
       isAuthenticated: false,
- 
-      token: "",
+      token: '',
       errorMessage: "",
-      id : "",
       role : ''
 
     };
@@ -40,7 +38,7 @@ export default (state=DEFAULT_STATE ,action)=>{
         case SIGN_UP_SOC:
             return {...state, token: action.payload,isAuthenticated: true,isClient : false, userData : action.pay,errorMessage : ''};
         case AUTH_SIGN_IN:
-            return { ...state, token :action.payload,id:action.pay,isAuthenticated: true,userData : action.pay, errorMessage: '' }
+            return { ...state, token :action.payload,role:action.pay,isAdmin : action.pa,isAuthenticated: true,userData : action.pay, errorMessage: '' }
         case AUTH_SIGN_OUT:
             return { ...state, token :action.payload, isAuthenticated: false, errorMessage: '' }
         case AUTH_ERROR : 

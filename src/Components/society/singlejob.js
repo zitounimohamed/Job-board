@@ -86,7 +86,13 @@ handleSubmit = async (event)=>{
       })
   }*/
     render() {
-      console.log(this.state.job);
+      const isClient = this.props.isClient
+      const client = isClient ? (
+        <div></div>
+      ) : (
+          <Link to={`/modifypage/${this.state.job._id}`} class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Modifier</Link> 
+      );
+      
         return (
             <section class="site-section">
       <div class="container">
@@ -177,7 +183,7 @@ handleSubmit = async (event)=>{
             <div class="row">
               <div class="col-6 ml-5 pl-4">
 { /*               <button onClick={this.deletejob(this.state.job._id)}  class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</button>
-*/}                <Link to={`/modifypage/${this.state.job._id}`} class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Modifier</Link>
+*/}                {client}
               </div>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                  Postuler
@@ -236,7 +242,7 @@ function mapStateToProps(state) {
 	return{
 		errorMessage: state.auth.errorMessage,
 		isAuth : state.auth.isAuthenticated,
-		token: state.auth.token
+		isClient: state.auth.role
 
 	}	
 }

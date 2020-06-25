@@ -9,3 +9,4 @@ export const GETJOB = "GETJOB";
 export const PROFILE = "PROFILE";
 export const REMOVEJOB = "REMOVEJOB" ;
 export const MODIFYJOB = "MODIFYJOB0" ;
+export const FINDBYTITLE = "FINDBYTITLE"

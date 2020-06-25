@@ -3,10 +3,12 @@ const User = require('../models/user')
 const Cv = require('../models/cv')
 const {JWT_SECRET} = require ('../config')
 const UserS = require('../models/societeUser');
-
+const AdminS = require('../models/admin');
 signToken = user => {
     return JWT.sign({
+        isAdmin : user.isAdmin,
         isClient : user.isClient,
+        id : user._id,
         iss : 'jobboard',
         sub : user.id,
         iat: new Date().getTime(),
@@ -16,29 +18,32 @@ signToken = user => {
 
 module.exports = {
     signupS: async (req, res, next) => {
-        const {email, name,pass,re_pass,nomEn,site,tel,emp,desc} = req.value.body;
+     //   const {email, name,password,repeat_password,nomEn,site,tel,emp,desc} = req.body;
 
         //check if there is user with same email
-        const FoundUser = await UserS.findOne({"email":email});
+        const FoundUser = await UserS.findOne({"local.email":req.body.email});
         if (FoundUser){
             return res.status(403).send({error : 'email is already in use'})}
 
         //create new user 
         const newUserS = new  UserS ({
-                email :email,
-                name : name,
-                pass: pass,
-                re_pass : re_pass,
-                nomEn : nomEn,
-                site : site,
-                tel : tel,
-                emp : emp,
-                desc : desc,   
-                isClient : false         
-            });
-            
+            method : 'local',
+            local : {
+                email :req.body.email,
+                name : req.body.name,
+                password: req.body.password,
+                repeat_password : req.body.repeat_password,
+                nomEn : req.body.nomEn,
+                site : req.body.site,
+                tel : req.body.tel,
+                emp : req.body.emp,
+                desc : req.body.desc,   
+                isClient : false ,
+                isAdmin : false        
+            }});
         await newUserS.save();
-
+            
+            
         //Generate the token 
         const token = signToken(newUserS);
         //const role = signToken(role)
@@ -47,10 +52,10 @@ module.exports = {
         res.status(200).json({token})
     },
     signUp: async (req, res, next) => {
-            const {username,email, password,repeat_password,tel,isClient} = req.value.body;
+           // const {username,email, password,repeat_password,tel,isClient} = req.value.body;
     
             //check if there is user with same email
-            const FoundUser = await User.findOne({"local.email":email, "local.username" : username});
+            const FoundUser = await User.findOne({"local.email":req.body.email, "local.username" :req.body.username});
             if (FoundUser){
                 return res.status(403).send({error : 'email or username is already in use'})}
                 const usercv = await Cv.find();
@@ -59,13 +64,14 @@ module.exports = {
             const newUser = new  User ({
                 method : 'local',
                 local : {
-                    username : username,
-                    email :email,
-                    password: password,
-                    repeat_password : repeat_password,
-                    tel : tel,
-                    cv : usercv,
-                    isClient : true
+                    username : req.body.username,
+                    email :req.body.email,
+                    password: req.body.password,
+                    repeat_password : req.body.repeat_password,
+                    tel : req.body.tel,
+                    cv : req.body.usercv,
+                    isClient : true,
+                    isAdmin : false
                 }
                 
                 });
@@ -81,18 +87,15 @@ module.exports = {
             },
     signIn: async (req, res, next) =>{
         //Generate token 
-        const user = signToken(req.user);
-        if(user){
-            res.send(user)
-        }
-        
-        
-        
-    },
-    signin:async (req, res, next) =>{
-        
-        console.log("user",user);
-        
+        const signinUser= signToken(req.user) 
+        console.log(req.user);
+                       
+            res.send({
+            token: signToken(signinUser),
+            id : req.user._id,
+            isClient : req.user.local.isClient ,
+            isAdmin : req.user.local.isAdmin     
+            });
     },
     googleOAuth : async(req, res, next) => {
         
@@ -126,18 +129,34 @@ module.exports = {
     admin : async(req, res, next)=>{
         //create new admin 
         try {
-            const Newadmin = new User({
+            
+            const Newadmin = new AdminS({
+                method : 'local',
+                local :{ 
                 email :"hammazitouni77@gmail.com",
                 password: "26874846m",
                 nom : "Mohamed Zitouni",
+                isAdmin : true}
+               
     
             })
             const Admin = await Newadmin.save();
-            res.send(Admin)
+            const token = signToken(Admin);
+            res.status(200).json({token})
         } catch (error) {
             res.send({msg : error.message})
         }
+    },
+    profileA : async (req, res, next)=>{
+        try {
+            const admin =await AdminS.findById(req.params.id)
+            res.json(admin)
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
+   
 
       
     

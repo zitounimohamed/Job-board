@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { connect} from 'react-redux';
+import {compose} from 'redux';
 import './postjob.css'
 class postJob extends Component {
     constructor(props){
@@ -68,7 +70,8 @@ class postJob extends Component {
        await axios.post(uri,data).then((response)=>{
         if(response.status===200 && response!= null ){
             alert("Message Sent."); 
-        this.resetForm()
+            window.location.reload()        
+
         }
         
 
@@ -97,10 +100,12 @@ class postJob extends Component {
 
 
     render() {
+        
+        
         return (
             <div>
             <div className='container' id ='cont'>
-                <h2 className='tit'>Postuler un emploi</h2>
+                <center><h2 className='tit'>Postuler un emploi</h2></center>
                     <form className= "p-5 p-md-5 border rounded" onSubmit={this.handleSubmit} id='form-job'>
                       <h2 className='bigtitle'>Détails de l'emploi</h2><hr/>
                         <div class="form-group pt-5 ">
@@ -175,5 +180,15 @@ class postJob extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+      isAuth: state.auth.isAuthenticated,
+      jwtToken: state.auth.token,
+      role : state.auth.role
 
-export default postJob;
+    }
+  }
+
+  export default compose(
+    connect(mapStateToProps),
+            )(postJob)

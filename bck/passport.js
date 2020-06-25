@@ -7,6 +7,7 @@ const FacebookTokenStrategy = require('passport-facebook-token');
 const config = require('./config');
 const User = require('./models/user');
 const UserS = require('./models/societeUser');
+const Admin = require('./models/admin')
 
 passport.use(new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
@@ -18,9 +19,15 @@ passport.use(new JwtStrategy({
             //if user doesn't exist 
 
             if (!user) {
-                return done(null,false);    
+                const admin = await Admin.findById(payload.sub);
+                if(!admin){
+                  const userS = await UserS.findById(payload.sub) 
+                  if(userS){
+                      done(null,userS)
+                  }    
+                }
+                done(null,admin)
             }
-
         //otherwise , return user
         done(null,user); 
     }catch(error){
@@ -103,14 +110,27 @@ passport.use(new LocalStrategy({
 },async (email,password,done)=>{
    try {
         //Find user given email 
-    const user = await UserS.findOne({'email' :email} );
+    const user = await UserS.findOne({'local.email' :email} );
     //if not 
     if(!user) {
         const userEm = await User.findOne({'local.email' :email})  
         
-        if(userEm)
+        if(!userEm)
+        //if not 
         {
-            const isMatch =await userEm.isValidPass(password);
+            const admin = await Admin.findOne({'local.email' : email})
+            if(admin){
+                const isMatch = await admin.isValidA(password);
+                if(!isMatch){
+                    return done(null,false);
+                }
+                //otherwise return user
+                done(null,admin)
+
+            }
+        }else
+        {
+            const isMatch =await userEm.isValid(password);
             
             // if not 
             if (!isMatch){

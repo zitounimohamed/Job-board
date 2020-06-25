@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {AUTH_SIGN_UP, AUTH_ERROR ,AUTH_SIGN_OUT,
         AUTH_SIGN_IN,ADD_CV,SIGN_UP_SOC,GETJOB,PROFILE,
-        REMOVEJOB,MODIFYJOB} from './types'
+        REMOVEJOB,MODIFYJOB,FINDBYTITLE} from './types'
 import setAuthToken from '../utils/Authorization'
 
 export const oauthGoogle = data =>{
@@ -82,8 +82,10 @@ export const signupS = data =>{
                 pay : data
 
             });
-
+            localStorage.setItem('isAdmin',res.data.isAdmin)
             localStorage.setItem('JTW_Token',res.data.token);
+            localStorage.setItem('role',res.data.isClient)
+            localStorage.setItem("id", res.data.id)
         } catch (error) {
             dispatch({
                 type : AUTH_ERROR,
@@ -96,6 +98,7 @@ export const signupS = data =>{
     };
 }
 
+
 export const signin = data =>{
   return async dispatch => {
       try {
@@ -105,11 +108,16 @@ export const signin = data =>{
           dispatch({
               type : AUTH_SIGN_IN,
               payload : res.data ,
-              pay : res.data._id
+              pay : res.data.isClient,
+              pa : res.data.isAdmin,
               
               
           });
+          localStorage.setItem('isAdmin',res.data.isAdmin)
           localStorage.setItem('JTW_Token',res.data.token);
+          localStorage.setItem('role',res.data.isClient)
+          localStorage.setItem("id", res.data.id)
+        
       } catch (error) {
           dispatch({
               type : AUTH_ERROR,
@@ -131,6 +139,21 @@ export const signOut = () => {
       })
     };
 
+}
+export const findByTitle= (title)=>{
+    return async dispatch=>{
+        try {
+            const res = await axios.get(`http://localhost:5000/jobs/?title=${title}` )
+            console.log("res",res);
+            dispatch=({
+                type : FINDBYTITLE,
+                payload : res.data
+            })
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
 }
 export const prof = (JWT_Token)=>{
     return async dispatch =>{
@@ -235,3 +258,4 @@ export const getjob =(id,history)=> async (dispatch)=>{
         
     }
 };
+

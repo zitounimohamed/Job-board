@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import './admin.css'
 class offres extends Component {
     constructor(props){
         super(props);
         this.state = {
-          jobs: []
+            formation: []
           }
     
  }
-  delete(id){
-    axios.delete(`http://localhost:5000/jobs/deletejob/${id}`)
+ delete(id){
+    axios.delete(`http://localhost:5000/formations/${id}`)
     .then((response)=>{
       if(response.status===200 && response!= null)
       {
-          window.location.reload()        
+        console.log("done");
+        
       }
     })
     
@@ -22,12 +24,12 @@ class offres extends Component {
  async componentDidMount(){
     
     
-    await axios.get("http://localhost:5000/jobs/alljobs")
+    await axios.get("http://localhost:5000/formations/formations")
 
      .then((response) => {
        if(response.status===200 && response!= null )
        {
-         this.setState({jobs : response.data})
+         this.setState({formation : response.data})
        }
     })
 }
@@ -62,12 +64,12 @@ class offres extends Component {
               <li class="nav-item">
                 <a class="nav-link collapsed" href="/" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fa fa-cogs" aria-hidden="true"></i>
-                  <span>Emplois & Formations</span>
+                  <span>Emplois & Formations </span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/offres">Visualiser les offres</a>
-                    <a class="collapse-item" href="/formationAdmin">Visualiser les formations </a>
+                    <a class="collapse-item" href="/offres">Visualiser tous les offres </a>
+                    <a class="collapse-item" href="/formationAdmin">Visualiser tous les offres </a>
                   </div>
                 </div>
               </li>
@@ -79,7 +81,7 @@ class offres extends Component {
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/allcv">Visualiser tous les cv</a>
+                    <a class="collapse-item" href="/allcv">Visualiser les cv</a>
                   
                   </div>
                 </div>
@@ -123,7 +125,7 @@ class offres extends Component {
             
                     <li class="nav-item dropdown no-arrow d-sm-none">
                       <a class="nav-link dropdown-toggle" href="/" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
+                        <i class="fa fa-search fa-fw"></i>
                       </a>
                     
                       <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
@@ -132,7 +134,7 @@ class offres extends Component {
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2"/>
                             <div class="input-group-append">
                               <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                                <i class="fa fa-search fa-sm"></i>
                               </button>
                             </div>
                           </div>
@@ -144,21 +146,21 @@ class offres extends Component {
             
                     <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="/" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Slouma Bhouri </span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin </span>
                         <img class="img-profile rounded-circle" src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" />
                       </a>
               
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                           Profile
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                           Settings
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                           Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
@@ -173,10 +175,9 @@ class offres extends Component {
                 <div className="content content-margined container ">
 
     <div className="piece-header">
-      <h3>Listes des offres d'emplois</h3> 
+      <h3>Listes des offres d'emplois</h3>
       <div className='pt-3 pb-3'>
-        
-      <a className="btn btn-secondary" href='/ajoutadmin'>Ajouter une offre d'emploi </a>
+      <a className="btn btn-secondary" href='/ajoutcv'>Ajouter un cv </a>   
       </div>
       
     </div>
@@ -188,22 +189,22 @@ class offres extends Component {
         <thead>
           <tr>
             <th className='pl-5'>Visualiser</th>
-            <th>Titre de poste</th>
+            <th>Titre de formation</th>
             <th>Email</th>
-            <th>localisation</th>
+            <th>Type</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody> 
-          {this.state.jobs.map(jobs => (<tr key={jobs._id}>
-            <td> <Link to ={`/singlepage/${jobs._id}`}className= "py-2 mr-1"><i class="fa fa-arrow-circle-right pl-5" aria-hidden="true" style={{fontSize: 25}}></i></Link></td>
-            <td>{jobs.title}</td>
-            <td>{jobs.email}</td>
-            <td>{jobs.location}</td>
+        <tbody>
+          {this.state.formation.map(formation => (<tr key={formation._id}>
+            <td> <Link to ={`/singlepage/${formation._id}`}className= "py-2 mr-1"><i class="fa fa-arrow-circle-right pl-5" aria-hidden="true" style={{fontSize: 25}}></i></Link></td>
+            <td>{formation.titre}</td>
+            <td>{formation.email}</td>
+            <td>{formation.type}</td>
             <td>
-
               {' '}
-              <button className="button" onClick={()=> this.delete(jobs._id)}  ><i class="fa fa-trash" aria-hidden="true"></i></button>
+              
+                    <button className="button" onClick={()=> this.delete(formation._id)} ><i class="fa fa-trash" aria-hidden="true"></i></button>
             </td>
           </tr>))}
         </tbody>

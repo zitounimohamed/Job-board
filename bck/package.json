@@ -11,8 +11,6 @@
   "author": "mohamed",
   "license": "ISC",
   "dependencies": {
-    "admin-bro": "^2.4.2",
-    "admin-bro-expressjs": "^2.0.5",
     "async": "^3.2.0",
     "async-waterfall": "^0.1.5",
     "bcryptjs": "^2.4.3",

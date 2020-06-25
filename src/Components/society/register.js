@@ -13,8 +13,8 @@ class register extends Component {
         this.state={
             email : null ,
             name : null ,
-            pass : null , 
-            re_pass : null , 
+            password : null , 
+            repeat_password : null , 
             nomEn : null , 
             site : null , 
             tel : null,
@@ -45,8 +45,8 @@ class register extends Component {
        const data ={
         email : this.state.email ,
         name : this.state.name ,
-        pass : this.state.pass , 
-        re_pass : this.state.re_pass , 
+        password : this.state.password , 
+        repeat_password : this.state.repeat_password , 
         nomEn : this.state.nomEn , 
         site : this.state.site , 
         tel : this.state.tel,
@@ -75,7 +75,7 @@ class register extends Component {
 
             <div className='col'>
                     <form onSubmit={this.handleSubmit} className="p-5 p-md-5 border rounded test">
-                    <h2 class="form-title">Créer votre espace employeur :</h2><hr/>
+                    <h2 class="form-title">Créer votre espace recruteur:</h2><hr/>
 
                         <div class='row pt-5'>
                         <div class='col'>
@@ -90,11 +90,11 @@ class register extends Component {
                         <div class='row pt-3'>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Mot de passe :*</label>
-                            <input class="form-control" type="password" placeholder="Default input" name="pass" id="pass" onChange={this.handleInputChange} required/>
+                            <input class="form-control" type="password" placeholder="Default input" name="password" id="password" onChange={this.handleInputChange} required/>
                         </div>
                         <div class='col'>
                             <label for="exampleFormControlFile1" className='lab'>Confirmer mot de passe :*</label>
-                            <input class="form-control" type="password" placeholder="Default input" name="re_pass" id="re_pass" onChange={this.handleInputChange} required/>
+                            <input class="form-control" type="password" placeholder="Default input" name="repeat_password" id="repeat_password" onChange={this.handleInputChange} required/>
                         </div>    
                         </div>
                         <div class='row pt-3'>

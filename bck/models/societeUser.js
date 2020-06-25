@@ -5,7 +5,19 @@ const Schema = mongoose.Schema;
 //create schema 
 
 const userSSchema = new Schema({
-  
+    method : {
+        type: String,
+        enum : ['local'],
+        required : true 
+        
+    },
+    local : {
+    isClient : {
+        type : Boolean
+    },
+    isAdmin : {
+        type : Boolean
+    },
         
     email : {
         type : String,
@@ -15,11 +27,11 @@ const userSSchema = new Schema({
         type : String,
         required : true, 
     },
-    pass : {
+    password : {
         type : String,
         required : true, 
     },
-    re_pass : {
+    repeat_password : {
         type : String,
         required : true, 
     },
@@ -47,29 +59,35 @@ const userSSchema = new Schema({
         type : String,
         required : true  
     }
-    
+}
 })
 
-userSSchema.pre('save',async function(next){
+userSSchema.pre('save', async function(next){
     try {
+
+        if(this.method !== 'local') {
+            next();
+        }
         //generate salt
         const salt = await bcrypt.genSalt(10);
-        const passhash = await bcrypt.hash(this.pass,salt);
-        this.pass = passhash; 
+        //generate a password hash(salt + hash)
+        const passwordhash = await bcrypt.hash(this.local.password,salt);
+        this.local.password= passwordhash ; 
         next(); 
         
     } catch (error) {
         next(error);
     }
-})
+});
 
 userSSchema.methods.isValidPass = async function(newpassword) {
     try {
-        return await bcrypt.compare(newpassword,this.pass) ;
+        return await bcrypt.compare(newpassword,this.local.password) ;
     } catch (error) {
         throw new Error(error);
     }
 }
+
 
 //create model 
 const UserS = mongoose.model('userS',userSSchema);

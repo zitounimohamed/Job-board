@@ -1,9 +1,38 @@
 import React, { Component } from 'react';
 import './admin.css'
-import me from '../../assets/img/20190322_194821.jpg'
+import { connect } from 'react-redux';
+
+import Axios from 'axios';
+import Background from './admin.jpg' ;
+
+const mystyles ={
+  backgroundImage: `url(${Background})`,
+  height : '120vh',
+  marginTop : -23 ,
+backgroundSize : 'cover'}
+
 class Admin extends Component {
+  constructor(props){
+    super(props); 
+    this.state={
+      profile : ''
+    }
+  }
   
+ async componentDidMount(){
+    const id = localStorage.getItem('id')
+    await Axios.get(`http://localhost:5000/users/profileA/${id}`).
+    then((response)=>{
+      this.setState({
+        profile : response.data.local
+      })
+
+    })
+    
+  }
+
     render() {
+      
         return (
             <div id="wrapper">
 
@@ -20,8 +49,8 @@ class Admin extends Component {
             
               <li class="nav-item active">
                 <a class="nav-link" href="/home">
-                <i class="fa fa-tachometer" aria-hidden="true"></i>
-                 <span > Dashboard</span></a>
+                <i class="fa fa-user" aria-hidden="true"></i>
+                 <span > Profile</span></a>
               </li>
             
               <hr class="sidebar-divider"/>
@@ -32,12 +61,13 @@ class Admin extends Component {
             
               <li class="nav-item">
                 <a class="nav-link collapsed" href="/" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fa fa-building"></i>
-                <span>Offres des emplois </span>
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                  <span>Emplois & Formations</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/offres">Visualiser tous les offres</a>
+                    <a class="collapse-item" href="/offres">Visualiser les offres </a>
+                    <a class="collapse-item" href="/formationAdmin">Visualiser les fomrations </a>
                   </div>
                 </div>
               </li>
@@ -114,21 +144,22 @@ class Admin extends Component {
             
                     <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="/" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Slouma Bhouri </span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{this.state.profile.nom}</span>
                         <img class="img-profile rounded-circle" src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" />
+                        <i class="fa fa-caret-down"></i>
                       </a>
               
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                           Profile
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                           Settings
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                           Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
@@ -140,22 +171,49 @@ class Admin extends Component {
                     </li>
                   </ul>
                 </nav> 
-                <div class="card">
-                  <img src="img.jpg" alt="John" style={{width:100}}/>
-                  <h1>John Doe</h1>
-                  <p class="title">CEO & Founder, Example</p>
-                  <p>Harvard University</p>
-                  <a href="#"><i class="fa fa-dribbble"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-linkedin"></i></a>
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <p><button>Contact</button></p>
-                </div>
+                <div className="content content-margined container " style={mystyles}>
+
+                <div class="wrapper" >
+    <div class="left">
+        <img src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" alt="user" width="100"/>
+        <h4>{this.state.profile.nom}</h4>
+         <p>Administrateur</p>
+    </div>
+    <div class="right mr-5">
+        <div class="info">
+            <h3>Information</h3>
+            <div class="info_data">
+                 <div class="data pr-5">
+                    <h4>Email</h4>
+                    <p className='pr-5'>{this.state.profile.email}</p>
+                 </div>
+                 
+            </div>
+        </div>
+      
+      
+      
+        <div class="social_media">
+            <ul>
+              <li><a href=""><i class="fa fa-facebook-f pt-3"></i></a></li>
+              <li><a href=""><i class="fa fa-twitter  pt-3"></i></a></li>
+              <li><a href=""><i class="fa fa-instagram  pt-3"></i></a></li>
+          </ul>
+      </div>
+    </div>
+</div>
                   </div>
                   </div>
-                  </div>
+                  </div></div>
         );
     }
 }
+function mapStateToProps(state) {
+  return {
+    
+    isAdmin : state.auth.isAdmin
 
-export default Admin;
+  }
+}
+
+export default connect(mapStateToProps)(Admin);

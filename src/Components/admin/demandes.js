@@ -51,7 +51,7 @@ class offres extends Component {
               <li class="nav-item active">
                 <a class="nav-link" href="/home">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
-                 <span >  Home</span></a>
+                 <span >Home</span></a>
               </li>
             
               <hr class="sidebar-divider"/>
@@ -86,7 +86,7 @@ class offres extends Component {
               </li>
               <li class="nav-item">
                 <a class="nav-link collapsed" href="/" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fas fa-fw fa-folder"></i>
+                  <i class="fa fa-fw fa-folder"></i>
                   <span>Les demandes</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -123,7 +123,7 @@ class offres extends Component {
             
                     <li class="nav-item dropdown no-arrow d-sm-none">
                       <a class="nav-link dropdown-toggle" href="/" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
+                        <i class="fa fa-search fa-fw"></i>
                       </a>
                     
                       <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
@@ -132,7 +132,7 @@ class offres extends Component {
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2"/>
                             <div class="input-group-append">
                               <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
+                                <i class="fa fa-search fa-sm"></i>
                               </button>
                             </div>
                           </div>
@@ -150,15 +150,15 @@ class offres extends Component {
               
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                           Profile
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                           Settings
                         </a>
                         <a class="dropdown-item" href="/">
-                          <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                          <i class="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                           Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
@@ -173,9 +173,8 @@ class offres extends Component {
                 <div className="content content-margined container ">
 
     <div className="piece-header">
-      <h3>Listes des offres d'emplois</h3>
+      <h3>Listes des demandes</h3>
       <div className='pt-3 pb-3'>
-      <a className="button primary" href='/ajoutcv'>Ajouter un cv </a>   
       </div>
       
     </div>
@@ -186,7 +185,7 @@ class offres extends Component {
       <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
+          <th className='pl-5'>Visualiser</th>
             <th>Titre de poste desiré</th>
             <th>Email</th>
             <th>Category</th>
@@ -195,13 +194,13 @@ class offres extends Component {
         </thead>
         <tbody>
           {this.state.applies.map(applies => (<tr key={applies._id}>
-            <td>{applies._id}</td>
+            <td> <Link to ={`/singlepage/${applies._id}`}className= "py-2 mr-1"><i class="fa fa-arrow-circle-right pl-5" aria-hidden="true" style={{fontSize: 25}}></i></Link></td>
             <td>{applies.titre}</td>
             <td>{applies.email}</td>
             <td>{applies.categ}</td>
             <td>
               {' '}
-              <button className="button" onClick={()=> this.delete(applies._id)} >Delete</button>
+              <button className="button" onClick={()=> this.delete(applies._id)} ><i class="fa fa-trash" aria-hidden="true"></i></button>
             </td>
           </tr>))}
         </tbody>

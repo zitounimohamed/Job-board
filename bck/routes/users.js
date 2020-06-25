@@ -11,13 +11,13 @@ const gOAuth = passport.authenticate('googleToken', { session: false });
 
 
 router.route('/signup')
-    .post(validateBody(schemas.authSchema),UsersController.signUp);
+    .post(UsersController.signUp);
     
 router.route('/signupS')
-    .post(validateBody(schemas.schemasociety),UsersController.signupS);
+    .post(UsersController.signupS);
 
 router.route('/signin')
-    .post(validateBody(schemas.lSchema),passportlogin,UsersController.signIn);
+    .post(passportlogin,UsersController.signIn);
 router.route('/newadmin')
     .post(UsersController.admin);
 
@@ -35,8 +35,8 @@ router.route('/signout')
 
 router.route('/status')
     .get(passportjwt, UsersController.checkAuth);
-router.route('/allcv')
-    .get(UsersController.allcv)
+router.route('/profileA/:id')
+    .get(UsersController.profileA)
   
 
 module.exports= router;
