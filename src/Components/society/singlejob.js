@@ -87,11 +87,9 @@ handleSubmit = async (event)=>{
   }*/
     render() {
       const isClient = this.props.isClient
-      const client = isClient ? (
-        <div></div>
-      ) : (
-          <Link to={`/modifypage/${this.state.job._id}`} class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Modifier</Link> 
-      );
+      const client = {
+        
+      }
       
         return (
             <section class="site-section">

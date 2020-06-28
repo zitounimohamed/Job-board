@@ -6,30 +6,33 @@ class Modify extends Component {
         super(props);
         this.state={
             data :'',
-            email : null,
-            title : null,
-            location: null,
-            region : null,
-            type :  null,
-            description : null,
-            company_name : null,
-            tagline :  null,
-            cDisc : null,
-            site : null,
-            file : null
+            email : '',
+            title : '',
+            location: '',
+            region : '',
+            type :  '',
+            description : '',
+            company_name : '',
+            tagline :  '',
+            cDisc : '',
+            site : '',
+            file : ''
         }
         this.handleInputChange = this.handleInputChange.bind(this)
         this.onChange=this.onChange.bind(this)
 
     }
    
-     
+   /*  const = {
+        email,title,location,region,type,description,company_name,tagline,cDisc,site
+     }*/
     handleInputChange = (event) =>{
         this.setState({
             
             [event.target.name] : event.target.value,
             
         })
+        console.log("t",event.target.name)
     }
     async componentDidMount(){
         const {id} = this.props.match.params
@@ -70,7 +73,6 @@ class Modify extends Component {
 
 
     render() {
-        console.log(this.state.data);
         
         return (
             <div>

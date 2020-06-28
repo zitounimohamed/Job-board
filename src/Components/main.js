@@ -20,6 +20,7 @@ import postJob from './society/postJob';
 import Recherche from './society/Recherche';
 import profile from './society/profile'
 import jobs from '../views/society/jobs'
+import formations from '../views/society/formations'
 import ProfilepageEm from './employee/profilepageEm';
 import test from './test'
 import Modifier from './society/modifyjob'
@@ -34,6 +35,7 @@ import allcv from './admin/allcv';
 import demandes from './admin/demandes'
 import formationAdmin from './admin/formationAdmin'
 import ajoutadmin from './admin/ajoutadmin';
+import singleFormation from './formations/singleFormation';
 
 const Main= () => (
     <BrowserRouter>
@@ -66,6 +68,8 @@ const Main= () => (
         <Route path='/formations' component={isAdmin(listFormation)}/>
         <Route path='/formationAdmin' component={isAdmin(formationAdmin)}/>
         <Route path='/ajoutadmin' component={isAdmin(ajoutadmin)} />
+        <Route path='/allformations' component={formations}/>
+        <Route path='/singleFormation/:id' component={singleFormation}/>
 
         
 
