@@ -44,11 +44,14 @@ export const signup = data =>{
             console.log("res",res);   
            dispatch({
                 type : AUTH_SIGN_UP,
-                payload : res.data.role ,
+                payload : res.data.token ,
+                payl : res.data.role,
                 
             });
 
             localStorage.setItem('JTW_Token',res.data.token);
+            localStorage.setItem('role',res.data.isClient)
+            localStorage.setItem("id", res.data.id)
             
         } catch (error) {
             dispatch({
@@ -258,4 +261,28 @@ export const getjob =(id,history)=> async (dispatch)=>{
         
     }
 };
-
+/* rechercheee 
+export const getCategories = (filterNom) => async (dispatch) => {
+    const res = await axios.get(BASE_URL + "/category/all");
+    if (filterNom != "" && filterNom != null) {
+      let filteredArray = [];
+      for (var i = 0; i < res.data.length; i++) {
+        console.log(res.data[i]);
+        if (res.data[i].nom.toLowerCase().indexOf(filterNom) == 0) {
+          filteredArray.push(res.data[i]);
+        }
+        if (res.data[i].designation.toLowerCase().indexOf(filterNom) == 0) {
+          filteredArray.push(res.data[i]);
+        }
+      }
+      dispatch({
+        type: GET_CATEGORIES,
+        payload: filteredArray,
+      });
+    } else {
+      dispatch({
+        type: GET_CATEGORIES,
+        payload: res.data,
+      });
+    }
+  };*/

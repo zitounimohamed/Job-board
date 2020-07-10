@@ -32,136 +32,34 @@ class Profilepage extends Component {
     render() {
         console.log("profile :",this.state.profile);
         return (
-            <div class="container emp-profile" style={{paddingTop : 100 , paddingBottom : 50}}>
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">                            
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                    
-                                    </h5>
-                                    <h6>
-                                        Web Developer and Designer
-                                    </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+            <div class="wrapper" >
+            <div class="left">
+                <img src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" alt="user" width="100"/>
+                <h4>{this.state.profile.nom}</h4>
+                 <p>Administrateur</p>
+            </div>
+            <div class="right mr-5">
+                <div class="info">
+                    <h3>Information</h3>
+                    <div class="info_data">
+                         <div class="data pr-5">
+                            <h4>Email</h4>
+                            <p className='pr-5'>{this.state.profile.email}</p>
+                         </div>
+                         
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-md-4">
-                        
-                    </div>
-                    <div class="col-md-8 pt-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>nom d'utilisateur</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Kshiti123</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nom & prénom</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {this.state.profile.name} </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{this.state.profile.email}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Telephone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{this.state.profile.tel}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nom de societé</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {this.state.profile.nomEn} </p>
-                                            </div>
-                                        </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Emplacement</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {this.state.profile.emp} </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Site Web</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {this.state.profile.site} </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>           
+              
+              
+              
+                <div class="social_media">
+                    <ul>
+                      <li><a href=""><i class="fa fa-facebook-f pt-3"></i></a></li>
+                      <li><a href=""><i class="fa fa-twitter  pt-3"></i></a></li>
+                      <li><a href=""><i class="fa fa-instagram  pt-3"></i></a></li>
+                  </ul>
+              </div>
+            </div>
         </div>
         );
     }

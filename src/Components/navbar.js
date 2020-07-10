@@ -24,12 +24,19 @@ class Navbar extends Component {
       console.log('isClient' + this.props.isClient);
       
     const isAuth = this.props.isAuth;
+    const isAdmin = this.props.isAdmin
       const isClient = this.props.isClient
-      const client = isClient ? (
-        <a className="nav-link js-scroll-trigger" href="/profileEm" key="login"> Mon Compte</a>
+      const clientOrAdminOrSociety = (isClient==="true") ? (
+        <a className="js-scroll-trigger" href="/profileEm" key="login"> Mon Compte</a>
       ) : (
-        <a className="nav-link js-scroll-trigger" href="/profile" key="login"> Mon Compte</a>
-      );
+        (isAdmin==="true") ? (
+          <a className="js-scroll-trigger" href="/admin" key="login"> Mon Compte</a>
+
+        ): (
+          <a className="js-scroll-trigger" href="/profile" key="login"> Mon Compte</a>
+
+        )
+      )
       
      
     // Checking if signed in or not and reacting as expected
@@ -46,14 +53,11 @@ class Navbar extends Component {
            </DropdownToggle>
            <DropdownMenu>
              <DropdownItem>
-               {client}
-             </DropdownItem>
-             <DropdownItem>
-               Offres d'emploi
+               {clientOrAdminOrSociety}
              </DropdownItem>
              <DropdownItem divider />
              <DropdownItem className="nav-item">
-                <a className="nav-link js-scroll-trigger" href="/loginEm" onClick={this.signOut} key="logout">Deconnexion</a>
+                <a className="js-scroll-trigger" href="/loginEm" onClick={this.signOut} key="logout">Deconnexion</a>
              </DropdownItem>
            </DropdownMenu>
          </UncontrolledDropdown>
@@ -73,7 +77,7 @@ class Navbar extends Component {
           <a className="nav-link js-scroll-trigger" href="/jobs">offres des emplois </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link js-scroll-trigger" href="/formations">Formations</a>
+          <a className="nav-link js-scroll-trigger" href="/allformations">Formations</a>
         </li>
         <li className="nav-item">
           <a className="nav-link js-scroll-trigger" href="/blog">Blog</a>
@@ -100,7 +104,8 @@ class Navbar extends Component {
 function mapStateToProps(state){
   return{
     isAuth : state.auth.isAuthenticated,
-    isClient : state.auth.role
+    isClient : state.auth.role,
+    isAdmin : state.auth.isAdmin
   }
 }
 

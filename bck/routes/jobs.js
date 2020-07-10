@@ -39,7 +39,21 @@ router.post("/uploadimage", (req, res) => {
   });
   
 //get all
-router.get('/alljobs', async (req, res) => {
+router.get('/alljobs/:title', async (req, res) => {
+  const title = req.params.title;
+  var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
+  Job.find(condition).
+  then(data =>{
+    res.send(data)
+  })
+  .catch(err =>{
+    res.status(500).send({ message :
+      err.message || "some error"
+    });
+  });
+ });
+
+ router.post('/alljobs', async (req, res) => {
   const title = req.body.title;
   var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
   Job.find(condition).
@@ -52,6 +66,27 @@ router.get('/alljobs', async (req, res) => {
     });
   });
  });
+
+//
+
+router.post('/all', async (req, res) => {
+  const title = req.body.title;
+  const location = req.body.location;
+  const type = req.body.type
+  var titre = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
+  var lieu = location ? {location : {$regex : new RegExp(location), $options : "i"}} : {} ;
+  var condition = type ? {type : {$regex : new RegExp(type), $options : "i"}} : {} ;
+  Job.find(condition,lieu,titre).
+  then(data =>{
+    res.send(data)
+  })
+  .catch(err =>{
+    res.status(500).send({ message :
+      err.message || "some error"
+    });
+  });
+ });
+
 
 //get a Job
 router.get('/:jobID', async (req, res) => {

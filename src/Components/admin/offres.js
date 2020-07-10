@@ -98,16 +98,6 @@ class offres extends Component {
             
               <hr class="sidebar-divider"/>
             
-              <div class="sidebar-heading">
-                Addons
-              </div>
-            
-              <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                  <span>Statistique</span></a>
-              </li>
-            
             </ul>
             
             <div id="content-wrapper" class="d-flex flex-column">
@@ -144,7 +134,7 @@ class offres extends Component {
             
                     <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="/" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Slouma Bhouri </span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mohamed Zitouni </span>
                         <img class="img-profile rounded-circle" src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" />
                       </a>
               

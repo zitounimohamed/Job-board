@@ -86,10 +86,15 @@ handleSubmit = async (event)=>{
       })
   }*/
     render() {
-      const isClient = this.props.isClient
-      const client = {
-        
-      }
+      const isAdmin = this.props.isAdmin      
+      const admin = (isAdmin==="true") ? (
+        <button type="button" class="btn btn-primary" >
+        Modifier
+     </button>
+     
+      ) :(
+        <div></div>
+      ) ;
       
         return (
             <section class="site-section">
@@ -180,8 +185,9 @@ handleSubmit = async (event)=>{
             <div class="bg-light p-3 border rounded">
             <div class="row">
               <div class="col-6 ml-5 pl-4">
-{ /*               <button onClick={this.deletejob(this.state.job._id)}  class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</button>
-*/}                {client}
+{ /*               <button onClick=>{()this.deletejob(this.state.job._id)}  class="btn btn-block btn-light btn-md"><i  class="fa fa-trash" aria-hidden="true" style={{paddingLeft : 12 , height : 40, paddingRight:12, paddingTop :10}}></i>Supprimer</button>
+*/}            
+                  {admin}
               </div>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                  Postuler
@@ -240,7 +246,7 @@ function mapStateToProps(state) {
 	return{
 		errorMessage: state.auth.errorMessage,
 		isAuth : state.auth.isAuthenticated,
-		isClient: state.auth.role
+		isAdmin: state.auth.isAdmin
 
 	}	
 }

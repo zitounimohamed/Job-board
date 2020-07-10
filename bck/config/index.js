@@ -11,6 +11,6 @@ module.exports = {
         }
     },
     USER: 'hammazitouni77@gmail.com', 
-    PASS: '26874846mo'
+    PASS: '26874846mohamedzitouni'
 
 }

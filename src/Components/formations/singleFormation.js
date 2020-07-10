@@ -26,7 +26,7 @@ class singleFormation extends Component {
     <section class="site-section">
             <div class="container">
               <div class="row align-items-center mb-5" style={{paddingTop : 150}}>
-                <div class="col-lg-3 mb-4 mb-lg-0" >
+                <div class="col-lg-8 mb-4 mb-lg-0" >
                   <div class="d-flex align-items-center">
                     <div class="border p-2 d-inline-block mr-3 rounded">
                     </div>
@@ -41,21 +41,6 @@ class singleFormation extends Component {
                   </div>
                 </div>
                 <div class="col-lg-4">
-                  
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="mb-5">
-                   
-                    <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span class="fa fa-briefcase pr-2"></span>Déscription de l'emploi</h3>
-                    <p>
-                      {this.state.forma.description}
-                    </p>
-                    
-                  </div>
-                </div>
-                <div class="col-lg-4">
                   <div class="bg-light p-3 border rounded mb-4">
                     <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Résumé de formation</h3>
                     <ul class="list-unstyled pl-3 mb-0">
@@ -65,6 +50,24 @@ class singleFormation extends Component {
                       <li class="mb-2"><strong class="text-black">Email :</strong> {this.state.forma.email} </li>
                     </ul>
                   </div>
+          
+                 
+          
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="mb-5" style={{marginTop:'-55px'}}>
+                   
+                    <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span class="fa fa-briefcase pr-2"></span>Déscription de l'emploi</h3>
+                    <p>
+                      {this.state.forma.description}
+                    </p>
+                    
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  
           
                  
           

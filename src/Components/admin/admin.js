@@ -98,15 +98,7 @@ class Admin extends Component {
             
               <hr class="sidebar-divider"/>
             
-              <div class="sidebar-heading">
-                Addons
-              </div>
-            
-              <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                  <span>Statistique</span></a>
-              </li>
+              
             
             </ul>
             

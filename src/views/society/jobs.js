@@ -1,117 +1,173 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import ViewJobs from '../../Components/society/listjob'
-import axios from "axios";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import '../../App.css'
-import JobService from './SearchServ'
+import ViewJobs from '../../Components/society/listjob';
+import axios from 'axios';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import '../../App.css';
+import JobService from './SearchServ';
+import { date } from 'joi';
 class Jobs extends Component {
-    constructor(props) {
-        super(props);
-            this.state ={
-        jobs : [],
-        currentjob : null,
-        currentindex : -1,
-        searchTitle : ""
-    };
-    this.searchTitle = this.searchTitle.bind(this)
-    this.onChangeSearchTitle= this.onChangeSearchTitle.bind(this)
-
-    }
-    onChangeSearchTitle(e){
-      const searchTitle = e.target.value
-      this.setState({
-        searchTitle : searchTitle
-      })
-    }
-    componentWillMount() {
-      this.getData();
-    }  
-
-    
-    getData = () => {
-      axios.get("http://localhost:5000/jobs/alljobs")
-        .then((response) =>
-        this.setState({
-          jobs : response.data
-        })
-        )       
-    };  
-    refreshList(){
-      this.getData();
-      this.setState({
-        currentjob : null ,
-        currentindex : -1
-      });
-    }  
+	constructor(props) {
+		super(props);
+		this.state = {
+			jobs: [],
+			title: '',
+			lieu : '',
+			type : ''
+			  };
+		this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
+	}
+	onChangeSearchTitle(e) {
   
- async searchTitle(){
-    JobService.findByTitle(this.state.searchTitle).
-    then(response=>{
-      this.setState({
-        jobs : response.data
-      })
-      console.log(response);
-      
-      
-    })
-  }
-
-  
-
+		this.setState({
+      [e.target.name] : e.target.value
+    });
     
+	}
+	componentWillMount() {
+		//this.getsearch();
+		this.getsearch(this.state.title,this.state.type,this.state.lieu)
+	}
+	
+	getsearch = async () => {
+		
+		var raw = JSON.stringify({ title: 'Developpeur full stack' });
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+		myHeaders.append("Accept", "application/json");
+		var requestOptions = {
+			method: 'POST',
+			body: raw,
+			headers: myHeaders,
+			redirect: 'follow'
+		};
+		axios.post("http://localhost:5000/jobs/all", { title: this.state.title , lieu: this.state.lieu, type : this.state.type})
+			.then(result => 
+				this.setState({
+					jobs: result.data
+				})
+        
+				)
+			.catch(error => console.log('error', error));
+	};
+	refreshList() {
+		this.getData();
+		this.setState({
+			currentjob: null,
+			currentindex: -1
+		});
+	}
 
-    render() {
-    const {searchTitle}= this.state        
-        return (
-        <div style={{paddingTop: 60}}>
-            <section className="ftco-section bg-light pt-5 pb-5" >
-			    <div className="container">
-                    <div className="row justify-content-center mb-5 pb-3">
-                    <div className="col-md-7 heading-section text-center ftco-animate">
-          	            <span className="subheading">Recently Added Jobs</span>
-                        <h2 className="mb-4"><span>Recent</span> Jobs</h2>
-                    </div>
-                    
-                </div>
-          <div className="list row">
-            <div className='col md-8' >
-              <div className='input-group'>
-                <input
-                type = 'text' 
-                className='form-control'
-                placeholder='searchTitle'
-                value = {searchTitle}
-                onChange={this.onChangeSearchTitle}   
-                />
-                <button
-                className='btn btn-primary'
-                type='button'
-                onClick={this.searchTitle}
-                >
-                  Search
-                </button>
-                </div>
-                </div>
-                </div>
-                <div className='jobs'>
-                    {this.state.jobs !== null && this.state.jobs.map(jobs => {
-                        return (                 
-                            <ViewJobs  _id={jobs._id} title={jobs.title} location={jobs.location}type={jobs.type} file={jobs.file} 
-                             />)
-                    })}
-                </div>
-                </div>
-            </section>
-        </div>
-        );
-    }
+	render() {
+		console.log(this.state.jobs);
+
+		return (
+			<div style={{ paddingTop: 60 }}>
+				<section className="ftco-section bg-light pt-5 pb-5">
+					<div className="container">
+						<div className="row justify-content-center mb-5 pb-3">
+							<div className="col-md-7 heading-section text-center ftco-animate">
+								<span className="subheading">Emplois récemment ajoutés</span>
+								<h2 className="mb-4">
+									<span>Emplois</span> Récents
+								</h2>
+							</div>
+						</div>
+						<div className="list row">
+							<div className="col md-8" style={{paddingBottom : '60px'}}>
+								<form className="search-jobs-form ">
+									<div className="row mb-5">
+										<div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+											<input
+												type="text"
+												className="form-control form-control-lg-0"
+												name="title"
+												placeholder="Titre emploi, clé..."
+												onChange={this.onChangeSearchTitle}
+											/>
+										</div>
+										<div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+											<select
+												name="lieu"
+												className="form-control"
+												onChange={this.onChangeSearchTitle}
+											>
+												<option>N'impote où</option>
+												<option value="Ariana">Ariana</option>
+												<option value="Béja">Béja</option>
+												<option value="Ben Arous">Ben Arous</option>
+												<option value="Bizerte">Bizerte</option>
+												<option value="Gabès">Gabès</option>
+												<option value="Gafsa">Gafsa</option>
+												<option value="Jendouba">Jendouba</option>
+												<option value="Kairouan">Kairouan</option>
+												<option value="Kasserine">Kasserine</option>
+												<option value="Kébili">Kébili</option>
+												<option value="Le Kef">Le Kef</option>
+												<option value="Mahdia">Mahdia</option>
+												<option value="La Manouba">La Manouba</option>
+												<option value="Médenine">Médenine</option>
+												<option value="Monastir">Monastir</option>
+												<option value="Nabeul">Nabeul</option>
+												<option value="Sfax">Sfax</option>
+												<option value="Sidi Bouzid">Sidi Bouzid</option>
+												<option value="Siliana">Siliana</option>
+												<option value="Sousse">Sousse</option>
+												<option value="Tataouine">Tataouine</option>
+												<option value="Tozeur">Tozeur</option>
+												<option value="Tunis">Tunis</option>
+												<option value="Zaghouan">Zaghouan</option>
+											</select>
+										</div>
+										<div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+											<select
+												name="type"
+												className="form-control"
+												onChange={this.onChangeSearchTitle}
+											>
+												<option>N'impote où</option>
+												<option value="temps plein">temps plein</option>
+												<option value="demi journée">Demi journée</option>
+											</select>
+										</div>
+										<div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+											<button
+												type="button"
+												onClick={this.getsearch}
+												className="btn btn-primary btn-lg-0  mb-9 btn-block text-white btn-search"
+											>
+												<span className="icon-search icon mr-2" />Rechercher
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div className="jobs">
+							{this.state.jobs !== null &&
+								this.state.jobs.map((jobs) => {
+									return (
+										<ViewJobs
+											_id={jobs._id}
+											title={jobs.title}
+											location={jobs.location}
+											type={jobs.type}
+											file={jobs.file}
+										/>
+									);
+								})}
+						</div>
+					</div>
+				</section>
+			</div>
+		);
+	}
 }
 function mapStateToProps(state) {
 	return {
-	  isAuthenticated: state.isAuthenticated
-	}
-  }
+		isAuthenticated: state.isAuthenticated
+	};
+}
 export default compose(connect(mapStateToProps))(Jobs);

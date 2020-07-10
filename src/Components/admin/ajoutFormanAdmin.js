@@ -1,46 +1,14 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import axios from 'axios'
-import './admin.css'
-class offres extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            formation: []
-          }
-    
- }
- delete(id){
-    axios.delete(`http://localhost:5000/formations/${id}`)
-    .then((response)=>{
-      if(response.status===200 && response!= null)
-      {
-        console.log("done");
-        
-      }
-    })
-    
- }
- async componentDidMount(){
-    
-    
-    await axios.get("http://localhost:5000/formations/formations")
+import AjouterForma from '../formations/ajouterForma';
 
-     .then((response) => {
-       if(response.status===200 && response!= null )
-       {
-         this.setState({formation : response.data})
-       }
-    })
-}
-
+class ajoutFormanAdmin extends Component {
     render() {
         return (
             <div id="wrapper">
 
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             
-            <div class="sidebar-brand d-flex align-items-center justify-content-center" >
+              <div class="sidebar-brand d-flex align-items-center justify-content-center" >
                 <div class="sidebar-brand-icon rotate-n-15">
                   <i class="ti-themify-favicon"></i>
                 </div>
@@ -52,7 +20,7 @@ class offres extends Component {
               <li class="nav-item active">
                 <a class="nav-link" href="/home">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
-                 <span >  Home</span></a>
+                 <span > Profil</span></a>
               </li>
             
               <hr class="sidebar-divider"/>
@@ -64,12 +32,12 @@ class offres extends Component {
               <li class="nav-item">
                 <a class="nav-link collapsed" href="/" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fa fa-cogs" aria-hidden="true"></i>
-                  <span>Emplois & Formations </span>
+                  <span>Emplois & Formations</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/offres">Visualiser tous les offres </a>
-                    <a class="collapse-item" href="/formationAdmin">Visualiser tous les offres </a>
+                    <a class="collapse-item" href="/offres">Visualiser les offres </a>
+                    <a class="collapse-item" href="/formationAdmin">Visualiser les fomrations </a>
                   </div>
                 </div>
               </li>
@@ -81,19 +49,19 @@ class offres extends Component {
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/allcv">Visualiser les cv</a>
+                    <a class="collapse-item" href="/allcv">Visualiser tous les cv</a>
                   
                   </div>
                 </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link collapsed" href="/" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                  <i class="fa fa-fw fa-folder"></i>
+                  <i class="fa fa-fw fa-archive"></i>
                   <span>Les demandes</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/demandes">Visualiser les demandes</a>
+                    <a class="collapse-item" href='/demandes'>Visualiser les demandes</a>
                   </div>
                 </div>
               </li>
@@ -146,8 +114,9 @@ class offres extends Component {
             
                     <li class="nav-item dropdown no-arrow">
                       <a class="nav-link dropdown-toggle" href="/" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin </span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Slouma Bhouri </span>
                         <img class="img-profile rounded-circle" src="https://i.ibb.co/4jJRYgX/laptop-user-1-1179329.png" />
+                        <i class="fa fa-caret-down"></i>
                       </a>
               
                       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -172,51 +141,12 @@ class offres extends Component {
                     </li>
                   </ul>
                 </nav> 
-                <div className="content content-margined container ">
-
-    <div className="piece-header">
-      <h3>Listes des offres d'emplois</h3>
-      <div className='pt-3 pb-3'>
-      <a className="btn btn-secondary" href='/ajoutadminforma'>Ajouter une formation</a>   
-      </div>
-      
-    </div>
-   
-
-    <div className="piece-list">
-
-      <table className="table">
-        <thead>
-          <tr>
-            <th className='pl-5'>Visualiser</th>
-            <th>Titre de formation</th>
-            <th>Email</th>
-            <th>Type</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.formation.map(formation => (<tr key={formation._id}>
-            <td> <Link to ={`/singleformation/${formation._id}`}className= "py-2 mr-1"><i class="fa fa-arrow-circle-right pl-5" aria-hidden="true" style={{fontSize: 25}}></i></Link></td>
-            <td>{formation.titre}</td>
-            <td>{formation.email}</td>
-            <td>{formation.type}</td>
-            <td>
-              {' '}
-              
-                    <button className="button" onClick={()=> this.delete(formation._id)} ><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>))}
-        </tbody>
-      </table>
-           
-          </div>
-  </div>
-                  </div>
-                  </div>
-                  </div>
+                <AjouterForma></AjouterForma>
+                </div>
+                </div>
+                </div>
         );
     }
 }
 
-export default offres;
+export default ajoutFormanAdmin;

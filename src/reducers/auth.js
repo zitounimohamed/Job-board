@@ -34,7 +34,7 @@ export default (state=DEFAULT_STATE ,action)=>{
         case PROFILE:
             return {...state, isAuthenticated: true ,role: action.pay.role};
         case AUTH_SIGN_UP:
-            return {...state, token: action.payload,id:action.pay,isAuthenticated: true,isClient : true, userData : action.pay, errorMessage : ''};
+            return {...state, token: action.payload,id:action.pay,isAuthenticated: true,role : action.payl, userData : action.pay, errorMessage : ''};
         case SIGN_UP_SOC:
             return {...state, token: action.payload,isAuthenticated: true,isClient : false, userData : action.pay,errorMessage : ''};
         case AUTH_SIGN_IN:

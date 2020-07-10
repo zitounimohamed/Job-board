@@ -14,7 +14,7 @@ router.get("/formations",async (req, res)=>{
 
 router.get('/:id', async (req, res) => {
     try {
-        const formation = await forma.findById(req.params._id)
+        const formation = await forma.findById(req.params.id)
         res.json(formation);
      } catch (error) {
          res.json({ message : error });

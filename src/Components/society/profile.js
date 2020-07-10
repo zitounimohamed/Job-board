@@ -3,6 +3,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card,  Row, Col,CardBody } 
 import classnames from 'classnames';
 import PostJob from './postJob';
 import Recherche from './Recherche';
+import AjouterForma from '../formations/ajouterForma';
 
 const Example = (props) => {
   //  const [isOpen, setIsOpen] = useState(false);
@@ -46,6 +47,14 @@ const Example = (props) => {
             Les demandes
           </NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '4' })}
+            onClick={() => { toggle('4'); }}
+          >
+            Ajouter une formation
+          </NavLink>
+        </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
@@ -85,6 +94,22 @@ const Example = (props) => {
                 <Card>
                   <CardBody>
                       test
+                  </CardBody>
+                </Card>
+            
+             
+            </Col>
+          </Row>
+          
+        </TabPane>
+        <TabPane tabId="4">
+          <Row>
+              
+             <Col sm="12">
+            
+                <Card>
+                  <CardBody>
+                      <AjouterForma></AjouterForma>
                   </CardBody>
                 </Card>
             

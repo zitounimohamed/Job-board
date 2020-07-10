@@ -36,6 +36,8 @@ import demandes from './admin/demandes'
 import formationAdmin from './admin/formationAdmin'
 import ajoutadmin from './admin/ajoutadmin';
 import singleFormation from './formations/singleFormation';
+import ajouterForma from './formations/ajouterForma';
+import ajoutFormanAdmin from './admin/ajoutFormanAdmin';
 
 const Main= () => (
     <BrowserRouter>
@@ -55,7 +57,7 @@ const Main= () => (
         <Route path='/postjob' roles={["societé"]} component={NotClient(postJob)}></Route>
         <Route path='/recherche' roles={["societé"]} component={NotClient(Recherche)}></Route>
         <Route path='/profile' roles={["societé"]} component={NotClient(profile)}></Route>
-        <Route path='/jobs' component={(jobs)}></Route>
+        <Route path='/jobs/' component={(jobs)}></Route>
         <Route path='/profilepage' component={isClient(ProfilepageEm)}></Route>
         <Route path='/test'  component={test}></Route>
         <Route path='/modifypage/:id' component={NotClient(Modifier)}></Route>
@@ -68,8 +70,10 @@ const Main= () => (
         <Route path='/formations' component={isAdmin(listFormation)}/>
         <Route path='/formationAdmin' component={isAdmin(formationAdmin)}/>
         <Route path='/ajoutadmin' component={isAdmin(ajoutadmin)} />
+        <Route path='/ajoutadminforma' component={isAdmin(ajoutFormanAdmin)}/>
         <Route path='/allformations' component={formations}/>
         <Route path='/singleFormation/:id' component={singleFormation}/>
+        <Route path='/ajoutforma' component={ajouterForma}/>
 
         
 
