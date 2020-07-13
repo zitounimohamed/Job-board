@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import "./admin.css"
 class offres extends Component {
     constructor(props){
         super(props);
         this.state = {
-          jobs: []
+          jobs: [],
+          nom :''
           }
     
  }
@@ -19,17 +21,34 @@ class offres extends Component {
     })
     
  }
- async componentDidMount(){
-    
-    
-    await axios.get("http://localhost:5000/jobs/alljobs")
+ getsearch = async () => {
 
-     .then((response) => {
-       if(response.status===200 && response!= null )
-       {
-         this.setState({jobs : response.data})
-       }
-    })
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Accept", "application/json");
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+  axios.post("http://localhost:5000/jobs/alljobs", { title: this.state.nom })
+    .then(result => 
+      this.setState({
+        jobs: result.data
+      })
+      
+      )
+    .catch(error => console.log('error', error));
+};
+
+handleInputChange = (event) =>{
+  this.setState({
+    [event.target.name] : event.target.value
+  });
+}
+
+ async componentDidMount(){
+    this.getsearch()
 }
 
     render() {
@@ -176,6 +195,26 @@ class offres extends Component {
 
       <table className="table">
         <thead>
+                <div class="form-group d-flex">
+                  <input
+                    type="text"
+                    name ='nom'
+                    class="form-control pl-3"
+                    placeholder="Search"
+                    onChange={this.handleInputChange}
+                  />
+                  <button
+                    type="submit"
+                    placeholder=""
+                    class="btn btn-secondary search"
+                    onClick={this.getsearch}
+                  >
+                    <span class="fa fa-search"></span>
+                  </button>
+                </div>
+
+
+
           <tr>
             <th className='pl-5'>Visualiser</th>
             <th>Titre de poste</th>

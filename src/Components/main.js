@@ -38,6 +38,9 @@ import ajoutadmin from './admin/ajoutadmin';
 import singleFormation from './formations/singleFormation';
 import ajouterForma from './formations/ajouterForma';
 import ajoutFormanAdmin from './admin/ajoutFormanAdmin';
+import listJSearch from './employee/listJSearch';
+import about from './about';
+import Demandes from './society/Demandes';
 
 const Main= () => (
     <BrowserRouter>
@@ -74,6 +77,9 @@ const Main= () => (
         <Route path='/allformations' component={formations}/>
         <Route path='/singleFormation/:id' component={singleFormation}/>
         <Route path='/ajoutforma' component={ajouterForma}/>
+        <Route path='/listJSearch/:titre/:lieu/:type' component={listJSearch}/>
+        <Route path="/about" component={about}/>
+        <Route path='/demandees' component={NotClient(Demandes)}/>
 
         
 

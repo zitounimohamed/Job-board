@@ -41,7 +41,7 @@ class Cv extends Component {
     
      handleSubmit = async event=>{
         event.preventDefault();
-        const id = this.props.iduser
+        const id = localStorage.getItem('id')
         const uploadedImageInfo= await this.uploadFile(this.state.file);
         const uploadpdfinfo = await this.uploadFilepdf(this.state.filep) ;
         console.log(uploadedImageInfo);
@@ -119,7 +119,7 @@ class Cv extends Component {
                 <div className='row'>
                 <div className='col'>
                     <div class="form-group pt-5 ">
-                    <label for="exampleFormControlFile1">Example file input</label>
+                    <label for="exampleFormControlFile1">Votre image</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" onChange={this.onChange} required/>
                     
                 </div>

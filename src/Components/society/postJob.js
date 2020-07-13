@@ -44,7 +44,7 @@ class postJob extends Component {
         event.preventDefault();
         const uploadedImageInfo= await this.uploadFile(this.state.file);
         console.log(uploadedImageInfo);
-
+        const id = localStorage.getItem("id")
        let uri ="http://localhost:5000/jobs/newjob" ;
        const data ={
         email : this.state.email,
@@ -60,7 +60,8 @@ class postJob extends Component {
         exigences : this.state.exigences,
         education : this.state.education,
         experience : this.state.experience,
-        autres : this.state.autres
+        autres : this.state.autres,
+        user : id
 
 
 

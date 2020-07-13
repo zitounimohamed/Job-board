@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 
 const jobSchema = mongoose.Schema({
-    
+    user : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true ,
+        ref  :"user"
+    },
     email : {
         type: String,
         required : true},

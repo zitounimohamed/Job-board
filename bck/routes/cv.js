@@ -55,9 +55,9 @@ router.post("/uploadimage", (req, res) => {
   });
 
 //Get cv pop user  
-router.get('/mycv', async (req, res) => {
+router.get('/mycv/:_id', async (req, res) => {
     try {
-        const cv = await Cv.find().populate('user')
+        const cv = await Cv.find({writer :req.params._id})
         res.json(cv);
      } catch (error) {
          res.json({ message : error });
@@ -67,14 +67,20 @@ router.get('/mycv', async (req, res) => {
 
 
 //get all
-router.get('/allcv', async (req, res) => {
-    try {
-        const cv = await Cv.find();
-        res.json(cv);
-     } catch (error) {
-         res.json({ message : error });
-     }
+router.post('/allcv', async (req, res) => {
+  const title = req.body.titre;
+  var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
+  Cv.find(condition).
+  then(data =>{
+    res.send(data)
+  })
+  .catch(err =>{
+    res.status(500).send({ message :
+      err.message || "some error"
+    });
+  });
  });
+
  //get a cv
  router.get('/cv/:id', async (req, res) => {
      try {

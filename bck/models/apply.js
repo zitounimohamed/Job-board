@@ -17,6 +17,16 @@ const DemandeSchema = mongoose.Schema({
     lettre : {
         type : String , 
         required : true
+    },
+    user : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true,
+        ref : 'user'
+    },
+    jobuser : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true,
+        ref : 'jobs'
     }
 
 })

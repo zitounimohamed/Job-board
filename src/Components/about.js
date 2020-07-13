@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../assets/css/agency.min.css'
 class about extends Component {
     render() {
         return (

@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import Cv from './cv';
 import Listcv from '../../views/cvs'
 import ProfilepageEm from './profilepageEm';
+import Commandes from './commandes';
 const Example = (props) => {
   //  const [isOpen, setIsOpen] = useState(false);
 
@@ -98,7 +99,7 @@ const Example = (props) => {
             
                 <Card>
                   <CardBody>
-                      test
+                      <Commandes></Commandes>
                   </CardBody>
                 </Card>
             

@@ -4,6 +4,9 @@ import classnames from 'classnames';
 import PostJob from './postJob';
 import Recherche from './Recherche';
 import AjouterForma from '../formations/ajouterForma';
+import Myjobs from './myjobs';
+import Demandes from './Demandes';
+import Profilepage from './profilepage'
 
 const Example = (props) => {
   //  const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +47,7 @@ const Example = (props) => {
             className={classnames({ active: activeTab === '3' })}
             onClick={() => { toggle('3'); }}
           >
-            Les demandes
+            Les Offres d'emplois 
           </NavLink>
         </NavItem>
         <NavItem>
@@ -55,6 +58,23 @@ const Example = (props) => {
             Ajouter une formation
           </NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '5' })}
+            onClick={() => { toggle('5'); }}
+          >
+            Les demandes 
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '6' })}
+            onClick={() => { toggle('6'); }}
+          >
+            Page profil
+          </NavLink>
+        </NavItem>
+        <NavItem></NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
@@ -93,7 +113,7 @@ const Example = (props) => {
             
                 <Card>
                   <CardBody>
-                      test
+                      <Myjobs></Myjobs>
                   </CardBody>
                 </Card>
             
@@ -117,6 +137,23 @@ const Example = (props) => {
             </Col>
           </Row>
           
+        </TabPane>
+        <TabPane tabId="5">
+          <Row>
+              
+            
+                <Card>
+                  <CardBody>
+                      <Demandes></Demandes>
+                  </CardBody>
+                </Card>
+            
+             
+          </Row>
+          
+        </TabPane>
+        <TabPane tabId="6">
+          <Profilepage></Profilepage>
         </TabPane>
       </TabContent>
     </div>

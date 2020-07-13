@@ -155,6 +155,15 @@ module.exports = {
             console.log(error);
             
         }
+    },
+    profileC : async (req, res, next)=>{
+        try {
+            const admin =await User.findById(req.params.id)
+            res.json(admin)
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
    
 

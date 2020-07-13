@@ -37,6 +37,7 @@ router.route('/status')
     .get(passportjwt, UsersController.checkAuth);
 router.route('/profileA/:id')
     .get(UsersController.profileA)
-  
+router.route('/profileC/:id')
+    .get(UsersController.profileC)
 
 module.exports= router;

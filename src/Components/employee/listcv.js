@@ -27,7 +27,7 @@ class listcv extends Component {
                 </div>
               </div>
               <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+                <button onClick={this.props.filep}  class="btn btn-primary py-2 mr-1">Mon cv</button>
               </div>
             </div>
           </div>

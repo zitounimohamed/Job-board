@@ -12,11 +12,11 @@ class cvs extends Component {
     }
 
 async componentDidMount(){
-    const id = this.props.idUser
+    const id = localStorage.getItem('id')
     console.log(id);
     
-    let url = 'http://localhost:5000/cvs/mycv'
-    axios.get(url,id).then((response) => {
+    let url = `http://localhost:5000/cvs/mycv/${id}`
+    axios.get(url).then((response) => {
         console.log(response);
       
 
@@ -40,7 +40,7 @@ async componentDidMount(){
             {this.state.cv !== null && this.state.cv.map(cv => {
 
                 return (
-                    <ViewCv file={cv.file}  titre={cv.titre}  ></ViewCv>)
+                    <ViewCv file={cv.file}  titre={cv.titre} filep={cv.filep}  ></ViewCv>)
             })}
             </div>
         );
@@ -49,7 +49,6 @@ async componentDidMount(){
 function mapStateToProps(state) {
 	return {
       isAuthenticated: state.auth.isAuthenticated,
-      idUser : state.auth.id
 	}
   }
 export default compose(connect(mapStateToProps))(cvs);

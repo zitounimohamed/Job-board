@@ -6,17 +6,13 @@ import Googlelogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login'
 
 import './loginEm.css';
-
-
-
-	
-
 class SignInForm extends Component {
 	constructor(props) {	
 			super(props);
 			this.state={
 				email : null ,
-				password : null  }
+				password : null  
+			}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this)

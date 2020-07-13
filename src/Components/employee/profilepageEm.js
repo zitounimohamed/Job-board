@@ -15,10 +15,10 @@ class ProfilepageEm extends Component {
         }
     }
     async componentDidMount(){
-        const t = this.props.token
-        console.log("token",t);
+const id= localStorage.getItem('id')
+
         
-         await Axios.get('http://localhost:5000/users/secret',setAuthToken(t))
+         await Axios.get(`http://localhost:5000/users/profileC/${id}`)
         .then((response)=>{
             if(response.status===200 && response!= null )
         {
@@ -46,21 +46,15 @@ class ProfilepageEm extends Component {
                                     
                                     </h5>
                                     <h6>
-                                        Web Developer and Designer
+                                       
                                     </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Blog</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li>
+                               
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                     </div>
                 </div>
                 <div class="row ">
@@ -75,17 +69,10 @@ class ProfilepageEm extends Component {
                                                 <label>Nom d'utilisateur</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti123</p>
+                                                <p>{this.state.profile.username}</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nom et prénom</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p> {this.state.profile.username} </p>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Email</label>

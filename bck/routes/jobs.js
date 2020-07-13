@@ -39,10 +39,11 @@ router.post("/uploadimage", (req, res) => {
   });
   
 //get all
-router.get('/alljobs/:title', async (req, res) => {
-  const title = req.params.title;
-  var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
-  Job.find(condition).
+/*
+router.get('/alljobs/', async (req, res) => {
+  //const title = req.params.title;
+  //var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
+  Job.find().
   then(data =>{
     res.send(data)
   })
@@ -52,7 +53,7 @@ router.get('/alljobs/:title', async (req, res) => {
     });
   });
  });
-
+*/
  router.post('/alljobs', async (req, res) => {
   const title = req.body.title;
   var condition = title ? {title : {$regex : new RegExp(title), $options : "i"} } :{} ;
@@ -87,7 +88,14 @@ router.post('/all', async (req, res) => {
   });
  });
 
-
+ router.get('/jobbyuser/:id', async (req, res) => {
+  try {
+      const jobs = await Job.find({user :req.params.id});
+      res.json(jobs);
+   } catch (error) {
+       res.json({ message : error });
+   }
+});
 //get a Job
 router.get('/:jobID', async (req, res) => {
     try {
@@ -114,7 +122,8 @@ router.post('/newjob',async(req, res) => {
         exigences : req.body.exigences,
         education : req.body.education,
         experience : req.body.experience,
-        autres : req.body.autres
+        autres : req.body.autres,
+        user : req.body.user
 
 
 

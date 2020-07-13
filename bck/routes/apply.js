@@ -72,7 +72,9 @@ router.post('/newapply',async(req, res) => {
         file : req.body.file,
         nom : req.body.nom,
         email: req.body.email,
-        lettre : req.body.lettre
+        lettre : req.body.lettre,
+        user : req.body.user,
+        jobuser : req.body.jobuser
     });
     try {
         const savedapply= await apply.save();
@@ -81,6 +83,25 @@ router.post('/newapply',async(req, res) => {
            res.json({ message: error });
    }
     
+});
+
+//Get cv pop user  
+router.get('/myapply/:_id', async (req, res) => {
+  try {
+      const app = await Apply.find({user :req.params._id})
+      res.json(app);
+   } catch (error) {
+       res.json({ message : error });
+   }
+});
+//get jobs applies
+router.get('/jobsapply/:_id', async (req, res) => {
+  try {
+      const app = await Apply.find({jobuser :req.params._id})
+      res.json(app);
+   } catch (error) {
+       res.json({ message : error });
+   }
 });
 
 

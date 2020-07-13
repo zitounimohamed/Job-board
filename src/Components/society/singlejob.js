@@ -43,17 +43,21 @@ uploadFile = async file => {
   }
 };
 handleSubmit = async (event)=>{
+  const {id} = this.props.match.params
   event.preventDefault();
+  const idUser = localStorage.getItem('id')
   const uploadedPdfInfo= await this.uploadFile(this.state.file);
   let url = "http://localhost:5000/demandes/newapply" 
   const data ={
     file : uploadedPdfInfo.pdf,
     nom : this.state.nom,
     email : this.state.email , 
-    lettre : this.state.lettre
+    lettre : this.state.lettre,
+    user : idUser,
+    jobuser : id
   }
   await axios.post(url,data).then((response)=>{
-    console.log(response);
+    window.location.reload()
     
 }).catch(error =>{
     console.log(error);
@@ -62,7 +66,6 @@ handleSubmit = async (event)=>{
 }
   async componentDidMount(){
     const {id} = this.props.match.params
-    console.log('id',id);
     
      await axios.get(`http://localhost:5000/jobs/${id}`)
 
