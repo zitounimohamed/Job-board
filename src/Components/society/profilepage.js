@@ -69,7 +69,7 @@ const id= localStorage.getItem('id')
                                                 <label>Nom et prénom</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{this.state.profile.name}</p>
+                                                <p>{this.state.profile.name }</p>
                                             </div>
                                         </div>
                                         

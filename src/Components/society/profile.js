@@ -47,7 +47,7 @@ const Example = (props) => {
             className={classnames({ active: activeTab === '3' })}
             onClick={() => { toggle('3'); }}
           >
-            Les Offres d'emplois 
+            Les postes 
           </NavLink>
         </NavItem>
         <NavItem>

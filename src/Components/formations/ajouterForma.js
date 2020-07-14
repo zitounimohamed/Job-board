@@ -24,6 +24,7 @@ class ajouterForma extends Component {
         })
     }
     async handleSubmit(){
+        const id = localStorage.getItem("id")
         let uri ="http://localhost:5000/formations/newforma" ;
         const data = {
             email : this.state.email,
@@ -31,7 +32,8 @@ class ajouterForma extends Component {
             titre : this.state.titre,
             description : this.state.description,
             lieu : this.state.lieu, 
-            ville : this.state.ville
+            ville : this.state.ville,
+            user : id 
         }
         await Axios.post(uri,data).then((response)=>{
             if(response.status===200 && response!= null ){

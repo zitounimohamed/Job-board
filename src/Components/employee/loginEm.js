@@ -39,8 +39,21 @@ class SignInForm extends Component {
        console.log("data",data);
        await this.props.signin(data);
           
-           if (!this.props.errorMessage) {
-            this.props.history.push('/profileEm');}
+	   if (this.props.isAdmin && !this.props.errorMessage) {
+		window.location.href= '/admin'
+  
+	  }else {
+		if(this.props.isClient){
+		  window.location.href= '/home'
+  
+		}else  {
+		  
+			window.location.href= '/home'
+  
+		  
+  
+		}
+  }
 
             
     }
@@ -152,7 +165,9 @@ function mapStateToProps(state) {
 	return{
 		errorMessage: state.auth.errorMessage,
 		isAuth : state.auth.isAuthenticated,
-		token: state.auth.token
+		token: state.auth.token,
+		isAdmin : state.auth.isAdmin,
+		isClient : state.auth.role, 
 
 	}	
 }
